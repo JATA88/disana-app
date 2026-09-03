@@ -1,694 +1,114 @@
 <!DOCTYPE html>
-
-<html dir="rtl" lang="ar"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
-<title>ديسانا | Disana Real Estate Platform</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-    tailwind.config = {
-      darkMode: "class",
-      theme: {
-        extend: {
-          "colors": {
-            "secondary-fixed": "#d6e4f9",
-            "on-error": "#ffffff",
-            "surface-bright": "#f7f9fb",
-            "surface-dim": "#d8dadc",
-            "on-secondary-fixed": "#0f1c2c",
-            "on-surface": "#191c1e",
-            "secondary": "#525f71",
-            "on-tertiary": "#ffffff",
-            "secondary-fixed-dim": "#bac8dc",
-            "on-secondary": "#ffffff",
-            "secondary-container": "#d3e1f6",
-            "on-secondary-container": "#566475",
-            "tertiary": "#002150",
-            "on-surface-variant": "#434750",
-            "on-primary-container": "#84a3e0",
-            "on-background": "#191c1e",
-            "inverse-primary": "#abc7ff",
-            "surface-container-low": "#f2f4f6",
-            "surface-container-highest": "#e0e3e5",
-            "primary-fixed": "#d7e2ff",
-            "tertiary-container": "#003679",
-            "on-tertiary-fixed": "#001a41",
-            "tertiary-fixed-dim": "#adc6ff",
-            "tertiary-fixed": "#d8e2ff",
-            "surface-container-high": "#e6e8ea",
-            "on-secondary-fixed-variant": "#3a4859",
-            "background": "#f7f9fb",
-            "inverse-surface": "#2d3133",
-            "surface": "#f7f9fb",
-            "surface-tint": "#3e5e96",
-            "on-tertiary-fixed-variant": "#004494",
-            "on-tertiary-container": "#71a1ff",
-            "on-primary": "#ffffff",
-            "inverse-on-surface": "#eff1f3",
-            "surface-variant": "#e0e3e5",
-            "primary": "#00224e",
-            "surface-container": "#eceef0",
-            "outline": "#747781",
-            "on-primary-fixed": "#001b3f",
-            "primary-fixed-dim": "#abc7ff",
-            "on-primary-fixed-variant": "#24467d",
-            "error-container": "#ffdad6",
-            "primary-container": "#12386e",
-            "surface-container-lowest": "#ffffff",
-            "on-error-container": "#93000a",
-            "error": "#ba1a1a",
-            "outline-variant": "#c4c6d1"
-          },
-          "borderRadius": {
-            "DEFAULT": "0.25rem",
-            "lg": "0.5rem",
-            "xl": "0.75rem",
-            "full": "9999px"
-          },
-          "spacing": {
-            "space-lg": "1.5rem",
-            "margin-mobile": "1rem",
-            "space-2xs": "0.25rem",
-            "space-xs": "0.5rem",
-            "space-2xl": "3rem",
-            "space-md": "1rem",
-            "space-xl": "2rem",
-            "gutter-mobile": "0.75rem",
-            "space-sm": "0.75rem"
-          },
-          "fontFamily": {
-            "body-sm": ["Cairo", "sans-serif"],
-            "display": ["Cairo", "sans-serif"],
-            "label-md": ["Cairo", "sans-serif"],
-            "label-lg": ["Cairo", "sans-serif"],
-            "label-sm": ["Cairo", "sans-serif"],
-            "headline-md": ["Cairo", "sans-serif"],
-            "body-md": ["Cairo", "sans-serif"],
-            "headline-sm": ["Cairo", "sans-serif"],
-            "headline-lg": ["Cairo", "sans-serif"],
-            "body-lg": ["Cairo", "sans-serif"]
-          },
-          "fontSize": {
-            "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }],
-            "display": ["36px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }],
-            "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "600" }],
-            "label-lg": ["15px", { "lineHeight": "22px", "fontWeight": "600" }],
-            "label-sm": ["11px", { "lineHeight": "16px", "fontWeight": "700" }],
-            "headline-md": ["22px", { "lineHeight": "32px", "fontWeight": "700" }],
-            "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }],
-            "headline-sm": ["18px", { "lineHeight": "28px", "fontWeight": "600" }],
-            "headline-lg": ["28px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" }],
-            "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }]
-          }
-        }
-      }
-    };
-  </script>
-<style>
-    @layer base {
-      html, body {
-        width: 100vw;
-        margin: 0;
-        padding: 0;
-      }
-      body {
-        overscroll-behavior: none;
-      }
-      .pb-safe {
-        padding-bottom: env(safe-area-inset-bottom, 0px);
-      }
-      .pt-safe {
-        padding-top: env(safe-area-inset-top, 0px);
-      }
-      main > :first-child {
-        margin-top: 0 !important;
-      }
-      main > :last-child {
-        margin-bottom: 0 !important;
-      }
-    }
-    ::-webkit-scrollbar {
-      display: none;
-    }
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ديسانا - البوابة الرئيسية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <style>
+        body { font-family: 'Cairo', sans-serif; background: #f7f9fb; }
+        .card { transition: all 0.2s; }
+        .card:hover { transform: scale(1.02); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        .lang-btn { transition: all 0.2s; cursor: pointer; padding: 6px 14px; border-radius: 50px; border: 1px solid #e0e3e5; background: white; font-size: 13px; }
+        .lang-btn:hover { background: #00224e; color: white; border-color: #00224e; }
+        [dir="ltr"] .lang-btn { margin-right: 8px; }
+    </style>
 </head>
-<body class="bg-surface text-on-surface font-body-md text-body-md flex flex-col min-h-screen">
-<!-- Top App Bar Navigation -->
-<header class="fixed top-0 w-full z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] border-b border-surface-container">
-<div class="h-16 px-margin-mobile flex items-center justify-between gap-space-sm">
-<a class="flex items-center gap-space-xs focus:outline-none" href="index.html">
-<!-- Architectural Geometric SVG Icon (Clean, No photos) -->
-<div class="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center text-white shadow-sm flex-shrink-0">
-<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
-<path d="M3 21h18"></path>
-<path d="M5 21V7l8-4v18"></path>
-<path d="M19 21V11l-6-4"></path>
-<circle cx="9" cy="9" r="1"></circle>
-<circle cx="9" cy="13" r="1"></circle>
-</svg>
-</div>
-<div class="flex flex-col">
-<span class="font-headline-sm text-[16px] text-primary font-bold tracking-tight leading-none" id="header-brand-name">ديسانا | Disana</span>
-<span class="font-label-sm text-[11px] text-secondary leading-none mt-1" id="header-page-sub">الرئيسية • Hub</span>
-</div>
-</a>
-<div class="flex items-center gap-space-xs">
-<!-- Header Language Quick Button -->
-<button aria-label="Switch Language" class="h-9 px-3 rounded-full bg-secondary-container/70 hover:bg-secondary-container text-primary flex items-center justify-center font-label-md text-xs font-bold transition-all active:scale-95" id="header-lang-btn">
-<span class="material-symbols-outlined text-[16px] mr-1">translate</span>
-<span id="header-lang-label">EN</span>
-</button>
-<!-- Profile / Info Action -->
-<button aria-label="About Platform" class="w-9 h-9 rounded-full bg-primary-container text-white flex items-center justify-center flex-shrink-0 hover:opacity-90 active:scale-95 transition-all shadow-sm" onclick="openModal('infoModal')">
-<span class="material-symbols-outlined text-[18px]">verified_user</span>
-</button>
-</div>
-</div>
-</header>
-<!-- Main Content Flow -->
-<main class="flex flex-col relative w-full pt-20 pb-24 bg-surface min-h-screen">
-<div class="flex flex-col w-full" id="welcome-hub-root">
-<!-- Interactive Bilingual Status Bar -->
-<div class="px-margin-mobile pt-space-xs pb-space-sm flex items-center justify-between gap-space-sm">
-<div class="flex items-center gap-space-2xs bg-surface-container-low px-space-sm py-1.5 rounded-full shadow-sm">
-<span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
-<span class="font-label-sm text-label-sm text-primary font-bold" id="system-status">النظام متصل • فوري</span>
-</div>
-<!-- Toggle button for Arabic / English with persistent localStorage -->
-<button aria-label="Toggle language" class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-lowest text-primary-container rounded-full shadow-sm border border-secondary-container/60 hover:bg-secondary-container/40 transition-all active:scale-95" id="lang-toggle-btn">
-<span class="material-symbols-outlined text-[16px]">language</span>
-<span class="font-label-sm text-label-sm font-bold tracking-wide" id="lang-label">English</span>
-</button>
-</div>
-<!-- Agency Brand Profile Section -->
-<div class="px-margin-mobile mb-space-md">
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-surface-container-high relative overflow-hidden">
-<!-- Geometric Architectural Background Accent -->
-<div class="absolute -top-10 -left-10 w-28 h-28 rounded-full bg-primary/5 pointer-events-none"></div>
-<div class="absolute -bottom-10 -right-10 w-32 h-32 rounded-full bg-secondary-container/20 pointer-events-none"></div>
-<div class="flex flex-col gap-space-sm relative z-10">
-<!-- Brand Mark & Identity -->
-<div class="flex items-start justify-between">
-<div class="flex items-center gap-space-sm">
-<div class="w-14 h-14 rounded-xl bg-primary-container flex items-center justify-center text-white shadow-md flex-shrink-0">
-<svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24">
-<path d="M3 21h18"></path>
-<path d="M5 21V7l8-4v18"></path>
-<path d="M19 21V11l-6-4"></path>
-<circle cx="9" cy="9" r="1.2"></circle>
-<circle cx="9" cy="13" r="1.2"></circle>
-<circle cx="9" cy="17" r="1.2"></circle>
-</svg>
-</div>
-<div class="flex flex-col">
-<div class="flex items-center gap-1.5">
-<h1 class="font-headline-md text-headline-md text-primary leading-tight font-bold" id="brand-title">ديسانا | Disana</h1>
-<span class="material-symbols-outlined text-primary-container text-[20px]" style="font-variation-settings: 'FILL' 1;" title="Verified Agency">verified</span>
-</div>
-<p class="font-label-md text-label-md text-secondary" id="brand-slogan">منصتك العقارية الموثوقة للتطوير والوساطة</p>
-</div>
-</div>
-</div>
-<!-- Official Fal Brokerage License Pill -->
-<div class="flex items-center gap-2 bg-surface-container-low px-space-sm py-2 rounded-lg text-primary border border-secondary-container/40">
-<span class="material-symbols-outlined text-primary-container text-[18px]">verified_user</span>
-<p class="font-label-sm text-label-sm leading-tight font-semibold" id="brand-license">
-                رخصة فال للوساطة والتسويق: 1200034#
-              </p>
-</div>
-<!-- Follow & Subscribe Micro-Interactions -->
-<div class="pt-space-xs flex flex-wrap items-center justify-between gap-space-sm border-t border-surface-container/60 mt-1 pt-3">
-<div class="flex items-center gap-2">
-<div class="w-2.5 h-2.5 rounded-full bg-primary-container"></div>
-<span class="font-label-md text-label-md text-secondary" id="follower-counter-container">
-<strong class="font-headline-sm text-headline-sm text-primary font-bold" id="follower-count">12,450</strong>
-<span id="follower-text">متابع</span>
-</span>
-</div>
-<div class="flex items-center gap-space-xs">
-<!-- Dynamic Follow Button with counter increment -->
-<button class="h-10 px-space-md rounded-full bg-surface-container-low text-primary-container border border-secondary-container/50 flex items-center justify-center gap-1.5 font-label-md text-label-md transition-all active:scale-95 shadow-sm hover:bg-secondary-container/30" id="follow-toggle-btn">
-<span class="material-symbols-outlined text-[18px]" id="follow-icon">person_add</span>
-<span id="follow-btn-label">متابعة</span>
-</button>
-<!-- Subscribe Primary Action -->
-<button class="h-10 px-space-md rounded-lg bg-primary-container text-white hover:bg-primary flex items-center justify-center gap-1.5 font-label-md text-label-md transition-all active:scale-95 shadow-sm" id="subscribe-toggle-btn">
-<span class="material-symbols-outlined text-[18px]" id="sub-icon">notifications</span>
-<span id="sub-btn-label">اشتراك</span>
-</button>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Key Performance Metrics / Highlights Grid -->
-<div class="px-margin-mobile mb-space-md">
-<div class="grid grid-cols-3 gap-gutter-mobile">
-<!-- Metric 1 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-sm shadow-sm border border-surface-container-high flex flex-col items-center text-center">
-<span class="material-symbols-outlined text-primary-container text-[22px] mb-1">apartment</span>
-<span class="font-headline-md text-headline-md text-primary font-bold tracking-tight">84+</span>
-<span class="font-label-sm text-label-sm text-secondary leading-tight mt-0.5" id="stat-props">عقار متاح</span>
-</div>
-<!-- Metric 2 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-sm shadow-sm border border-surface-container-high flex flex-col items-center text-center">
-<span class="material-symbols-outlined text-primary-container text-[22px] mb-1">request_quote</span>
-<span class="font-headline-md text-headline-md text-primary font-bold tracking-tight">32+</span>
-<span class="font-label-sm text-label-sm text-secondary leading-tight mt-0.5" id="stat-reqs">طلب نشط</span>
-</div>
-<!-- Metric 3 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-sm shadow-sm border border-surface-container-high flex flex-col items-center text-center">
-<span class="material-symbols-outlined text-primary-container text-[22px] mb-1">workspace_premium</span>
-<span class="font-headline-md text-headline-md text-primary font-bold tracking-tight">100%</span>
-<span class="font-label-sm text-label-sm text-secondary leading-tight mt-0.5" id="stat-legal">موثق ومرخص</span>
-</div>
-</div>
-</div>
-<!-- Main Navigation Hub Cards: STRICT RELATIVE PATHS -->
-<div class="px-margin-mobile flex flex-col gap-space-sm mb-space-lg">
-<div class="flex items-center justify-between px-space-2xs">
-<h2 class="font-headline-sm text-headline-sm text-primary font-bold" id="nav-section-title">بوابة الشاشات الرئيسية</h2>
-<span class="font-label-sm text-label-sm text-secondary" id="nav-section-badge">3 شاشات متصلة</span>
-</div>
-<!-- Screen 1: Home Feed -> home.html -->
-<a class="block group bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-surface-container hover:border-secondary-container hover:shadow-md transition-all active:scale-[0.99]" href="home.html">
-<div class="flex items-start gap-space-sm">
-<div class="w-12 h-12 rounded-xl bg-secondary-container/70 flex items-center justify-center text-primary-container flex-shrink-0 group-hover:bg-primary-container group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-[26px]">home_work</span>
-</div>
-<div class="flex flex-col flex-1 min-w-0">
-<div class="flex items-center justify-between">
-<h3 class="font-headline-sm text-[17px] text-primary group-hover:text-primary-container font-bold transition-colors" id="card1-title">الصفحة الرئيسية</h3>
-<span class="material-symbols-outlined text-secondary text-[20px] transition-transform duration-200 card-arrow" id="arrow-icon-1">arrow_forward_ios</span>
-</div>
-<p class="font-body-sm text-body-sm text-secondary mt-1 line-clamp-2" id="card1-desc">
-                استعراض العقارات المتاحة والمطلوبة مع محرك البحث الفوري وتحديثات المواعيد القادمة.
-              </p>
-<div class="flex items-center gap-space-xs mt-3">
-<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low font-label-sm text-label-sm text-primary-container font-semibold" id="card1-tag1">استكشاف فوري</span>
-<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low font-label-sm text-label-sm text-secondary" id="card1-tag2">فلترة ذكية</span>
-</div>
-</div>
-</div>
-</a>
-<!-- Screen 2: Property Details -> property-details.html -->
-<a class="block group bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-surface-container hover:border-secondary-container hover:shadow-md transition-all active:scale-[0.99]" href="property-details.html">
-<div class="flex items-start gap-space-sm">
-<div class="w-12 h-12 rounded-xl bg-secondary-container/70 flex items-center justify-center text-primary-container flex-shrink-0 group-hover:bg-primary-container group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-[26px]">apartment</span>
-</div>
-<div class="flex flex-col flex-1 min-w-0">
-<div class="flex items-center justify-between">
-<h3 class="font-headline-sm text-[17px] text-primary group-hover:text-primary-container font-bold transition-colors" id="card2-title">تفاصيل العقار وحجز موعد</h3>
-<span class="material-symbols-outlined text-secondary text-[20px] transition-transform duration-200 card-arrow" id="arrow-icon-2">arrow_forward_ios</span>
-</div>
-<p class="font-body-sm text-body-sm text-secondary mt-1 line-clamp-2" id="card2-desc">
-                مواصفات الفلل المعمارية الفاخرة، المخططات الهندسية ونظام جدولة المعاينات المباشر.
-              </p>
-<div class="flex items-center gap-space-xs mt-3">
-<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low font-label-sm text-label-sm text-primary-container font-semibold" id="card2-tag1">حجز موعد</span>
-<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low font-label-sm text-label-sm text-secondary" id="card2-tag2">مخطط هندسي</span>
-</div>
-</div>
-</div>
-</a>
-<!-- Screen 3: Appointments -> appointments.html -->
-<a class="block group bg-surface-container-lowest rounded-xl p-space-md shadow-sm border border-surface-container hover:border-secondary-container hover:shadow-md transition-all active:scale-[0.99]" href="appointments.html">
-<div class="flex items-start gap-space-sm">
-<div class="w-12 h-12 rounded-xl bg-secondary-container/70 flex items-center justify-center text-primary-container flex-shrink-0 group-hover:bg-primary-container group-hover:text-white transition-colors">
-<span class="material-symbols-outlined text-[26px]">calendar_month</span>
-</div>
-<div class="flex flex-col flex-1 min-w-0">
-<div class="flex items-center justify-between">
-<h3 class="font-headline-sm text-[17px] text-primary group-hover:text-primary-container font-bold transition-colors" id="card3-title">إدارة المواعيد والطلبات</h3>
-<span class="material-symbols-outlined text-secondary text-[20px] transition-transform duration-200 card-arrow" id="arrow-icon-3">arrow_forward_ios</span>
-</div>
-<p class="font-body-sm text-body-sm text-secondary mt-1 line-clamp-2" id="card3-desc">
-                جدول المعاينات الميدانية، تتبع حالة الطلبات العقارية، وتحديثات متطلبات الشراء والتأجير.
-              </p>
-<div class="flex items-center gap-space-xs mt-3">
-<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low font-label-sm text-label-sm text-primary-container font-semibold" id="card3-tag1">المعاينات</span>
-<span class="px-2.5 py-0.5 rounded-full bg-surface-container-low font-label-sm text-label-sm text-secondary" id="card3-tag2">سجل الطلبات</span>
-</div>
-</div>
-</div>
-</a>
-</div>
-<!-- Technical Architecture Banner -->
-<div class="px-margin-mobile mb-space-sm">
-<div class="bg-primary-container text-white rounded-xl p-space-md shadow-md flex items-center justify-between">
-<div class="flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-lg bg-white/10 flex items-center justify-center text-white">
-<span class="material-symbols-outlined text-[22px]">developer_board</span>
-</div>
-<div class="flex flex-col">
-<span class="font-headline-sm text-[16px] font-bold text-white" id="dev-title">بنية تحتية موحدة</span>
-<span class="font-body-sm text-body-sm text-primary-fixed leading-tight" id="dev-subtitle">جاهز للربط مع Firebase &amp; GitHub</span>
-</div>
-</div>
-<div class="flex items-center gap-1 bg-white/15 px-space-xs py-1 rounded-full text-white">
-<span class="material-symbols-outlined text-[16px]">cloud_done</span>
-<span class="font-label-sm text-label-sm font-bold">v2.4</span>
-</div>
-</div>
-</div>
-<!-- Footer Info -->
-<div class="px-margin-mobile py-space-sm flex flex-col items-center justify-center text-center gap-1 text-secondary">
-<p class="font-label-sm text-label-sm" id="footer-copy">© 2025 منصة ديسانا العقارية - المملكة العربية السعودية</p>
-<p class="font-label-sm text-label-sm text-outline" id="footer-sub">Disana Luxury Real Estate • Minimalist Architectural Interface</p>
-</div>
-</div>
-</main>
-<!-- Interactive Alert / Toast Notification -->
-<div class="fixed top-20 left-1/2 -translate-x-1/2 z-50 bg-primary-container text-white px-4 py-2.5 rounded-xl shadow-lg flex items-center gap-2 transition-all duration-300 opacity-0 pointer-events-none transform -translate-y-2" id="app-toast">
-<span class="material-symbols-outlined text-[20px]" id="toast-icon">check_circle</span>
-<span class="font-label-md text-sm font-medium" id="toast-message">تم الإجراء بنجاح</span>
-</div>
-<!-- Interactive License / Info Modal -->
-<div class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden items-center justify-center p-4" id="infoModal">
-<div class="bg-surface-container-lowest w-full max-w-sm rounded-2xl p-6 shadow-2xl border border-surface-container-high relative">
-<button class="absolute top-4 left-4 w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-secondary hover:text-primary" onclick="closeModal('infoModal')">
-<span class="material-symbols-outlined text-[18px]">close</span>
-</button>
-<div class="flex items-center gap-3 mb-4">
-<div class="w-12 h-12 rounded-xl bg-primary-container text-white flex items-center justify-center">
-<span class="material-symbols-outlined text-[24px]">verified</span>
-</div>
-<div>
-<h3 class="font-headline-sm text-base font-bold text-primary" id="modal-title">رخصة فال المعتمدة</h3>
-<p class="font-label-sm text-secondary" id="modal-sub">الهيئة العامة للعقار</p>
-</div>
-</div>
-<p class="font-body-sm text-secondary mb-4" id="modal-desc">
-        ديسانا مرخصة رسمياً برقم فال #1200034 لتقديم خدمات التسويق وإدارة الأملاك وعقد الصفقات العقارية الموثقة في المملكة العربية السعودية.
-      </p>
-<button class="w-full py-2.5 bg-primary-container text-white rounded-xl font-label-md font-bold text-center hover:bg-primary transition-all" onclick="closeModal('infoModal')">
-<span id="modal-btn">إغلاق النافذة</span>
-</button>
-</div>
-</div>
-<!-- Bottom Navigation Bar: STRICT RELATIVE URLS -->
-<nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/95 backdrop-blur-xl border-t border-surface-container shadow-[0_-2px_12px_rgba(0,34,78,0.04)]">
-<div class="h-16 px-margin-mobile flex items-center justify-around">
-<!-- Home tab -> home.html -->
-<a class="flex flex-col items-center justify-center gap-1 min-w-[56px] min-h-[44px] text-secondary hover:text-primary-container transition-colors" href="home.html">
-<span class="material-symbols-outlined text-[24px]">home</span>
-<span class="font-label-sm text-label-sm" id="bnav-home">الرئيسية</span>
-</a>
-<!-- Properties tab -> property-details.html -->
-<a class="flex flex-col items-center justify-center gap-1 min-w-[56px] min-h-[44px] text-secondary hover:text-primary-container transition-colors" href="property-details.html">
-<span class="material-symbols-outlined text-[24px]">apartment</span>
-<span class="font-label-sm text-label-sm" id="bnav-properties">العقارات</span>
-</a>
-<!-- Appointments tab -> appointments.html -->
-<a class="flex flex-col items-center justify-center gap-1 min-w-[56px] min-h-[44px] text-secondary hover:text-primary-container transition-colors" href="appointments.html">
-<span class="material-symbols-outlined text-[24px]">calendar_month</span>
-<span class="font-label-sm text-label-sm" id="bnav-appointments">المواعيد</span>
-</a>
-</div>
-</nav>
-<!-- Interactive JavaScript -->
-<script>
-    (function () {
-      // LocalStorage Key & State
-      const STORAGE_KEY = 'disana_lang';
-      let currentLang = localStorage.getItem(STORAGE_KEY) || 'ar';
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
+    <div class="max-w-md w-full bg-white rounded-2xl shadow-lg p-6 text-center">
+        <div class="flex justify-end mb-2">
+            <button onclick="toggleLanguage()" class="lang-btn" id="langToggleBtn">English</button>
+        </div>
+        <div class="flex items-center justify-center gap-2 mb-4">
+            <span class="text-3xl font-bold text-[#00224e]">ديسانا</span>
+            <span class="material-symbols-outlined text-[#00224e] text-2xl">verified</span>
+        </div>
+        <p class="text-[#525f71] text-sm mb-6" id="tagline">منصتك العقارية الموثوقة</p>
+        <div class="space-y-3">
+            <a href="home.html" class="card block bg-[#f7f9fb] rounded-xl p-4 border border-[#e0e3e5]">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#00224e] text-3xl">home_work</span>
+                    <div class="text-right">
+                        <h3 class="text-[#00224e] font-bold text-base" id="homeTitle">الصفحة الرئيسية</h3>
+                        <p class="text-[#525f71] text-xs" id="homeDesc">استعراض العقارات والمواعيد</p>
+                    </div>
+                </div>
+            </a>
+            <a href="property-details.html" class="card block bg-[#f7f9fb] rounded-xl p-4 border border-[#e0e3e5]">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#00224e] text-3xl">architecture</span>
+                    <div class="text-right">
+                        <h3 class="text-[#00224e] font-bold text-base" id="propertyTitle">تفاصيل العقار</h3>
+                        <p class="text-[#525f71] text-xs" id="propertyDesc">مواصفات وحجز المواعيد</p>
+                    </div>
+                </div>
+            </a>
+            <a href="appointments.html" class="card block bg-[#f7f9fb] rounded-xl p-4 border border-[#e0e3e5]">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-[#00224e] text-3xl">calendar_month</span>
+                    <div class="text-right">
+                        <h3 class="text-[#00224e] font-bold text-base" id="appointmentsTitle">المواعيد والطلبات</h3>
+                        <p class="text-[#525f71] text-xs" id="appointmentsDesc">إدارة المواعيد والطلبات</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="mt-6 pt-4 border-t border-[#e0e3e5] text-[#525f71] text-xs" id="footerCopy">© 2025 منصة ديسانا العقارية</div>
+    </div>
 
-      let isFollowing = false;
-      let baseFollowers = 12450;
-      let isSubscribed = false;
+    <script>
+        const translations = {
+            ar: {
+                tagline: 'منصتك العقارية الموثوقة',
+                homeTitle: 'الصفحة الرئيسية',
+                homeDesc: 'استعراض العقارات والمواعيد',
+                propertyTitle: 'تفاصيل العقار',
+                propertyDesc: 'مواصفات وحجز المواعيد',
+                appointmentsTitle: 'المواعيد والطلبات',
+                appointmentsDesc: 'إدارة المواعيد والطلبات',
+                footer: '© 2025 منصة ديسانا العقارية',
+                btnLang: 'English'
+            },
+            en: {
+                tagline: 'Your Trusted Real Estate Platform',
+                homeTitle: 'Home',
+                homeDesc: 'Browse properties and appointments',
+                propertyTitle: 'Property Details',
+                propertyDesc: 'Specifications and booking',
+                appointmentsTitle: 'Appointments & Requests',
+                appointmentsDesc: 'Manage appointments and requests',
+                footer: '© 2025 Disana Real Estate',
+                btnLang: 'عربي'
+            }
+        };
 
-      // DOM Elements
-      const followerCountEl = document.getElementById('follower-count');
-      const followBtn = document.getElementById('follow-toggle-btn');
-      const followIcon = document.getElementById('follow-icon');
-      const followBtnLabel = document.getElementById('follow-btn-label');
-      const subscribeBtn = document.getElementById('subscribe-toggle-btn');
-      const subIcon = document.getElementById('sub-icon');
-      const subBtnLabel = document.getElementById('sub-btn-label');
-      const langToggleBtn = document.getElementById('lang-toggle-btn');
-      const headerLangBtn = document.getElementById('header-lang-btn');
-      const headerLangLabel = document.getElementById('header-lang-label');
-      const langLabel = document.getElementById('lang-label');
-      const toast = document.getElementById('app-toast');
-      const toastMsg = document.getElementById('toast-message');
-      const toastIcon = document.getElementById('toast-icon');
+        let currentLang = localStorage.getItem('disana_lang') || 'ar';
 
-      // Comprehensive Translations dictionary
-      const translations = {
-        ar: {
-          headerBrand: 'ديسانا | Disana',
-          headerSub: 'الرئيسية • Hub',
-          status: 'النظام متصل • فوري',
-          btnLang: 'English',
-          headerLang: 'EN',
-          title: 'ديسانا | Disana',
-          slogan: 'منصتك العقارية الموثوقة للتطوير والوساطة',
-          license: 'رخصة فال للوساطة والتسويق: 1200034#',
-          followerText: 'متابع',
-          followBtnDefault: 'متابعة',
-          followBtnActive: '+ مُتابَع',
-          subBtnDefault: 'اشتراك',
-          subBtnActive: 'مشترك',
-          statProps: 'عقار متاح',
-          statReqs: 'طلب نشط',
-          statLegal: 'موثق ومرخص',
-          navTitle: 'بوابة الشاشات الرئيسية',
-          navBadge: '3 شاشات متصلة',
-          card1Title: 'الصفحة الرئيسية',
-          card1Desc: 'استعراض العقارات المتاحة والمطلوبة مع محرك البحث الفوري وتحديثات المواعيد القادمة.',
-          card1Tag1: 'استكشاف فوري',
-          card1Tag2: 'فلترة ذكية',
-          card2Title: 'تفاصيل العقار وحجز موعد',
-          card2Desc: 'مواصفات الفلل المعمارية الفاخرة، المخططات الهندسية ونظام جدولة المعاينات المباشر.',
-          card2Tag1: 'حجز موعد',
-          card2Tag2: 'مخطط هندسي',
-          card3Title: 'إدارة المواعيد والطلبات',
-          card3Desc: 'جدول المعاينات الميدانية، تتبع حالة الطلبات العقارية، وتحديثات متطلبات الشراء والتأجير.',
-          card3Tag1: 'المعاينات',
-          card3Tag2: 'سجل الطلبات',
-          devTitle: 'بنية تحتية موحدة',
-          devSubtitle: 'جاهز للربط مع Firebase & GitHub',
-          footerCopy: '© 2025 منصة ديسانا العقارية - المملكة العربية السعودية',
-          footerSub: 'Disana Luxury Real Estate • Minimalist Architectural Interface',
-          bnavHome: 'الرئيسية',
-          bnavProperties: 'العقارات',
-          bnavAppointments: 'المواعيد',
-          modalTitle: 'رخصة فال المعتمدة',
-          modalSub: 'الهيئة العامة للعقار',
-          modalDesc: 'ديسانا مرخصة رسمياً برقم فال #1200034 لتقديم خدمات التسويق وإدارة الأملاك وعقد الصفقات العقارية الموثقة في المملكة العربية السعودية.',
-          modalBtn: 'إغلاق النافذة',
-          toastFollow: 'شكراً لمتابعتك لمنصة ديسانا!',
-          toastUnfollow: 'تم إلغاء المتابعة',
-          toastSub: 'تم تفعيل الإشعارات وتحديثات العقارات بنجاح!',
-          toastUnsub: 'تم إيقاف الاشتراك في الإشعارات'
-        },
-        en: {
-          headerBrand: 'Disana Real Estate Platform',
-          headerSub: 'Portal • Home',
-          status: 'System Live • Online',
-          btnLang: 'عربي (AR)',
-          headerLang: 'AR',
-          title: 'Disana Real Estate Platform',
-          slogan: 'Your Trusted Architectural Real Estate Hub',
-          license: 'Fal Brokerage License #1200034',
-          followerText: 'Followers',
-          followBtnDefault: 'Follow',
-          followBtnActive: '+ Following',
-          subBtnDefault: 'Subscribe',
-          subBtnActive: 'Subscribed',
-          statProps: 'Properties',
-          statReqs: 'Active Inquiries',
-          statLegal: 'Licensed & Regulated',
-          navTitle: 'Core Destinations',
-          navBadge: '3 screens connected',
-          card1Title: 'Home Feed',
-          card1Desc: 'Browse verified listings, active market requests, and instant smart filters.',
-          card1Tag1: 'Instant Search',
-          card1Tag2: 'Smart Filters',
-          card2Title: 'Property Details',
-          card2Desc: 'Luxury architectural villa specifications, 3D layouts, and live inspection booking.',
-          card2Tag1: 'Book Viewing',
-          card2Tag2: 'Floorplans',
-          card3Title: 'Appointments & Inquiries',
-          card3Desc: 'Manage personal viewings calendar, inquiry approvals, and real-time status tracking.',
-          card3Tag1: 'Inspections',
-          card3Tag2: 'Inquiries',
-          devTitle: 'Unified Real Estate Stack',
-          devSubtitle: 'Integrated for Firebase & GitHub Deployments',
-          footerCopy: '© 2025 Disana Real Estate Group • Saudi Arabia',
-          footerSub: 'Disana Luxury Real Estate • Minimalist Architectural Interface',
-          bnavHome: 'Home',
-          bnavProperties: 'Properties',
-          bnavAppointments: 'Appointments',
-          modalTitle: 'Official Fal License',
-          modalSub: 'Real Estate General Authority',
-          modalDesc: 'Disana is officially licensed under Fal Brokerage License #1200034 for brokerage, verified marketing, and digital property advisory in Saudi Arabia.',
-          modalBtn: 'Close Window',
-          toastFollow: 'Thanks for following Disana Real Estate Platform!',
-          toastUnfollow: 'Unfollowed successfully',
-          toastSub: 'Real-time property notifications activated!',
-          toastUnsub: 'Notifications turned off'
-        }
-      };
-
-      // Toast Display helper
-      function showToast(message, icon = 'check_circle') {
-        toastMsg.textContent = message;
-        toastIcon.textContent = icon;
-        toast.classList.remove('opacity-0', 'pointer-events-none', '-translate-y-2');
-        toast.classList.add('opacity-100', 'translate-y-0');
-        setTimeout(() => {
-          toast.classList.remove('opacity-100', 'translate-y-0');
-          toast.classList.add('opacity-0', 'pointer-events-none', '-translate-y-2');
-        }, 2600);
-      }
-
-      // Update page language and layout direction
-      function setLanguage(lang) {
-        currentLang = lang;
-        localStorage.setItem(STORAGE_KEY, lang);
-        const t = translations[lang];
-
-        const htmlEl = document.documentElement;
-        htmlEl.setAttribute('lang', lang);
-
-        if (lang === 'en') {
-          htmlEl.setAttribute('dir', 'ltr');
-          document.querySelectorAll('.card-arrow').forEach(el => {
-            el.textContent = 'chevron_right';
-          });
-        } else {
-          htmlEl.setAttribute('dir', 'rtl');
-          document.querySelectorAll('.card-arrow').forEach(el => {
-            el.textContent = 'arrow_forward_ios';
-          });
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('disana_lang', lang);
+            const t = translations[lang];
+            document.getElementById('tagline').textContent = t.tagline;
+            document.getElementById('homeTitle').textContent = t.homeTitle;
+            document.getElementById('homeDesc').textContent = t.homeDesc;
+            document.getElementById('propertyTitle').textContent = t.propertyTitle;
+            document.getElementById('propertyDesc').textContent = t.propertyDesc;
+            document.getElementById('appointmentsTitle').textContent = t.appointmentsTitle;
+            document.getElementById('appointmentsDesc').textContent = t.appointmentsDesc;
+            document.getElementById('footerCopy').textContent = t.footer;
+            document.getElementById('langToggleBtn').textContent = t.btnLang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
         }
 
-        // Apply text bindings
-        document.getElementById('header-brand-name').textContent = t.headerBrand;
-        document.getElementById('header-page-sub').textContent = t.headerSub;
-        document.getElementById('system-status').textContent = t.status;
-        langLabel.textContent = t.btnLang;
-        headerLangLabel.textContent = t.headerLang;
-        document.getElementById('brand-title').textContent = t.title;
-        document.getElementById('brand-slogan').textContent = t.slogan;
-        document.getElementById('brand-license').textContent = t.license;
-        document.getElementById('follower-text').textContent = t.followerText;
-        followBtnLabel.textContent = isFollowing ? t.followBtnActive : t.followBtnDefault;
-        subBtnLabel.textContent = isSubscribed ? t.subBtnActive : t.subBtnDefault;
-        document.getElementById('stat-props').textContent = t.statProps;
-        document.getElementById('stat-reqs').textContent = t.statReqs;
-        document.getElementById('stat-legal').textContent = t.statLegal;
-        document.getElementById('nav-section-title').textContent = t.navTitle;
-        document.getElementById('nav-section-badge').textContent = t.navBadge;
-
-        document.getElementById('card1-title').textContent = t.card1Title;
-        document.getElementById('card1-desc').textContent = t.card1Desc;
-        document.getElementById('card1-tag1').textContent = t.card1Tag1;
-        document.getElementById('card1-tag2').textContent = t.card1Tag2;
-
-        document.getElementById('card2-title').textContent = t.card2Title;
-        document.getElementById('card2-desc').textContent = t.card2Desc;
-        document.getElementById('card2-tag1').textContent = t.card2Tag1;
-        document.getElementById('card2-tag2').textContent = t.card2Tag2;
-
-        document.getElementById('card3-title').textContent = t.card3Title;
-        document.getElementById('card3-desc').textContent = t.card3Desc;
-        document.getElementById('card3-tag1').textContent = t.card3Tag1;
-        document.getElementById('card3-tag2').textContent = t.card3Tag2;
-
-        document.getElementById('dev-title').textContent = t.devTitle;
-        document.getElementById('dev-subtitle').textContent = t.devSubtitle;
-        document.getElementById('footer-copy').textContent = t.footerCopy;
-        document.getElementById('footer-sub').textContent = t.footerSub;
-
-        document.getElementById('bnav-home').textContent = t.bnavHome;
-        document.getElementById('bnav-properties').textContent = t.bnavProperties;
-        document.getElementById('bnav-appointments').textContent = t.bnavAppointments;
-
-        document.getElementById('modal-title').textContent = t.modalTitle;
-        document.getElementById('modal-sub').textContent = t.modalSub;
-        document.getElementById('modal-desc').textContent = t.modalDesc;
-        document.getElementById('modal-btn').textContent = t.modalBtn;
-      }
-
-      function toggleLanguage() {
-        const nextLang = currentLang === 'ar' ? 'en' : 'ar';
-        setLanguage(nextLang);
-        showToast(nextLang === 'en' ? 'Language switched to English' : 'تم تغيير اللغة إلى العربية', 'translate');
-      }
-
-      langToggleBtn.addEventListener('click', toggleLanguage);
-      headerLangBtn.addEventListener('click', toggleLanguage);
-
-      // Follow Toggle Action
-      followBtn.addEventListener('click', function () {
-        isFollowing = !isFollowing;
-        const t = translations[currentLang];
-        if (isFollowing) {
-          baseFollowers += 1;
-          followBtn.classList.remove('bg-surface-container-low', 'text-primary-container');
-          followBtn.classList.add('bg-primary-container', 'text-white', 'font-bold');
-          followIcon.textContent = 'check';
-          followBtnLabel.textContent = t.followBtnActive;
-          showToast(t.toastFollow, 'person_add');
-        } else {
-          baseFollowers -= 1;
-          followBtn.classList.remove('bg-primary-container', 'text-white', 'font-bold');
-          followBtn.classList.add('bg-surface-container-low', 'text-primary-container');
-          followIcon.textContent = 'person_add';
-          followBtnLabel.textContent = t.followBtnDefault;
-          showToast(t.toastUnfollow, 'person_remove');
+        function toggleLanguage() {
+            const newLang = currentLang === 'ar' ? 'en' : 'ar';
+            setLanguage(newLang);
         }
-        followerCountEl.textContent = baseFollowers.toLocaleString();
-      });
 
-      // Subscribe Toggle Action
-      subscribeBtn.addEventListener('click', function () {
-        isSubscribed = !isSubscribed;
-        const t = translations[currentLang];
-        if (isSubscribed) {
-          subscribeBtn.classList.remove('bg-primary-container');
-          subscribeBtn.classList.add('bg-primary', 'ring-2', 'ring-primary-container');
-          subIcon.textContent = 'notifications_active';
-          subBtnLabel.textContent = t.subBtnActive;
-          showToast(t.toastSub, 'notifications_active');
-        } else {
-          subscribeBtn.classList.remove('bg-primary', 'ring-2', 'ring-primary-container');
-          subscribeBtn.classList.add('bg-primary-container');
-          subIcon.textContent = 'notifications';
-          subBtnLabel.textContent = t.subBtnDefault;
-          showToast(t.toastUnsub, 'notifications_off');
-        }
-      });
-
-      // Modal helpers globally accessible
-      window.openModal = function (id) {
-        const m = document.getElementById(id);
-        if (m) {
-          m.classList.remove('hidden');
-          m.classList.add('flex');
-        }
-      };
-
-      window.closeModal = function (id) {
-        const m = document.getElementById(id);
-        if (m) {
-          m.classList.add('hidden');
-          m.classList.remove('flex');
-        }
-      };
-
-      // Initial Language boot
-      setLanguage(currentLang);
-    })();
-  </script>
-</body></html>
+        setLanguage(currentLang);
+    </script>
+</body>
+</html>
