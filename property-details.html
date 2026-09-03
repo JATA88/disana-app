@@ -1,372 +1,130 @@
-<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary": "#ffffff", "tertiary": "#002150", "surface-bright": "#f7f9fb", "surface-container-high": "#e6e8ea", "on-error": "#ffffff", "surface": "#f7f9fb", "on-secondary-container": "#566475", "surface-dim": "#d8dadc", "outline-variant": "#c4c6d1", "primary": "#00224e", "inverse-surface": "#2d3133", "on-background": "#191c1e", "on-surface-variant": "#434750", "primary-fixed": "#d7e2ff", "tertiary-fixed": "#d8e2ff", "on-surface": "#191c1e", "on-secondary-fixed-variant": "#3a4859", "on-tertiary-fixed-variant": "#004494", "background": "#f7f9fb", "inverse-on-surface": "#eff1f3", "on-secondary-fixed": "#0f1c2c", "secondary-fixed": "#d6e4f9", "outline": "#747781", "on-primary-container": "#84a3e0", "primary-container": "#12386e", "error-container": "#ffdad6", "on-tertiary-container": "#71a1ff", "secondary-fixed-dim": "#bac8dc", "surface-container": "#eceef0", "on-tertiary": "#ffffff", "surface-container-highest": "#e0e3e5", "on-tertiary-fixed": "#001a41", "on-primary-fixed": "#001b3f", "on-primary-fixed-variant": "#24467d", "primary-fixed-dim": "#abc7ff", "surface-container-low": "#f2f4f6", "inverse-primary": "#abc7ff", "surface-container-lowest": "#ffffff", "error": "#ba1a1a", "tertiary-container": "#003679", "secondary": "#525f71", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#adc6ff", "surface-tint": "#3e5e96", "on-error-container": "#93000a", "secondary-container": "#d3e1f6", "surface-variant": "#e0e3e5" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-lg": "1.5rem", "space-2xs": "0.25rem", "space-sm": "0.75rem", "gutter-mobile": "0.75rem", "margin-mobile": "1rem", "space-xs": "0.5rem", "space-2xl": "3rem", "space-md": "1rem", "space-xl": "2rem" }, "fontFamily": { "label-sm": ["Cairo"], "headline-md": ["Cairo"], "label-md": ["Cairo"], "body-md": ["Cairo"], "headline-sm": ["Cairo"], "headline-lg": ["Cairo"], "body-sm": ["Cairo"], "body-lg": ["Cairo"], "label-lg": ["Cairo"], "display": ["Cairo"] }, "fontSize": { "label-sm": ["11px", { "lineHeight": "16px", "fontWeight": "700" }], "headline-md": ["22px", { "lineHeight": "32px", "fontWeight": "700" }], "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-lg": ["28px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "label-lg": ["15px", { "lineHeight": "22px", "fontWeight": "600" }], "display": ["36px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }] } } } }</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-</head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><a aria-label="رجوع" class="w-11 h-11 flex items-center justify-center text-primary rounded-full hover:bg-surface-container transition-colors" href="home.html"><span class="material-symbols-outlined text-[24px]">arrow_forward</span></a><h1 class="font-headline-sm text-headline-sm text-on-surface font-bold">Tafasil Aleaqar</h1></div><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-safe bg-surface"><div class="flex flex-col w-full pb-10 pb-24">
-<!-- Reference & Status Strip -->
-<div class="px-margin-mobile pt-space-xs pb-space-sm flex items-center justify-between">
-<div class="flex items-center gap-space-2xs">
-<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-<span class="font-label-sm text-label-sm text-secondary tracking-wider uppercase">DIS-8092#</span>
-</div>
-<div class="flex items-center gap-space-xs">
-<span class="bg-primary-container/10 text-primary-container px-space-xs py-0.5 rounded-full font-label-sm text-label-sm font-bold">
-        متاح للبيع الحصري
-      </span>
-<button aria-label="حفظ العقار" class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-primary active:scale-95 transition-transform" id="savePropertyBtn">
-<span class="material-symbols-outlined text-[18px]" id="saveIcon">bookmark_border</span>
-</button>
-</div>
-</div>
-<!-- Architectural Blueprint Vector Hero (No Photos) -->
-<div class="px-margin-mobile mb-space-sm"><div class="bg-surface-container-low border border-outline-variant/30 rounded-xl p-space-xs px-space-sm flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs text-on-surface-variant min-w-0"><span class="material-symbols-outlined text-[18px] text-primary shrink-0">timer</span><div class="min-w-0"><p class="font-label-sm text-label-sm font-semibold text-primary truncate">إعلان منشور للعامة • ينتهي ويُحذف تلقائياً خلال 22 يوماً</p><p class="font-body-sm text-body-sm text-secondary truncate">(مدة الصلاحية الكلية 30 يوماً من تاريخ النشر)</p></div></div><button type="button" aria-label="حذف الإعلان للجميع" class="shrink-0 flex items-center gap-1 bg-surface-container hover:bg-surface-container-high text-error font-label-sm text-label-sm font-bold py-1.5 px-space-xs rounded-lg transition-colors"><span class="material-symbols-outlined text-[16px]">delete</span><span class="">حذف الإعلان للجميع</span></button></div></div><div class="px-margin-mobile mb-space-md">
-<div class="w-full bg-primary-container text-on-primary rounded-xl p-space-md relative overflow-hidden shadow-md">
-<!-- Ambient Blueprint Grid & Diagonal Isometric Vectors -->
-<div class="absolute inset-0 opacity-10 pointer-events-none">
-<svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
-<defs>
-<pattern height="24" id="blueprint-grid" patternUnits="userSpaceOnUse" width="24">
-<path d="M 24 0 L 0 0 0 24" fill="none" stroke="#ffffff" stroke-width="0.75"></path>
-</pattern>
-</defs>
-<rect fill="url(#blueprint-grid)" height="100%" width="100%"></rect>
-</svg>
-</div>
-<!-- Architectural Elevation Vector Schematics -->
-<div class="relative z-10 flex flex-col gap-space-sm">
-<div class="flex items-start justify-between">
-<div>
-<div class="flex items-center gap-space-2xs text-secondary-container mb-1">
-<span class="material-symbols-outlined text-[16px]">domain</span>
-<span class="font-label-sm text-label-sm">المخطط المعماري المعتمد</span>
-</div>
-<h2 class="font-headline-md text-headline-md font-bold text-on-primary tracking-tight">فيلا المروج المودرن</h2>
-<p class="font-body-sm text-body-sm text-secondary-container">حي المروج، شمال الرياض • طراز نيو-كلاسيك مودرن</p>
-</div>
-<div class="bg-surface-container-lowest/15 backdrop-blur-md px-space-xs py-1 rounded-lg text-center">
-<span class="font-label-sm text-label-sm block text-secondary-container">كود الوحدة</span>
-<span class="font-label-md text-label-md font-bold text-on-primary tracking-wider">A-402</span>
-</div>
-</div>
-<!-- Precise Vector Floorplan Silhouette -->
-<div class="py-space-xs my-1 flex justify-center items-center">
-<svg class="w-full max-w-[280px] h-28 stroke-secondary-container/80 fill-none" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewBox="0 0 320 120">
-<!-- Outer walls -->
-<rect height="90" opacity="0.4" rx="4" stroke-dasharray="3 3" width="280" x="20" y="15"></rect>
-<!-- Main structural layout -->
-<path d="M 30 25 L 180 25 L 180 100 L 30 100 Z" stroke="#d7e2ff" stroke-width="2"></path>
-<path d="M 180 35 L 290 35 L 290 85 L 180 85 Z" stroke="#d7e2ff" stroke-width="1.8"></path>
-<!-- Patio / Pool vector outline -->
-<rect fill="rgba(113, 161, 255, 0.08)" height="30" rx="2" stroke="#71a1ff" stroke-width="1.2" width="70" x="200" y="45"></rect>
-<!-- Interior partition lines -->
-<line stroke="#adc6ff" stroke-width="1.2" x1="85" x2="85" y1="25" y2="75"></line>
-<line stroke="#adc6ff" stroke-width="1.2" x1="130" x2="180" y1="50" y2="50"></line>
-<line stroke="#adc6ff" stroke-width="1.2" x1="85" x2="140" y1="75" y2="75"></line>
-<!-- Compass Rose Vector -->
-<g transform="translate(290, 20) scale(0.6)">
-<circle cx="12" cy="12" r="10" stroke="#adc6ff" stroke-width="1"></circle>
-<path d="M 12 2 L 15 12 L 12 22 L 9 12 Z" fill="#abc7ff"></path>
-<text fill="#ffffff" font-family="Cairo" font-size="8" x="10" y="0">ش</text>
-</g>
-<!-- Dimensions callout -->
-<text fill="#bac8dc" font-family="Cairo" font-size="9" text-anchor="middle" x="95" y="112">الواجهة الرئيسية: 18.5 م</text>
-<text fill="#bac8dc" font-family="Cairo" font-size="9" text-anchor="middle" x="235" y="100">الحديقة والمسبح</text>
-</svg>
-</div>
-<!-- Price Tag Area -->
-<div class="pt-space-xs border-t border-surface-container-lowest/15 flex items-baseline justify-between">
-<span class="font-body-sm text-body-sm text-secondary-container">القيمة الاستثمارية الإجمالية</span>
-<div class="flex items-baseline gap-1">
-<span class="font-headline-lg text-headline-lg font-extrabold text-on-primary tracking-tight">3,800,000</span>
-<span class="font-label-md text-label-md text-secondary-container font-semibold">ر.س</span>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!-- Key Specs: Architectural Metric 4-Grid -->
-<div class="px-margin-mobile mb-space-sm"><div class="bg-surface-container-low border border-outline-variant/30 rounded-xl p-space-xs px-space-sm flex items-center justify-between gap-space-xs"><div class="flex items-center gap-space-xs text-on-surface-variant min-w-0"><span class="material-symbols-outlined text-[18px] text-primary shrink-0">timer</span><div class="min-w-0"><p class="font-label-sm text-label-sm font-semibold text-primary truncate">إعلان منشور للعامة • ينتهي ويُحذف تلقائياً خلال 22 يوماً</p><p class="font-body-sm text-body-sm text-secondary truncate">(مدة الصلاحية الكلية 30 يوماً من تاريخ النشر)</p></div></div><button type="button" aria-label="حذف الإعلان للجميع" class="shrink-0 flex items-center gap-1 bg-surface-container hover:bg-surface-container-high text-error font-label-sm text-label-sm font-bold py-1.5 px-space-xs rounded-lg transition-colors"><span class="material-symbols-outlined text-[16px]">delete</span><span class="">حذف الإعلان للجميع</span></button></div></div><div class="px-margin-mobile mb-space-md">
-<div class="grid grid-cols-2 gap-gutter-mobile">
-<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined text-[20px]">square_foot</span>
-</div>
-<div class="min-w-0">
-<span class="font-body-sm text-body-sm text-secondary block">المساحة الكلية</span>
-<span class="font-label-lg text-label-lg font-bold text-on-surface truncate block">450 م² صافي</span>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined text-[20px]">bed</span>
-</div>
-<div class="min-w-0">
-<span class="font-body-sm text-body-sm text-secondary block">أجنحة النوم</span>
-<span class="font-label-lg text-label-lg font-bold text-on-surface truncate block">5 أجنحة ماستر</span>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined text-[20px]">bathtub</span>
-</div>
-<div class="min-w-0">
-<span class="font-body-sm text-body-sm text-secondary block">دورات المياه</span>
-<span class="font-label-lg text-label-lg font-bold text-on-surface truncate block">6 دورات مياه</span>
-</div>
-</div>
-<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex items-center gap-space-sm">
-<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
-<span class="material-symbols-outlined text-[20px]">garage</span>
-</div>
-<div class="min-w-0">
-<span class="font-body-sm text-body-sm text-secondary block">مواقف السيارات</span>
-<span class="font-label-lg text-label-lg font-bold text-on-surface truncate block">موقف خاص مزدوج</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Architectural Features & Typographic Description -->
-<div class="px-margin-mobile mb-space-lg">
-<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
-<div class="flex items-center gap-space-xs mb-space-xs text-primary"><div class="flex items-center justify-between w-full"><div class="flex items-center gap-space-xs text-primary"><span class="material-symbols-outlined text-[20px]">apartment</span><h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">مواصفات العقار وتفاصيله</h3></div><span class="font-label-sm text-label-sm bg-surface-container text-secondary px-space-xs py-0.5 rounded font-semibold">الوصف المعتمد (78 / 100 كلمة كحد أقصى)</span></div></div>
-<p class="font-body-md text-body-md text-on-surface-variant leading-relaxed mb-space-sm">
-        صُممت هذه الفيلا بعناية هندسية فائقة لتوفير تدفق ضوئي طبيعي مع واجهات زجاجية مزدوجة بارتفاع مضاعف. تحتوي على مصعد كهربائي بانورامي متكامل، صالون ضيافة مستقل، حديقة داخلية مفتوحة (سكاي لايت)، ومنظومة ذكية بالكامل للتحكم بالحرارة والأمان.
-      </p>
-<div class="flex flex-wrap gap-space-xs pt-space-xs">
-<span class="bg-surface-container px-space-sm py-1 rounded-full font-label-sm text-label-sm text-secondary flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">bolt</span> سمارت هوم
-        </span>
-<span class="bg-surface-container px-space-sm py-1 rounded-full font-label-sm text-label-sm text-secondary flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">elevator</span> مصعد إيطالي
-        </span>
-<span class="bg-surface-container px-space-sm py-1 rounded-full font-label-sm text-label-sm text-secondary flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">verified</span> ضمانات 25 سنة
-        </span>
-<span class="bg-surface-container px-space-sm py-1 rounded-full font-label-sm text-label-sm text-secondary flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">deck</span> مسبح خاص
-        </span>
-</div>
-</div>
-</div>
-<!-- Interactive Appointment Booking Section -->
-<div class="px-margin-mobile mb-space-lg">
-<div class="bg-surface-container-lowest p-space-md rounded-xl shadow-sm">
-<div class="flex items-center justify-between mb-space-sm">
-<div class="flex items-center gap-space-xs">
-<div class="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-[18px]">calendar_month</span>
-</div>
-<div>
-<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">حجز موعد للمعاينة</h3>
-<p class="font-body-sm text-body-sm text-secondary">اختر التوقيت ونوع الزيارة المناسب</p>
-</div>
-</div>
-<span class="font-label-sm text-label-sm text-primary-container bg-secondary-container/30 px-space-xs py-0.5 rounded">مؤكد وفوري</span>
-</div>
-<!-- Appointment Type Toggle -->
-<div class="mb-space-md">
-<label class="font-label-md text-label-md text-on-surface font-semibold block mb-space-xs">نوع المعاينة</label>
-<div class="grid grid-cols-2 gap-space-xs bg-surface-container p-1 rounded-lg">
-<button class="py-2 rounded-md font-label-md text-label-md font-bold transition-all bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1" id="typeInPerson" onclick="setAppointmentType('inPerson')" type="button">
-<span class="material-symbols-outlined text-[16px]">location_away</span>
-            معاينة حضورية
-          </button>
-<button class="py-2 rounded-md font-label-md text-label-md font-bold transition-all text-secondary hover:text-on-surface flex items-center justify-center gap-1" id="typePhone" onclick="setAppointmentType('phone')" type="button">
-<span class="material-symbols-outlined text-[16px]">support_agent</span>
-            استشارة هاتفية
-          </button>
-</div>
-</div>
-<!-- Select Date (Calendar Day Pills) -->
-<div class="mb-space-md">
-<label class="font-label-md text-label-md text-on-surface font-semibold block mb-space-xs">تاريخ الزيارة</label>
-<div class="grid grid-cols-3 gap-space-xs" id="dateSelectorGroup">
-<button class="date-pill bg-primary text-on-primary py-2.5 px-2 rounded-xl text-center shadow-sm transition-all flex flex-col items-center" onclick="selectDate(this, 'اليوم')" type="button">
-<span class="font-label-sm text-label-sm opacity-90">اليوم</span>
-<span class="font-label-lg text-label-lg font-bold">24 أكتوبر</span>
-</button>
-<button class="date-pill bg-surface-container text-secondary py-2.5 px-2 rounded-xl text-center transition-all flex flex-col items-center hover:bg-surface-container-high" onclick="selectDate(this, 'غداً')" type="button">
-<span class="font-label-sm text-label-sm">غداً</span>
-<span class="font-label-lg text-label-lg font-bold">25 أكتوبر</span>
-</button>
-<button class="date-pill bg-surface-container text-secondary py-2.5 px-2 rounded-xl text-center transition-all flex flex-col items-center hover:bg-surface-container-high" onclick="selectDate(this, 'الأربعاء')" type="button">
-<span class="font-label-sm text-label-sm">الأربعاء</span>
-<span class="font-label-lg text-label-lg font-bold">26 أكتوبر</span>
-</button>
-</div>
-</div>
-<!-- Select Time Slot Pills -->
-<div class="mb-space-sm">
-<label class="font-label-md text-label-md text-on-surface font-semibold block mb-space-xs">الوقت المتاح</label>
-<div class="grid grid-cols-3 gap-space-xs" id="timeSelectorGroup">
-<button class="time-pill bg-surface-container text-secondary py-2 px-1 rounded-lg text-center font-label-md text-label-md transition-all hover:bg-surface-container-high" onclick="selectTime(this, '10:00 ص')" type="button">
-            10:00 ص
-          </button>
-<button class="time-pill bg-primary text-on-primary py-2 px-1 rounded-lg text-center font-label-md text-label-md transition-all shadow-sm" onclick="selectTime(this, '02:00 م')" type="button">
-            02:00 م
-          </button>
-<button class="time-pill bg-surface-container text-secondary py-2 px-1 rounded-lg text-center font-label-md text-label-md transition-all hover:bg-surface-container-high" onclick="selectTime(this, '05:30 م')" type="button">
-            05:30 م
-          </button>
-</div>
-</div>
-<div class="p-space-xs bg-surface-container-low rounded-lg flex items-center gap-space-xs text-on-surface-variant">
-<span class="material-symbols-outlined text-[16px] text-primary">info</span>
-<span class="font-body-sm text-body-sm">سيتم تعيين استشاري هندسي معتمد لمرافقتك وتقديم التقرير الفني.</span>
-</div><div class="mt-space-xs p-space-xs bg-surface-container/60 rounded-lg flex items-center gap-space-xs text-secondary"><span class="material-symbols-outlined text-[16px] text-secondary shrink-0">history_toggle_off</span><span class="font-body-sm text-body-sm">المواعيد المجدولة تُحذف تلقائياً من سجل النظام بعد مرور 30 يوماً على انعقادها.</span></div>
-</div>
-</div>
-<!-- Matching Demands: العقارات المطلوبة المشابهة (Vector Schematics) -->
-<div class="px-margin-mobile mb-space-xl">
-<div class="flex items-center justify-between mb-space-sm">
-<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">العقارات المطلوبة المشابهة</h3>
-<span class="font-label-sm text-label-sm text-primary font-semibold">عرض 3 وحدات</span>
-</div>
-<div class="flex flex-col gap-space-sm">
-<!-- Similar Card 1 -->
-<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex items-center justify-between">
-<div class="flex items-center gap-space-sm">
-<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
-<svg class="w-7 h-7 stroke-primary fill-none" stroke-width="1.5" viewBox="0 0 24 24">
-<path d="M3 21h18M5 21V7l8-4v18M13 11h6v10M9 9h.01M9 13h.01M9 17h.01M16 15h.01"></path>
-</svg>
-</div>
-<div>
-<h4 class="font-label-lg text-label-lg font-bold text-on-surface">فيلا الياسمين الإنشائية</h4>
-<p class="font-body-sm text-body-sm text-secondary">420 م² • 4 غرف • حي الياسمين</p>
-</div>
-</div>
-<div class="text-left">
-<span class="font-label-md text-label-md font-bold text-primary block">3,650,000</span>
-<span class="font-label-sm text-label-sm text-secondary block">ر.س</span>
-</div>
-</div>
-<!-- Similar Card 2 -->
-<div class="bg-surface-container-lowest p-space-sm rounded-xl shadow-sm flex items-center justify-between">
-<div class="flex items-center gap-space-sm">
-<div class="w-12 h-12 rounded-lg bg-surface-container flex items-center justify-center text-primary shrink-0">
-<svg class="w-7 h-7 stroke-primary fill-none" stroke-width="1.5" viewBox="0 0 24 24">
-<rect height="16" rx="2" width="16" x="4" y="4"></rect>
-<path d="M4 10h16M10 4v16"></path>
-</svg>
-</div>
-<div>
-<h4 class="font-label-lg text-label-lg font-bold text-on-surface">قصر الصحافة الصغير</h4>
-<p class="font-body-sm text-body-sm text-secondary">500 م² • 6 غرف • حي الصحافة</p>
-</div>
-</div>
-<div class="text-left">
-<span class="font-label-md text-label-md font-bold text-primary block">4,100,000</span>
-<span class="font-label-sm text-label-sm text-secondary block">ر.س</span>
-</div>
-</div>
-</div>
-</div>
-<!-- Floating Sticky Action Buttons Bar -->
-<div class="px-margin-mobile pt-space-sm pb-space-xs bg-surface/90 backdrop-blur-md sticky bottom-0 z-40 border-t border-surface-container-high">
-<div class="flex items-center gap-space-xs">
-<a class="flex-1 bg-primary text-on-primary py-3 rounded-xl font-label-lg text-label-lg font-bold shadow-md hover:bg-tertiary active:scale-[0.99] transition-all flex items-center justify-center gap-space-xs" href="appointments.html" id="submitBookingBtn"><span class="material-symbols-outlined text-[20px]">event_available</span><span class="">تأكيد حجز الموعد</span></a>
-<button aria-label="مشاركة العقار" class="w-12 h-12 rounded-xl bg-surface-container text-primary flex items-center justify-center active:scale-95 transition-transform" onclick="handleShare()">
-<span class="material-symbols-outlined text-[20px]">share</span>
-</button>
-</div>
-<!-- Micro Toast / Confirmation Modal placeholder -->
-<div class="hidden mt-2 p-space-xs bg-emerald-700 text-white text-center rounded-lg font-label-md text-label-md flex items-center justify-center gap-1 shadow-md" id="bookingToast">
-<span class="material-symbols-outlined text-[18px]">check_circle</span>
-<span class="">تم حجز الموعد بنجاح! سيصلك إشعار بالبيانات.</span>
-</div>
-</div>
-</div>
-<script>
-  // State variables
-  let bookingState = {
-    type: 'inPerson',
-    date: 'اليوم',
-    time: '02:00 م',
-    saved: false
-  };
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+    <title>تفاصيل العقار</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background: #f7f9fb; overscroll-behavior: none; }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+        .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+        ::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-[#f7f9fb] text-[#191c1e] flex flex-col min-h-screen">
+    <header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
+        <div class="h-16 px-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <a href="index.html" aria-label="رجوع" class="w-11 h-11 flex items-center justify-center text-[#00224e] rounded-full hover:bg-[#eceef0] transition-colors">
+                    <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+                </a>
+                <h1 class="text-[18px] font-bold text-[#191c1e]">تفاصيل العقار</h1>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-[#00224e] flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-[18px]">person</span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-  function setAppointmentType(type) {
-    bookingState.type = type;
-    const btnInPerson = document.getElementById('typeInPerson');
-    const btnPhone = document.getElementById('typePhone');
-    
-    if (type === 'inPerson') {
-      btnInPerson.className = 'py-2 rounded-md font-label-md text-label-md font-bold transition-all bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1';
-      btnPhone.className = 'py-2 rounded-md font-label-md text-label-md font-bold transition-all text-secondary hover:text-on-surface flex items-center justify-center gap-1';
-    } else {
-      btnPhone.className = 'py-2 rounded-md font-label-md text-label-md font-bold transition-all bg-surface-container-lowest text-primary shadow-sm flex items-center justify-center gap-1';
-      btnInPerson.className = 'py-2 rounded-md font-label-md text-label-md font-bold transition-all text-secondary hover:text-on-surface flex items-center justify-center gap-1';
-    }
-  }
+    <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-[#f7f9fb] px-4 py-4">
+        <div class="flex flex-col gap-4">
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <div class="flex items-center justify-between mb-2">
+                    <h2 class="text-[20px] font-bold text-[#00224e]">فيلا المروج المودرن</h2>
+                    <span class="text-[14px] font-bold text-[#00224e]">3,800,000 ر.س</span>
+                </div>
+                <p class="text-[14px] text-[#525f71]">حي المروج، شمال الرياض • طراز نيو-كلاسيك مودرن</p>
+                <div class="grid grid-cols-2 gap-3 mt-4">
+                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center">
+                        <span class="text-[12px] text-[#525f71] block">المساحة الكلية</span>
+                        <span class="text-[16px] font-bold text-[#00224e]">450 م² صافي</span>
+                    </div>
+                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center">
+                        <span class="text-[12px] text-[#525f71] block">أجنحة النوم</span>
+                        <span class="text-[16px] font-bold text-[#00224e]">5 أجنحة ماستر</span>
+                    </div>
+                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center">
+                        <span class="text-[12px] text-[#525f71] block">دورات المياه</span>
+                        <span class="text-[16px] font-bold text-[#00224e]">6 دورات مياه</span>
+                    </div>
+                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center">
+                        <span class="text-[12px] text-[#525f71] block">مواقف السيارات</span>
+                        <span class="text-[16px] font-bold text-[#00224e]">موقف خاص مزدوج</span>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h3 class="text-[16px] font-bold text-[#00224e]">الوصف</h3>
+                    <p class="text-[14px] text-[#525f71] mt-1">صُممت هذه الفيلا بعناية هندسية فائقة لتوفير تدفق ضوئي طبيعي مع واجهات زجاجية مزدوجة بارتفاع مضاعف. تحتوي على مصعد كهربائي بانورامي متكامل، صالون ضيافة مستقل، حديقة داخلية مفتوحة (سكاي لايت)، ومنظومة ذكية بالكامل للتحكم بالحرارة والأمان.</p>
+                </div>
+                <div class="flex flex-wrap gap-2 mt-4">
+                    <span class="bg-[#f2f4f6] px-3 py-1 rounded-full text-[12px] text-[#525f71]">⚡ سمارت هوم</span>
+                    <span class="bg-[#f2f4f6] px-3 py-1 rounded-full text-[12px] text-[#525f71]">🛗 مصعد إيطالي</span>
+                    <span class="bg-[#f2f4f6] px-3 py-1 rounded-full text-[12px] text-[#525f71]">✅ ضمانات 25 سنة</span>
+                    <span class="bg-[#f2f4f6] px-3 py-1 rounded-full text-[12px] text-[#525f71]">🏊 مسبح خاص</span>
+                </div>
+            </div>
 
-  function selectDate(element, dateLabel) {
-    bookingState.date = dateLabel;
-    document.querySelectorAll('.date-pill').forEach(btn => {
-      btn.className = 'date-pill bg-surface-container text-secondary py-2.5 px-2 rounded-xl text-center transition-all flex flex-col items-center hover:bg-surface-container-high';
-      const sub = btn.querySelector('.text-label-sm');
-      if (sub) sub.classList.remove('opacity-90');
-    });
-    element.className = 'date-pill bg-primary text-on-primary py-2.5 px-2 rounded-xl text-center shadow-sm transition-all flex flex-col items-center';
-    const sub = element.querySelector('.text-label-sm');
-    if (sub) sub.classList.add('opacity-90');
-  }
+            <!-- حجز موعد (يعمل) -->
+            <div class="bg-white rounded-xl p-4 shadow-sm">
+                <h3 class="text-[16px] font-bold text-[#00224e]">حجز موعد للمعاينة</h3>
+                <p class="text-[13px] text-[#525f71] mt-1">اختر التوقيت ونوع الزيارة المناسب</p>
+                <div class="grid grid-cols-2 gap-2 mt-3">
+                    <button onclick="selectBookingType('حضورية')" class="py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold" id="btnInPerson">معاينة حضورية</button>
+                    <button onclick="selectBookingType('هاتفية')" class="py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]" id="btnPhone">استشارة هاتفية</button>
+                </div>
+                <div class="grid grid-cols-3 gap-2 mt-3">
+                    <button onclick="selectDate('اليوم')" class="py-2 rounded-lg bg-[#00224e] text-white text-[13px]">اليوم 24/10</button>
+                    <button onclick="selectDate('غداً')" class="py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]">غداً 25/10</button>
+                    <button onclick="selectDate('الأربعاء')" class="py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]">الأربعاء 26/10</button>
+                </div>
+                <button onclick="confirmBooking()" class="block w-full mt-4 py-3 bg-[#00224e] text-white text-center rounded-xl font-bold">✅ تأكيد حجز الموعد</button>
+            </div>
+        </div>
+    </main>
 
-  function selectTime(element, timeLabel) {
-    bookingState.time = timeLabel;
-    document.querySelectorAll('.time-pill').forEach(btn => {
-      btn.className = 'time-pill bg-surface-container text-secondary py-2 px-1 rounded-lg text-center font-label-md text-label-md transition-all hover:bg-surface-container-high';
-    });
-    element.className = 'time-pill bg-primary text-on-primary py-2 px-1 rounded-lg text-center font-label-md text-label-md transition-all shadow-sm';
-  }
+    <nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#f7f9fb]/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,34,78,0.04)]">
+        <div class="h-16 px-4 flex items-center justify-around">
+            <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
+                <span class="material-symbols-outlined text-[24px]">real_estate_agent</span>
+                <span class="text-[11px]">الرئيسية</span>
+            </a>
+            <a href="property-details.html" class="flex flex-col items-center justify-center gap-1 text-[#00224e] font-bold">
+                <span class="material-symbols-outlined text-[24px]">apartment</span>
+                <span class="text-[11px]">العقارات</span>
+            </a>
+            <a href="appointments.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
+                <span class="material-symbols-outlined text-[24px]">calendar_month</span>
+                <span class="text-[11px]">المواعيد</span>
+            </a>
+        </div>
+    </nav>
 
-  function handleBookingConfirmation() {
-    const toast = document.getElementById('bookingToast');
-    const submitBtn = document.getElementById('submitBookingBtn');
-    
-    submitBtn.classList.add('opacity-75', 'cursor-not-allowed');
-    toast.classList.remove('hidden');
+    <script>
+        let bookingType = 'حضورية';
+        let bookingDate = 'اليوم';
 
-    setTimeout(() => {
-      toast.classList.add('hidden');
-      submitBtn.classList.remove('opacity-75', 'cursor-not-allowed');
-    }, 3500);
-  }
+        function selectBookingType(type) {
+            bookingType = type;
+            document.getElementById('btnInPerson').className = type === 'حضورية' ? 'py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold' : 'py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]';
+            document.getElementById('btnPhone').className = type === 'هاتفية' ? 'py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold' : 'py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]';
+        }
 
-  function handleShare() {
-    if (navigator.share) {
-      navigator.share({
-        title: 'فيلا المروج المودرن - ديسانا العقارية',
-        text: 'تفاصيل فيلا المروج المودرن (DIS-8092#) بسعر 3,800,000 ر.س على منصة ديسانا',
-        url: window.location.href,
-      }).catch(() => {});
-    } else {
-      navigator.clipboard.writeText(window.location.href);
-      alert('تم نسخ رابط العقار إلى الحافظة');
-    }
-  }
+        function selectDate(date) {
+            bookingDate = date;
+            document.querySelectorAll('.grid-cols-3 button').forEach(btn => {
+                btn.className = 'py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]';
+            });
+            event.target.className = 'py-2 rounded-lg bg-[#00224e] text-white text-[13px]';
+        }
 
-  // Bookmark toggle
-  const saveBtn = document.getElementById('savePropertyBtn');
-  const saveIcon = document.getElementById('saveIcon');
-  if (saveBtn && saveIcon) {
-    saveBtn.addEventListener('click', () => {
-      bookingState.saved = !bookingState.saved;
-      if (bookingState.saved) {
-        saveIcon.textContent = 'bookmark';
-        saveIcon.style.fontVariationSettings = "'FILL' 1";
-        saveBtn.classList.add('bg-primary', 'text-on-primary');
-        saveBtn.classList.remove('bg-surface-container', 'text-primary');
-      } else {
-        saveIcon.textContent = 'bookmark_border';
-        saveIcon.style.fontVariationSettings = "'FILL' 0";
-        saveBtn.classList.remove('bg-primary', 'text-on-primary');
-        saveBtn.classList.add('bg-surface-container', 'text-primary');
-      }
-    });
-  }
-</script></main><nav class="fixed bottom-0 left-0 right-0 z-50 bg-surface/90 backdrop-blur-xl border-t border-surface-container-high py-2 px-margin-mobile flex justify-around items-center"><a class="flex flex-col items-center gap-1 text-secondary hover:text-primary transition-colors" href="home.html"><span class="material-symbols-outlined text-[22px]">home</span><span class="font-label-sm text-label-sm">الرئيسية</span></a><a class="flex flex-col items-center gap-1 text-primary font-bold" href="property-details.html"><span class="material-symbols-outlined text-[22px]">apartment</span><span class="font-label-sm text-label-sm">العقارات</span></a><a class="flex flex-col items-center gap-1 text-secondary hover:text-primary transition-colors" href="appointments.html"><span class="material-symbols-outlined text-[22px]">calendar_month</span><span class="font-label-sm text-label-sm">المواعيد</span></a></nav>
-
-</body></html>
+        function confirmBooking() {
+            alert(✅ تم حجز موعد ${bookingType} بتاريخ ${bookingDate}\nسيتم إرسال التفاصيل إلى بريدك الإلكتروني.);
+        }
+    </script>
+</body>
+</html>
