@@ -2,438 +2,71 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ديسانا - التطبيق المتكامل</title>
+    <title>ديسانا</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body { font-family: 'Cairo', sans-serif; background: #f7f9fb; padding: 80px 16px 100px; max-width: 800px; margin: auto; }
-        header { position: fixed; top: 0; left: 0; right: 0; z-index: 50; background: rgba(247, 249, 251, 0.95); backdrop-filter: blur(12px); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #e0e3e5; }
-        .logo { font-size: 22px; font-weight: 700; color: #00224e; display: flex; align-items: center; gap: 6px; }
-        .lang-btn { background: white; border: 1px solid #e0e3e5; border-radius: 50px; padding: 4px 14px; font-size: 13px; cursor: pointer; }
-        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-right: 4px solid #00224e; display: flex; justify-content: space-between; align-items: center; }
-        .btn-primary { background: #00224e; color: white; border: none; padding: 12px; border-radius: 12px; font-size: 16px; width: 100%; cursor: pointer; font-weight: 700; }
-        .btn-primary:hover { opacity: 0.9; }
-        .form-box { background: white; border-radius: 12px; padding: 16px; margin: 12px 0; border: 1px solid #e0e3e5; display: none; }
-        .form-box input, .form-box textarea { width: 100%; padding: 10px; border: 1px solid #e0e3e5; border-radius: 8px; margin-bottom: 8px; font-size: 14px; }
-        .btn-save { background: #00224e; color: white; border: none; padding: 10px; border-radius: 8px; width: 100%; cursor: pointer; font-weight: 700; }
-        .btn-cancel { background: #f2f4f6; color: #525f71; border: none; padding: 10px; border-radius: 8px; width: 100%; margin-top: 6px; cursor: pointer; }
-        .tab-container { display: flex; gap: 8px; background: #eceef0; padding: 4px; border-radius: 12px; margin-bottom: 12px; }
-        .tab { flex: 1; padding: 10px; border: none; border-radius: 8px; background: transparent; font-weight: 600; cursor: pointer; font-size: 13px; color: #525f71; }
-        .tab.active { background: white; color: #00224e; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
-        .hidden { display: none; }
-        .badge { background: #00224e10; color: #00224e; font-size: 11px; padding: 2px 10px; border-radius: 50px; }
-        .flex-between { display: flex; justify-content: space-between; align-items: center; }
-        .flex-gap { display: flex; gap: 6px; }
-        .btn-sm { padding: 4px 12px; border-radius: 6px; font-size: 12px; border: none; cursor: pointer; }
-        .btn-edit { background: #f2f4f6; color: #00224e; }
-        .btn-delete { background: #ffdad6; color: #ba1a1a; }
-        .btn-delete:hover { background: #ffc9c4; }
-        .btn-edit:hover { background: #e6e8ea; }
-        .empty-msg { text-align: center; color: #888; padding: 20px; font-size: 14px; }
-        nav { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(247,249,251,0.95); backdrop-filter: blur(12px); border-top: 1px solid #e0e3e5; padding: 8px 0; display: flex; justify-content: space-around; }
-        nav a { text-decoration: none; color: #525f71; font-size: 11px; display: flex; flex-direction: column; align-items: center; gap: 2px; }
-        nav a.active { color: #00224e; font-weight: 700; }
-        .mt-2 { margin-top: 12px; }
-    </style>
 </head>
-<body>
+<body class="p-4 bg-gray-100">
+    <h1 class="text-xl font-bold text-center mb-4">🏢 ديسانا</h1>
+    
+    <button onclick="test()" class="bg-blue-600 text-white p-2 rounded w-full mb-4">🔘 اختبار</button>
+    <div id="result" class="text-center text-green-600"></div>
 
-<!-- Header -->
-<header>
-    <div class="logo"><span>ديسانا</span><span style="font-size:18px;">✅</span></div>
-    <button class="lang-btn" id="langToggle">English</button>
-</header>
+    <button onclick="addProperty()" class="bg-green-600 text-white p-2 rounded w-full mt-4">➕ إضافة عقار</button>
+    <div id="list" class="mt-4"></div>
 
-<!-- المحتوى -->
-<main id="app">
+    <script>
+        // Firebase Config
+        const firebaseConfig = {
+            apiKey: "AIzaSyAR0p1LvMZtLyx7IvhzFUniaeAGV76KKzE",
+            authDomain: "desana-8246c.firebaseapp.com",
+            databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/",
+            projectId: "desana-8246c",
+            storageBucket: "desana-8246c.firebasestorage.app",
+            messagingSenderId: "572995342266",
+            appId: "1:572995342266:web:671fd342c3334248b45783"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
 
-    <!-- التبويبات -->
-    <div class="tab-container">
-        <button class="tab active" data-tab="properties">🏠 العقارات</button>
-        <button class="tab" data-tab="appointments">📅 المواعيد</button>
-        <button class="tab" data-tab="requests">📩 الطلبات</button>
-    </div>
-
-    <!-- ===== قسم العقارات ===== -->
-    <div id="panel-properties">
-        <button class="btn-primary" id="addPropBtn">➕ أضف عقار جديد</button>
-        <div id="propForm" class="form-box">
-            <h3>إضافة عقار</h3>
-            <input type="text" id="propTitle" placeholder="اسم العقار">
-            <input type="text" id="propPrice" placeholder="السعر">
-            <input type="text" id="propLocation" placeholder="الموقع">
-            <textarea id="propDesc" placeholder="الوصف" rows="2"></textarea>
-            <button class="btn-save" id="saveProp">💾 حفظ</button>
-            <button class="btn-cancel" id="cancelProp">إلغاء</button>
-        </div>
-        <div id="propertiesList"></div>
-    </div>
-
-    <!-- ===== قسم المواعيد ===== -->
-    <div id="panel-appointments" class="hidden">
-        <button class="btn-primary" id="addAppBtn">📅 أضف موعد جديد</button>
-        <div id="appForm" class="form-box">
-            <h3>إضافة موعد</h3>
-            <input type="text" id="appTitle" placeholder="العنوان">
-            <input type="date" id="appDate">
-            <textarea id="appDesc" placeholder="الوصف" rows="2"></textarea>
-            <button class="btn-save" id="saveApp">💾 حفظ</button>
-            <button class="btn-cancel" id="cancelApp">إلغاء</button>
-        </div>
-        <div id="appointmentsList"></div>
-    </div>
-
-    <!-- ===== قسم الطلبات ===== -->
-    <div id="panel-requests" class="hidden">
-        <button class="btn-primary" id="addReqBtn">📩 أضف طلب جديد</button>
-        <div id="reqForm" class="form-box">
-            <h3>إضافة طلب</h3>
-            <input type="text" id="reqTitle" placeholder="العنوان">
-            <input type="text" id="reqStatus" placeholder="الحالة">
-            <textarea id="reqDesc" placeholder="الوصف" rows="2"></textarea>
-            <button class="btn-save" id="saveReq">💾 حفظ</button>
-            <button class="btn-cancel" id="cancelReq">إلغاء</button>
-        </div>
-        <div id="requestsList"></div>
-    </div>
-
-</main>
-
-<!-- التنقل السفلي -->
-<nav>
-    <a href="#" class="active" data-page="properties">🏠 الرئيسية</a>
-    <a href="#" data-page="appointments">📅 المواعيد</a>
-    <a href="#" data-page="requests">📩 الطلبات</a>
-</nav>
-
-<script>
-    // ================== Firebase ==================
-    const firebaseConfig = {
-        apiKey: "AIzaSyAR0p1LvMZtLyx7IvhzFUniaeAGV76KKzE",
-        authDomain: "desana-8246c.firebaseapp.com",
-        projectId: "desana-8246c",
-        storageBucket: "desana-8246c.firebasestorage.app",
-        messagingSenderId: "572995342266",
-        appId: "1:572995342266:web:671fd342c3334248b45783",
-        databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    // ================== متغيرات ==================
-    let currentLang = localStorage.getItem('disana_lang') || 'ar';
-    let editingKey = null;
-    let editingType = null;
-
-    // ================== الترجمة ==================
-    const trans = {
-        ar: {
-            addProp: '➕ أضف عقار جديد',
-            addApp: '📅 أضف موعد جديد',
-            addReq: '📩 أضف طلب جديد',
-            save: '💾 حفظ',
-            cancel: 'إلغاء',
-            noData: 'لا توجد بيانات',
-            edit: 'تعديل',
-            delete: 'حذف',
-            lang: 'English',
-            title: 'ديسانا',
-            tabs: ['العقارات', 'المواعيد', 'الطلبات'],
-            nav: ['الرئيسية', 'المواعيد', 'الطلبات'],
-            confirmDelete: 'هل أنت متأكد من الحذف؟'
-        },
-        en: {
-            addProp: '➕ Add Property',
-            addApp: '📅 Add Appointment',
-            addReq: '📩 Add Request',
-            save: '💾 Save',
-            cancel: 'Cancel',
-            noData: 'No data',
-            edit: 'Edit',
-            delete: 'Delete',
-            lang: 'عربي',
-            title: 'Disana',
-            tabs: ['Properties', 'Appointments', 'Requests'],
-            nav: ['Home', 'Appointments', 'Requests'],
-            confirmDelete: 'Are you sure you want to delete?'
+        function test() {
+            document.getElementById('result').textContent = '✅ JavaScript يعمل!';
         }
-    };
 
-    function t(key) { return trans[currentLang][key] || key; }
+        function addProperty() {
+            const title = prompt('اسم العقار:');
+            if (!title) return;
+            db.ref('properties').push({ title }).then(() => {
+                alert('✅ تم الإضافة');
+                loadProperties();
+            }).catch(err => alert('❌ خطأ: ' + err.message));
+        }
 
-    // ================== تبديل اللغة ==================
-    document.getElementById('langToggle').addEventListener('click', function() {
-        currentLang = currentLang === 'ar' ? 'en' : 'ar';
-        localStorage.setItem('disana_lang', currentLang);
-        applyLanguage();
-    });
+        function loadProperties() {
+            const list = document.getElementById('list');
+            db.ref('properties').on('value', snap => {
+                const data = snap.val();
+                list.innerHTML = '';
+                if (!data) { list.innerHTML = '<p class="text-gray-500">لا توجد عقارات</p>'; return; }
+                for (const key in data) {
+                    const item = data[key];
+                    list.innerHTML += `<div class="bg-white p-2 rounded shadow mb-2 flex justify-between">
+                        <span>${item.title}</span>
+                        <button onclick="deleteProperty('${key}')" class="text-red-500">🗑️</button>
+                    </div>`;
+                }
+            });
+        }
 
-    function applyLanguage() {
-        document.getElementById('addPropBtn').textContent = t('addProp');
-        document.getElementById('addAppBtn').textContent = t('addApp');
-        document.getElementById('addReqBtn').textContent = t('addReq');
-        document.querySelectorAll('.btn-save').forEach(b => b.textContent = t('save'));
-        document.querySelectorAll('.btn-cancel').forEach(b => b.textContent = t('cancel'));
-        document.getElementById('langToggle').textContent = t('lang');
-        document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-        document.documentElement.lang = currentLang;
-        // تحديث التبويبات
-        const tabs = document.querySelectorAll('.tab');
-        const navLinks = document.querySelectorAll('nav a');
-        const labels = currentLang === 'ar' ? ['العقارات', 'المواعيد', 'الطلبات'] : ['Properties', 'Appointments', 'Requests'];
-        tabs.forEach((el, i) => el.textContent = labels[i]);
-        navLinks.forEach((el, i) => el.textContent = labels[i]);
-        // إعادة تحميل القوائم
-        loadAll();
-    }
+        function deleteProperty(key) {
+            if (!confirm('حذف؟')) return;
+            db.ref('properties/' + key).remove().then(() => {
+                alert('🗑️ تم الحذف');
+            }).catch(err => alert('❌ خطأ: ' + err.message));
+        }
 
-    // ================== عرض القوائم ==================
-    function loadProperties() {
-        const container = document.getElementById('propertiesList');
-        db.ref('properties').on('value', (snap) => {
-            const data = snap.val();
-            container.innerHTML = '';
-            if (!data) { container.innerHTML = <div class="empty-msg">${t('noData')}</div>; return; }
-            const keys = Object.keys(data).reverse();
-            keys.forEach(key => {
-                const item = data[key];
-                container.innerHTML += `
-                    <div class="card">
-                        <div>
-                            <strong>${item.title || ''}</strong>
-                            <div style="font-size:13px;color:#525f71;">${item.price || ''} ${item.location ? '📍 ' + item.location : ''}</div>
-                            <div style="font-size:12px;color:#888;">${item.desc || ''}</div>
-                        </div>
-                        <div class="flex-gap">
-                            <button class="btn-sm btn-edit" data-type="properties" data-key="${key}">${t('edit')}</button>
-                            <button class="btn-sm btn-delete" data-type="properties" data-key="${key}">${t('delete')}</button>
-                        </div>
-                    </div>
-                `;
-            });
-            // ربط الأحداث
-            container.querySelectorAll('.btn-edit').forEach(btn => {
-                btn.addEventListener('click', () => editItem('properties', btn.dataset.key));
-            });
-            container.querySelectorAll('.btn-delete').forEach(btn => {
-                btn.addEventListener('click', () => deleteItem('properties', btn.dataset.key));
-            });
-        });
-    }
-
-    function loadAppointments() {
-        const container = document.getElementById('appointmentsList');
-        db.ref('appointments').on('value', (snap) => {
-            const data = snap.val();
-            container.innerHTML = '';
-            if (!data) { container.innerHTML = <div class="empty-msg">${t('noData')}</div>; return; }
-            const keys = Object.keys(data).reverse();
-            keys.forEach(key => {
-                const item = data[key];
-                container.innerHTML += `
-                    <div class="card">
-                        <div>
-                            <strong>${item.title || ''}</strong>
-                            <div style="font-size:13px;color:#525f71;">📅 ${item.date || ''}</div>
-                            <div style="font-size:12px;color:#888;">${item.desc || ''}</div>
-                        </div>
-                        <div class="flex-gap">
-                            <button class="btn-sm btn-edit" data-type="appointments" data-key="${key}">${t('edit')}</button>
-                            <button class="btn-sm btn-delete" data-type="appointments" data-key="${key}">${t('delete')}</button>
-                        </div>
-                    </div>
-                `;
-            });
-            container.querySelectorAll('.btn-edit').forEach(btn => {
-                btn.addEventListener('click', () => editItem('appointments', btn.dataset.key));
-            });
-            container.querySelectorAll('.btn-delete').forEach(btn => {
-                btn.addEventListener('click', () => deleteItem('appointments', btn.dataset.key));
-            });
-        });
-    }
-
-    function loadRequests() {
-        const container = document.getElementById('requestsList');
-        db.ref('requests').on('value', (snap) => {
-            const data = snap.val();
-            container.innerHTML = '';
-            if (!data) { container.innerHTML = <div class="empty-msg">${t('noData')}</div>; return; }
-            const keys = Object.keys(data).reverse();
-            keys.forEach(key => {
-                const item = data[key];
-                container.innerHTML += `
-                    <div class="card">
-                        <div>
-                            <strong>${item.title || ''}</strong>
-                            <div style="font-size:13px;color:#525f71;">📌 ${item.status || ''}</div>
-                            <div style="font-size:12px;color:#888;">${item.desc || ''}</div>
-                        </div>
-                        <div class="flex-gap">
-                            <button class="btn-sm btn-edit" data-type="requests" data-key="${key}">${t('edit')}</button>
-                            <button class="btn-sm btn-delete" data-type="requests" data-key="${key}">${t('delete')}</button>
-                        </div>
-                    </div>
-                `;
-            });
-            container.querySelectorAll('.btn-edit').forEach(btn => {
-                btn.addEventListener('click', () => editItem('requests', btn.dataset.key));
-            });
-            container.querySelectorAll('.btn-delete').forEach(btn => {
-                btn.addEventListener('click', () => deleteItem('requests', btn.dataset.key));
-            });
-        });
-    }
-
-    function loadAll() {
         loadProperties();
-        loadAppointments();
-        loadRequests();
-    }
-
-    // ================== إضافة عنصر ==================
-    function addItem(type) {
-        const fields = {
-            properties: { title: 'propTitle', price: 'propPrice', location: 'propLocation', desc: 'propDesc' },
-            appointments: { title: 'appTitle', date: 'appDate', desc: 'appDesc' },
-            requests: { title: 'reqTitle', status: 'reqStatus', desc: 'reqDesc' }
-        };
-        const data = {};
-        for (const [key, id] of Object.entries(fields[type])) {
-            const val = document.getElementById(id).value.trim();
-            if (val) data[key] = val;
-        }
-        if (!data.title) { alert('⚠️ الرجاء إدخال عنوان'); return; }
-        db.ref(type).push(data).then(() => {
-            alert('✅ تمت الإضافة');
-            // تفريغ الحقول
-            for (const id of Object.values(fields[type])) document.getElementById(id).value = '';
-            hideForm(type);
-        }).catch(err => alert('❌ فشل: ' + err.message));
-    }
-
-    // ================== تعديل عنصر ==================
-    function editItem(type, key) {
-        const ref = db.ref(type + '/' + key);
-        ref.once('value').then(snap => {
-            const item = snap.val();
-            if (!item) return;
-            showForm(type);
-            editingKey = key;
-            editingType = type;
-            const fields = {
-                properties: { title: 'propTitle', price: 'propPrice', location: 'propLocation', desc: 'propDesc' },
-                appointments: { title: 'appTitle', date: 'appDate', desc: 'appDesc' },
-                requests: { title: 'reqTitle', status: 'reqStatus', desc: 'reqDesc' }
-            };
-            for (const [key, id] of Object.entries(fields[type])) {
-                document.getElementById(id).value = item[key] || '';
-            }
-            // تغيير زر الحفظ إلى تحديث
-            const saveBtn = document.querySelector(#${type}Form .btn-save);
-            saveBtn.textContent = '💾 تحديث';
-            saveBtn.onclick = function() { updateItem(type, key); };
-        });
-    }
-
-    function updateItem(type, key) {
-        const fields = {
-            properties: { title: 'propTitle', price: 'propPrice', location: 'propLocation', desc: 'propDesc' },
-            appointments: { title: 'appTitle', date: 'appDate', desc: 'appDesc' },
-            requests: { title: 'reqTitle', status: 'reqStatus', desc: 'reqDesc' }
-        };
-        const data = {};
-        for (const [key, id] of Object.entries(fields[type])) {
-            const val = document.getElementById(id).value.trim();
-            if (val) data[key] = val;
-        }
-        if (!data.title) { alert('⚠️ الرجاء إدخال عنوان'); return; }
-        db.ref(type + '/' + key).update(data).then(() => {
-            alert('✅ تم التحديث');
-            for (const id of Object.values(fields[type])) document.getElementById(id).value = '';
-            hideForm(type);
-            editingKey = null;
-            editingType = null;
-            // إعادة زر الحفظ
-            const saveBtn = document.querySelector(#${type}Form .btn-save);
-            saveBtn.textContent = t('save');
-            saveBtn.onclick = function() { addItem(type); };
-        }).catch(err => alert('❌ فشل: ' + err.message));
-    }
-
-    // ================== حذف عنصر ==================
-    function deleteItem(type, key) {
-        if (!confirm(t('confirmDelete'))) return;
-        db.ref(type + '/' + key).remove().then(() => {
-            alert('🗑️ تم الحذف');
-        }).catch(err => alert('❌ فشل: ' + err.message));
-    }
-
-    // ================== إظهار/إخفاء النماذج ==================
-    function showForm(type) {
-        document.getElementById(type + 'Form').style.display = 'block';
-    }
-    function hideForm(type) {
-        document.getElementById(type + 'Form').style.display = 'none';
-    }
-
-    // ================== التبويبات ==================
-    document.querySelectorAll('.tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            this.classList.add('active');
-            const panel = this.dataset.tab;
-            document.querySelectorAll('[id^="panel-"]').forEach(p => p.classList.add('hidden'));
-            document.getElementById('panel-' + panel).classList.remove('hidden');
-            // التنقل السفلي
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-            document.querySelector(nav a[data-page="${panel}"]).classList.add('active');
-        });
-    });
-
-    document.querySelectorAll('nav a').forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const page = this.dataset.page;
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelector(.tab[data-tab="${page}"]).classList.add('active');
-            document.querySelectorAll('[id^="panel-"]').forEach(p => p.classList.add('hidden'));
-            document.getElementById('panel-' + page).classList.remove('hidden');
-            document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
-            this.classList.add('active');
-        });
-    });
-
-    // ================== ربط أزرار الإضافة ==================
-    document.getElementById('addPropBtn').addEventListener('click', () => showForm('properties'));
-    document.getElementById('cancelProp').addEventListener('click', () => hideForm('properties'));
-    document.getElementById('saveProp').addEventListener('click', function() {
-        if (editingKey && editingType === 'properties') { updateItem('properties', editingKey); }
-        else { addItem('properties'); }
-    });
-
-    document.getElementById('addAppBtn').addEventListener('click', () => showForm('appointments'));
-    document.getElementById('cancelApp').addEventListener('click', () => hideForm('appointments'));
-    document.getElementById('saveApp').addEventListener('click', function() {
-        if (editingKey && editingType === 'appointments') { updateItem('appointments', editingKey); }
-        else { addItem('appointments'); }
-    });
-
-    document.getElementById('addReqBtn').addEventListener('click', () => showForm('requests'));
-    document.getElementById('cancelReq').addEventListener('click', () => hideForm('requests'));
-    document.getElementById('saveReq').addEventListener('click', function() {
-        if (editingKey && editingType === 'requests') { updateItem('requests', editingKey); }
-        else { addItem('requests'); }
-    });
-
-    // ================== تشغيل ==================
-    applyLanguage();
-    loadAll();
-</script>
+    </script>
 </body>
 </html>
