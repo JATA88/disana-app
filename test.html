@@ -13,7 +13,6 @@
     <div id="result" style="margin-top: 20px; font-size: 18px;"></div>
 
     <script>
-        // رابط Firebase (نفس الرابط المستخدم في التطبيق)
         const firebaseConfig = {
             databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/"
         };
@@ -24,19 +23,17 @@
             const result = document.getElementById('result');
             result.innerHTML = '⏳ جاري الاتصال...';
 
-            // محاولة كتابة بيانات اختبارية
             db.ref('test').set({
                 message: '✅ Firebase يعمل!',
                 time: new Date().toLocaleString()
             })
             .then(() => {
-                result.innerHTML = '✅ ✅ ✅ تم الاتصال بنجاح! البيانات مكتوبة في Firebase.';
-                // قراءة البيانات للتأكيد
+                result.innerHTML = '✅ ✅ ✅ تم الاتصال بنجاح!';
                 return db.ref('test').once('value');
             })
             .then(snapshot => {
                 const data = snapshot.val();
-                result.innerHTML += <br><br>📦 البيانات المقروءة: <br><pre style="background:#f0f0f0;padding:10px;border-radius:8px;text-align:left;display:inline-block;">${JSON.stringify(data, null, 2)}</pre>;
+                result.innerHTML += <br><br>📦 البيانات:<br><pre style="background:#f0f0f0;padding:10px;border-radius:8px;text-align:left;display:inline-block;">${JSON.stringify(data, null, 2)}</pre>;
             })
             .catch(error => {
                 result.innerHTML = '❌ فشل الاتصال: ' + error.message;
