@@ -68,7 +68,7 @@
 
             <button onclick="showAddProperty()" class="w-full py-3 rounded-xl bg-[#00224e] text-white text-[14px] font-bold flex items-center justify-center gap-2 shadow-sm hover:opacity-90 transition" id="addPropertyBtn">
                 <span class="material-symbols-outlined text-[20px]">add_circle</span>
-                + أضف إعلانك أو طلبك العقاري
+                <span id="addBtnText">+ أضف إعلانك أو طلبك العقاري</span>
             </button>
 
             <div id="addPropertyForm" class="hidden bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]">
@@ -117,14 +117,10 @@
     </nav>
 
     <script>
-        // Firebase Config (ضع رابطك)
-        const firebaseConfig = {
-            databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/"
-        };
+        const firebaseConfig = { databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/" };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // الترجمة
         const translations = {
             ar: {
                 brandName: 'ديسانا العقارية',
@@ -181,7 +177,7 @@
             document.getElementById('activeStatus').textContent = t.activeStatus;
             document.getElementById('followerLabel').textContent = t.followerLabel;
             document.getElementById('propertyLabel').textContent = t.propertyLabel;
-            document.getElementById('addPropertyBtn').innerHTML = <span class="material-symbols-outlined text-[20px]">add_circle</span> ${t.addBtn};
+            document.getElementById('addBtnText').textContent = t.addBtn;
             document.getElementById('addFormTitle').textContent = t.addFormTitle;
             document.getElementById('saveBtn').textContent = t.saveBtn;
             document.getElementById('cancelBtn').textContent = t.cancelBtn;
@@ -195,17 +191,16 @@
             document.getElementById('langToggleBtn').textContent = t.btnLang;
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
+            // تحديث الرسائل في القوائم
+            loadProperties();
+            loadRequests();
         }
 
         function toggleLanguage() {
             const newLang = currentLang === 'ar' ? 'en' : 'ar';
             setLanguage(newLang);
-            // إعادة تحميل العقارات لتحديث الرسائل
-            loadProperties();
-            loadRequests();
         }
 
-        // دوال Firebase (نفس السابق مع تحديث الرسائل)
         function loadProperties() {
             const list = document.getElementById('propertiesList');
             db.ref('properties').on('value', (snapshot) => {
@@ -273,7 +268,6 @@
             });
         }
 
-        // دوال الإضافة والتعديل والحذف (نفس السابق)
         function addProperty() {
             const title = document.getElementById('propTitle').value.trim();
             const price = document.getElementById('propPrice').value.trim();
@@ -322,7 +316,7 @@
         }
 
         function editRequest(key) {
-            const newTitle = prompt(currentLang === 'ar' ? 'أدخل العنوان الجديد للطلب:' : 'Enter new title:');
+            const newTitle = prompt(currentLang === 'ar' ? 'أدخل العنوان الجديد للطلب:' : 'Enter new request title:');
             if (newTitle !== null && newTitle.trim() !== '') {
                 db.ref('requests/' + key).update({ title: newTitle.trim() })
                     .then(() => alert(currentLang === 'ar' ? '✅ تم تحديث الطلب بنجاح' : '✅ Request updated'))
@@ -338,7 +332,6 @@
             saveBtn.onclick = function() { addProperty(); };
         }
 
-        // تحميل اللغة المحفوظة
         setLanguage(currentLang);
         loadProperties();
         loadRequests();
