@@ -31,6 +31,9 @@
         .btn-cancel { background: #f2f4f6; color: #525f71; border: none; padding: 10px; border-radius: 8px; width: 100%; margin-top: 6px; cursor: pointer; }
         .stat-number { font-size: 22px; font-weight: 700; color: #00224e; }
         .stat-label { font-size: 11px; color: #525f71; display: block; }
+        .card-title { font-weight: 700; color: #00224e; font-size: 15px; }
+        .card-sub { font-size: 13px; color: #525f71; }
+        .card-desc { font-size: 12px; color: #888; }
     </style>
 </head>
 <body class="bg-[#f7f9fb] text-[#191c1e] flex flex-col min-h-screen">
@@ -89,7 +92,7 @@
                 <input type="text" id="propPrice" placeholder="السعر">
                 <input type="text" id="propLocation" placeholder="الموقع">
                 <textarea id="propDesc" placeholder="الوصف" rows="2"></textarea>
-                <button class="btn-save" id="saveBtn">💾 حفظ العقار</button>
+                <button class="btn-save" id="saveBtn" onclick="saveProperty()">💾 حفظ العقار</button>
                 <button class="btn-cancel" onclick="hideAddProperty()">إلغاء</button>
             </div>
 
@@ -131,12 +134,14 @@
     </nav>
 
     <script>
+        // Firebase Config
         const firebaseConfig = {
             databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/"
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
+        // الترجمة
         const translations = {
             ar: {
                 brandName: 'ديسانا العقارية',
@@ -223,6 +228,7 @@
             setLanguage(newLang);
         }
 
+        // تحميل العقارات
         function loadProperties() {
             const container = document.getElementById('propertiesList');
             db.ref('properties').on('value', (snapshot) => {
@@ -237,22 +243,16 @@
                         container.innerHTML += `
                             <div class="card">
                                 <div>
-                                    <strong>${item.title || 'بدون عنوان'}</strong>
-                                    <div style="font-size:13px;color:#525f71;">${item.price ? '💰 ' + item.price : ''} ${item.location ? '📍 ' + item.location : ''}</div>
-                                    <div style="font-size:12px;color:#888;">${item.desc || ''}</div>
+                                    <div class="card-title">${item.title || 'بدون عنوان'}</div>
+                                    <div class="card-sub">${item.price ? '💰 ' + item.price : ''} ${item.location ? '📍 ' + item.location : ''}</div>
+                                    <div class="card-desc">${item.desc || ''}</div>
                                 </div>
                                 <div class="flex-gap">
-                                    <button class="btn-sm btn-edit" data-key="${key}">${translations[currentLang].edit}</button>
-                                    <button class="btn-sm btn-delete" data-key="${key}">${translations[currentLang].delete}</button>
+                                    <button class="btn-sm btn-edit" onclick="editProperty('${key}')">${translations[currentLang].edit}</button>
+                                    <button class="btn-sm btn-delete" onclick="deleteProperty('${key}')">${translations[currentLang].delete}</button>
                                 </div>
                             </div>
                         `;
-                    });
-                    container.querySelectorAll('.btn-edit').forEach(btn => {
-                        btn.addEventListener('click', () => editProperty(btn.dataset.key));
-                    });
-                    container.querySelectorAll('.btn-delete').forEach(btn => {
-                        btn.addEventListener('click', () => deleteProperty(btn.dataset.key));
                     });
                 }
                 document.getElementById('propertyCount').textContent = count;
@@ -262,6 +262,7 @@
             });
         }
 
+        // تحميل الطلبات
         function loadRequests() {
             const container = document.getElementById('requestsList');
             db.ref('requests').on('value', (snapshot) => {
@@ -273,13 +274,13 @@
                         container.innerHTML += `
                             <div class="card" style="border-right-color: #ffc107;">
                                 <div>
-                                    <strong>${item.title || 'طلب'}</strong>
-                                    <div style="font-size:13px;color:#525f71;">${item.budget ? '💰 ' + item.budget : ''} ${item.location ? '📍 ' + item.location : ''}</div>
-                                    <div style="font-size:12px;color:#888;">${item.desc || ''}</div>
+                                    <div class="card-title">${item.title || 'طلب'}</div>
+                                    <div class="card-sub">${item.budget ? '💰 ' + item.budget : ''} ${item.location ? '📍 ' + item.location : ''}</div>
+                                    <div class="card-desc">${item.desc || ''}</div>
                                 </div>
                                 <div class="flex-gap">
-                                    <button class="btn-sm btn-edit" data-key="${key}" onclick="editRequest('${key}')">${translations[currentLang].edit}</button>
-                                    <button class="btn-sm btn-delete" data-key="${key}" onclick="deleteRequest('${key}')">${translations[currentLang].delete}</button>
+                                    <button class="btn-sm btn-edit" onclick="editRequest('${key}')">${translations[currentLang].edit}</button>
+                                    <button class="btn-sm btn-delete" onclick="deleteRequest('${key}')">${translations[currentLang].delete}</button>
                                 </div>
                             </div>
                         `;
@@ -290,7 +291,8 @@
             });
         }
 
-        function addProperty() {
+        // إضافة عقار
+        function saveProperty() {
             const title = document.getElementById('propTitle').value.trim();
             const price = document.getElementById('propPrice').value.trim();
             const location = document.getElementById('propLocation').value.trim();
@@ -299,23 +301,22 @@
                 alert(currentLang === 'ar' ? '⚠️ الرجاء إدخال اسم العقار' : '⚠️ Please enter property name');
                 return;
             }
-            db.ref('properties').push({ title, price, location, desc }).then(() => {
-                alert(currentLang === 'ar' ? '✅ تم إضافة العقار بنجاح!' : '✅ Property added successfully!');
-                document.getElementById('propTitle').value = '';
-                document.getElementById('propPrice').value = '';
-                document.getElementById('propLocation').value = '';
-                document.getElementById('propDesc').value = '';
-                hideAddProperty();
-            }).catch(err => alert('❌ ' + err.message));
+            const data = { title, price, location, desc };
+            
+            if (editingKey) {
+                db.ref('properties/' + editingKey).update(data).then(() => {
+                    alert(currentLang === 'ar' ? '✅ تم تحديث العقار' : '✅ Property updated');
+                    resetPropertyForm();
+                }).catch(err => alert('❌ ' + err.message));
+            } else {
+                db.ref('properties').push(data).then(() => {
+                    alert(currentLang === 'ar' ? '✅ تم إضافة العقار بنجاح!' : '✅ Property added!');
+                    resetPropertyForm();
+                }).catch(err => alert('❌ ' + err.message));
+            }
         }
 
-        function deleteProperty(key) {
-            if (!confirm(translations[currentLang].confirmDelete)) return;
-            db.ref('properties/' + key).remove().then(() => {
-                alert(currentLang === 'ar' ? '🗑️ تم حذف العقار بنجاح' : '🗑️ Property deleted');
-            }).catch(err => alert('❌ ' + err.message));
-        }
-
+        // تعديل عقار
         function editProperty(key) {
             db.ref('properties/' + key).once('value', snap => {
                 const item = snap.val();
@@ -327,39 +328,18 @@
                 document.getElementById('propLocation').value = item.location || '';
                 document.getElementById('propDesc').value = item.desc || '';
                 document.getElementById('saveBtn').textContent = currentLang === 'ar' ? '💾 تحديث العقار' : '💾 Update';
-                document.getElementById('saveBtn').onclick = function() { updateProperty(key); };
             });
         }
 
-        function updateProperty(key) {
-            const title = document.getElementById('propTitle').value.trim();
-            const price = document.getElementById('propPrice').value.trim();
-            const location = document.getElementById('propLocation').value.trim();
-            const desc = document.getElementById('propDesc').value.trim();
-            if (!title) {
-                alert(currentLang === 'ar' ? '⚠️ الرجاء إدخال اسم العقار' : '⚠️ Please enter property name');
-                return;
-            }
-            db.ref('properties/' + key).update({ title, price, location, desc }).then(() => {
-                alert(currentLang === 'ar' ? '✅ تم تحديث العقار بنجاح!' : '✅ Property updated!');
-                document.getElementById('propTitle').value = '';
-                document.getElementById('propPrice').value = '';
-                document.getElementById('propLocation').value = '';
-                document.getElementById('propDesc').value = '';
-                hideAddProperty();
-                editingKey = null;
-                document.getElementById('saveBtn').textContent = translations[currentLang].saveBtn;
-                document.getElementById('saveBtn').onclick = addProperty;
-            }).catch(err => alert('❌ ' + err.message));
-        }
-
-        function deleteRequest(key) {
+        // حذف عقار
+        function deleteProperty(key) {
             if (!confirm(translations[currentLang].confirmDelete)) return;
-            db.ref('requests/' + key).remove().then(() => {
-                alert(currentLang === 'ar' ? '🗑️ تم حذف الطلب بنجاح' : '🗑️ Request deleted');
+            db.ref('properties/' + key).remove().then(() => {
+                alert(currentLang === 'ar' ? '🗑️ تم حذف العقار' : '🗑️ Property deleted');
             }).catch(err => alert('❌ ' + err.message));
         }
 
+        // تعديل طلب
         function editRequest(key) {
             const newTitle = prompt(currentLang === 'ar' ? 'أدخل العنوان الجديد للطلب:' : 'Enter new request title:');
             if (newTitle && newTitle.trim() !== '') {
@@ -369,17 +349,28 @@
             }
         }
 
+        // حذف طلب
+        function deleteRequest(key) {
+            if (!confirm(translations[currentLang].confirmDelete)) return;
+            db.ref('requests/' + key).remove().then(() => {
+                alert(currentLang === 'ar' ? '🗑️ تم حذف الطلب' : '🗑️ Request deleted');
+            }).catch(err => alert('❌ ' + err.message));
+        }
+
+        // إظهار/إخفاء نموذج العقار
         function showAddProperty() {
             document.getElementById('addPropertyForm').style.display = 'block';
         }
         function hideAddProperty() {
+            resetPropertyForm();
             document.getElementById('addPropertyForm').style.display = 'none';
+        }
+        function resetPropertyForm() {
             document.getElementById('propTitle').value = '';
             document.getElementById('propPrice').value = '';
             document.getElementById('propLocation').value = '';
             document.getElementById('propDesc').value = '';
             document.getElementById('saveBtn').textContent = translations[currentLang].saveBtn;
-            document.getElementById('saveBtn').onclick = addProperty;
             editingKey = null;
         }
 
