@@ -1,114 +1,453 @@
-<!DOCTYPE html>
-<html dir="rtl" lang="ar">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ديسانا - البوابة الرئيسية</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
-    <style>
-        body { font-family: 'Cairo', sans-serif; background: #f7f9fb; }
-        .card { transition: all 0.2s; }
-        .card:hover { transform: scale(1.02); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
-        .lang-btn { transition: all 0.2s; cursor: pointer; padding: 6px 14px; border-radius: 50px; border: 1px solid #e0e3e5; background: white; font-size: 13px; }
-        .lang-btn:hover { background: #00224e; color: white; border-color: #00224e; }
-        [dir="ltr"] .lang-btn { margin-right: 8px; }
-    </style>
-</head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4">
-    <div class="max-w-md w-full bg-white rounded-2xl shadow-lg p-6 text-center">
-        <div class="flex justify-end mb-2">
-            <button onclick="toggleLanguage()" class="lang-btn" id="langToggleBtn">English</button>
-        </div>
-        <div class="flex items-center justify-center gap-2 mb-4">
-            <span class="text-3xl font-bold text-[#00224e]">ديسانا</span>
-            <span class="material-symbols-outlined text-[#00224e] text-2xl">verified</span>
-        </div>
-        <p class="text-[#525f71] text-sm mb-6" id="tagline">منصتك العقارية الموثوقة</p>
-        <div class="space-y-3">
-            <a href="home.html" class="card block bg-[#f7f9fb] rounded-xl p-4 border border-[#e0e3e5]">
-                <div class="flex items-center gap-3">
-                    <span class="material-symbols-outlined text-[#00224e] text-3xl">home_work</span>
-                    <div class="text-right">
-                        <h3 class="text-[#00224e] font-bold text-base" id="homeTitle">الصفحة الرئيسية</h3>
-                        <p class="text-[#525f71] text-xs" id="homeDesc">استعراض العقارات والمواعيد</p>
-                    </div>
-                </div>
-            </a>
-            <a href="property-details.html" class="card block bg-[#f7f9fb] rounded-xl p-4 border border-[#e0e3e5]">
-                <div class="flex items-center gap-3">
-                    <span class="material-symbols-outlined text-[#00224e] text-3xl">architecture</span>
-                    <div class="text-right">
-                        <h3 class="text-[#00224e] font-bold text-base" id="propertyTitle">تفاصيل العقار</h3>
-                        <p class="text-[#525f71] text-xs" id="propertyDesc">مواصفات وحجز المواعيد</p>
-                    </div>
-                </div>
-            </a>
-            <a href="appointments.html" class="card block bg-[#f7f9fb] rounded-xl p-4 border border-[#e0e3e5]">
-                <div class="flex items-center gap-3">
-                    <span class="material-symbols-outlined text-[#00224e] text-3xl">calendar_month</span>
-                    <div class="text-right">
-                        <h3 class="text-[#00224e] font-bold text-base" id="appointmentsTitle">المواعيد والطلبات</h3>
-                        <p class="text-[#525f71] text-xs" id="appointmentsDesc">إدارة المواعيد والطلبات</p>
-                    </div>
-                </div>
-            </a>
-        </div>
-        <div class="mt-6 pt-4 border-t border-[#e0e3e5] text-[#525f71] text-xs" id="footerCopy">© 2025 منصة ديسانا العقارية</div>
-    </div>
-
-    <script>
-        const translations = {
-            ar: {
-                tagline: 'منصتك العقارية الموثوقة',
-                homeTitle: 'الصفحة الرئيسية',
-                homeDesc: 'استعراض العقارات والمواعيد',
-                propertyTitle: 'تفاصيل العقار',
-                propertyDesc: 'مواصفات وحجز المواعيد',
-                appointmentsTitle: 'المواعيد والطلبات',
-                appointmentsDesc: 'إدارة المواعيد والطلبات',
-                footer: '© 2025 منصة ديسانا العقارية',
-                btnLang: 'English'
-            },
-            en: {
-                tagline: 'Your Trusted Real Estate Platform',
-                homeTitle: 'Home',
-                homeDesc: 'Browse properties and appointments',
-                propertyTitle: 'Property Details',
-                propertyDesc: 'Specifications and booking',
-                appointmentsTitle: 'Appointments & Requests',
-                appointmentsDesc: 'Manage appointments and requests',
-                footer: '© 2025 Disana Real Estate',
-                btnLang: 'عربي'
-            }
-        };
-
-        let currentLang = localStorage.getItem('disana_lang') || 'ar';
-
-        function setLanguage(lang) {
-            currentLang = lang;
-            localStorage.setItem('disana_lang', lang);
-            const t = translations[lang];
-            document.getElementById('tagline').textContent = t.tagline;
-            document.getElementById('homeTitle').textContent = t.homeTitle;
-            document.getElementById('homeDesc').textContent = t.homeDesc;
-            document.getElementById('propertyTitle').textContent = t.propertyTitle;
-            document.getElementById('propertyDesc').textContent = t.propertyDesc;
-            document.getElementById('appointmentsTitle').textContent = t.appointmentsTitle;
-            document.getElementById('appointmentsDesc').textContent = t.appointmentsDesc;
-            document.getElementById('footerCopy').textContent = t.footer;
-            document.getElementById('langToggleBtn').textContent = t.btnLang;
-            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
-            document.documentElement.lang = lang;
+<!DOCTYPE html><html dir="rtl" lang="ar"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Disana | ديسانا - منصة العقارات المعتمدة</title>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&amp;family=Public+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-error": "#ffffff",
+            "surface-container-high": "#e6e8ea",
+            "on-tertiary-fixed-variant": "#004494",
+            "primary-container": "#12386e",
+            "tertiary-fixed": "#d8e2ff",
+            "on-primary-container": "#84a3e0",
+            "tertiary": "#002150",
+            "secondary": "#525f71",
+            "on-tertiary-container": "#71a1ff",
+            "on-error-container": "#93000a",
+            "inverse-surface": "#2d3133",
+            "primary-fixed": "#d7e2ff",
+            "surface-container-low": "#f2f4f6",
+            "primary": "#00224e",
+            "secondary-fixed-dim": "#bac8dc",
+            "on-tertiary": "#ffffff",
+            "surface": "#f7f9fb",
+            "on-surface": "#191c1e",
+            "error": "#ba1a1a",
+            "tertiary-container": "#003679",
+            "outline-variant": "#c4c6d1",
+            "surface-bright": "#f7f9fb",
+            "on-background": "#191c1e",
+            "outline": "#747781",
+            "inverse-on-surface": "#eff1f3",
+            "background": "#f7f9fb",
+            "on-surface-variant": "#434750",
+            "surface-container-highest": "#e0e3e5",
+            "on-tertiary-fixed": "#001a41",
+            "surface-variant": "#e0e3e5",
+            "secondary-container": "#d3e1f6",
+            "tertiary-fixed-dim": "#adc6ff",
+            "surface-container-lowest": "#ffffff",
+            "secondary-fixed": "#d6e4f9",
+            "surface-tint": "#3e5e96",
+            "surface-container": "#eceef0",
+            "error-container": "#ffdad6",
+            "inverse-primary": "#abc7ff",
+            "on-primary-fixed": "#001b3f",
+            "primary-fixed-dim": "#abc7ff",
+            "on-primary": "#ffffff",
+            "on-secondary-fixed": "#0f1c2c",
+            "on-secondary-container": "#566475",
+            "on-secondary": "#ffffff",
+            "on-primary-fixed-variant": "#24467d",
+            "on-secondary-fixed-variant": "#3a4859",
+            "surface-dim": "#d8dadc"
+          },
+          "borderRadius": {
+            "DEFAULT": "0.25rem",
+            "lg": "0.5rem",
+            "xl": "0.75rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "cairo": ["Cairo", "sans-serif"],
+            "sans": ["Public Sans", "Cairo", "sans-serif"]
+          }
         }
+      }
+    }
+  </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-surface font-cairo antialiased min-h-screen flex flex-col justify-between selection:bg-secondary-container selection:text-primary">
+<!-- Mobile/Desktop Layout Container -->
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background max-w-md mx-auto shadow-2xl border-x border-outline-variant/30">
+<!-- Top Bar with Verified Fal Brokerage Badge & Language Switcher -->
+<header class="sticky top-0 z-30 flex items-center justify-between bg-surface-container-lowest/90 backdrop-blur-md px-4 py-3 border-b border-outline-variant/40">
+<div class="flex items-center gap-2.5">
+<div class="size-10 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-[24px]">domain</span>
+</div>
+<div>
+<h1 class="text-primary font-bold text-base leading-tight" id="brand-header-title">ديسانا | Disana</h1>
+<p class="text-secondary text-[11px] font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-primary" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span id="badge-license" class="">مرخص من الهيئة العامة للعقار</span>
+</p>
+</div>
+</div>
+<!-- Language Toggle Button -->
+<button aria-label="Toggle language" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-outline-variant bg-surface-container-lowest text-primary hover:bg-secondary-container hover:text-primary transition-all duration-200 text-xs font-bold tracking-wide shadow-sm" id="lang-toggle-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">translate</span>
+<span id="lang-label" class="">العربية / EN</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 px-4 py-5 flex flex-col gap-6">
+<!-- Hero Identity & FAL License Section -->
+<section class="text-center pt-2">
+<div class="inline-flex p-3 rounded-2xl bg-surface-container-low border border-outline-variant/50 text-primary-container mb-3 shadow-inner">
+<span class="material-symbols-outlined text-[36px]" style="font-variation-settings: 'FILL' 1;">apartment</span>
+</div>
+<h2 class="text-primary tracking-tight text-2xl font-black leading-tight mb-1" id="hero-title">منصة ديسانا العقارية</h2>
 
-        function toggleLanguage() {
-            const newLang = currentLang === 'ar' ? 'en' : 'ar';
-            setLanguage(newLang);
+<p class="text-secondary text-xs mt-2 px-6 leading-relaxed" id="hero-desc">
+          البوابة الذكية المعتمدة للبحث عن العقارات، حجز الجولات الاستكشافية وتنسيق الاستشارات القانونية والمالية بكل موثوقية.
+        </p>
+</section>
+<!-- Stats Bar (Followers, Listings, Rating) with Live Increment -->
+<section class="grid grid-cols-3 gap-2.5">
+<div class="flex flex-col gap-1 rounded-xl bg-surface-container-lowest border border-outline-variant/60 p-3 items-center text-center shadow-sm">
+<p class="text-primary text-xl font-extrabold tracking-tight" id="followerCount">0</p>
+<div class="flex items-center gap-1">
+<span class="material-symbols-outlined text-secondary text-[14px]">group</span>
+<p class="text-secondary text-[11px] font-medium" id="stat-followers-label">متابع</p>
+</div>
+</div>
+<div class="flex flex-col gap-1 rounded-xl bg-surface-container-lowest border border-outline-variant/60 p-3 items-center text-center shadow-sm"><p class="text-primary text-xl font-extrabold tracking-tight" id="listings-count">0</p><div class="flex items-center gap-1"><span class="material-symbols-outlined text-secondary text-[14px]">real_estate_agent</span><p class="text-secondary text-[11px] font-medium" id="stat-listings-label">عقار معتمد</p></div></div>
+<div class="flex flex-col gap-1 rounded-xl bg-surface-container-lowest border border-outline-variant/60 p-3 items-center text-center shadow-sm"><p class="text-primary text-xl font-extrabold tracking-tight" id="rating-val">جديد</p><div class="flex items-center gap-1"><span class="material-symbols-outlined text-secondary text-[14px]" style="font-variation-settings: 'FILL' 1;">star</span><p class="text-secondary text-[11px] font-medium" id="stat-rating-label">منصة جديدة</p></div></div>
+</section>
+<!-- Primary Action Buttons (Follow + Subscribe) -->
+<section class="flex gap-2.5">
+<button class="flex-1 py-2.5 px-4 rounded-xl font-bold text-sm bg-primary-container text-on-primary hover:bg-tertiary transition-all duration-200 flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98]" id="follow-btn" type="button">
+<span class="material-symbols-outlined text-[18px]" id="follow-icon">person_add</span>
+<span id="follow-text" class="">متابعة المنصة</span>
+</button>
+<button class="flex-1 py-2.5 px-4 rounded-xl font-bold text-sm border border-primary-container text-primary-container bg-surface-container-lowest hover:bg-secondary-container/40 transition-all duration-200 flex items-center justify-center gap-1.5 shadow-sm active:scale-[0.98]" id="subscribe-btn" type="button">
+<span class="material-symbols-outlined text-[18px]">notifications_active</span>
+<span id="subscribe-text" class="">اشتراك بالعروض</span>
+</button>
+</section>
+<!-- Core Destinations Quick Access (Direct relative links for GitHub Pages) -->
+<section class="flex flex-col gap-2.5 pt-1"><div class="flex items-center justify-between"><h3 class="text-primary text-sm font-bold flex items-center gap-1.5" id="destinations-title"><span class="material-symbols-outlined text-primary text-[18px]">explore</span> الوجهات العقارية الرئيسية (4 صفحات)</h3><span class="text-[10px] uppercase font-bold text-secondary tracking-wider" id="destinations-badge">سريع وآمن</span></div>
+
+<!-- 1. Home Feed -->
+<a class="group flex items-center justify-between p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary-container transition-all duration-200 hover:shadow-md" href="home.html">
+<div class="flex items-center gap-3">
+<div class="size-11 rounded-lg bg-secondary-container/60 text-primary flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">explore</span>
+</div>
+<div>
+<h4 class="font-bold text-sm text-primary group-hover:text-primary-container" id="link-home-title">الصفحة الرئيسية | Home Feed</h4>
+<p class="text-secondary text-xs" id="link-home-desc">استعراض أحدث الفلل، الشقق والأراضي السكنية والتجارية</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary group-hover:translate-x-[-3px] rtl:group-hover:translate-x-[-3px] ltr:group-hover:translate-x-[3px] transition-transform text-[20px]">
+            arrow_forward_ios
+          </span>
+</a>
+<!-- 2. Property Details & Tour -->
+<a class="group flex items-center justify-between p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary-container transition-all duration-200 hover:shadow-md" href="property-details.html">
+<div class="flex items-center gap-3">
+<div class="size-11 rounded-lg bg-secondary-container/60 text-primary flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">corporate_fare</span>
+</div>
+<div>
+<h4 class="font-bold text-sm text-primary group-hover:text-primary-container" id="link-details-title">تفاصيل العقار وحجز موعد | Property Details</h4>
+<p class="text-secondary text-xs" id="link-details-desc">المواصفات الهندسية، الأسعار وحجز الجولات الميدانية</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary group-hover:translate-x-[-3px] rtl:group-hover:translate-x-[-3px] ltr:group-hover:translate-x-[3px] transition-transform text-[20px]">
+            arrow_forward_ios
+          </span>
+</a>
+<!-- 3. Appointments & Inquiries -->
+<a class="group flex items-center justify-between p-3.5 rounded-xl bg-surface-container-lowest border border-outline-variant/60 hover:border-primary-container transition-all duration-200 hover:shadow-md" href="appointments.html">
+<div class="flex items-center gap-3">
+<div class="size-11 rounded-lg bg-secondary-container/60 text-primary flex items-center justify-center group-hover:bg-primary-container group-hover:text-on-primary transition-colors">
+<span class="material-symbols-outlined text-[24px]">event_available</span>
+</div>
+<div>
+<h4 class="font-bold text-sm text-primary group-hover:text-primary-container" id="link-appointments-title">إدارة المواعيد والطلبات | Appointments &amp; Inquiries</h4>
+<p class="text-secondary text-xs" id="link-appointments-desc">متابعة حالة الزيارات الميدانية، العقود والاستفسارات</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary group-hover:translate-x-[-3px] rtl:group-hover:translate-x-[-3px] ltr:group-hover:translate-x-[3px] transition-transform text-[20px]">
+            arrow_forward_ios
+          </span>
+</a>
+</section>
+<!-- Trust & Verification Notice -->
+<section class="rounded-xl p-3.5 bg-surface-container-low border border-outline-variant/40 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-[22px] mt-0.5" style="font-variation-settings: 'FILL' 1;">security</span>
+<div>
+<p class="font-bold text-xs text-primary" id="trust-title">عمليات عقارية موثقة ونظامية</p>
+<p class="text-secondary text-[11px] leading-relaxed mt-0.5" id="trust-body">
+            جميع الصفقات ومذكرات التفاهم تتم وفق معايير الهيئة العامة للعقار بالمملكة العربية السعودية وحفظ حقوق كافة الأطراف.
+          </p>
+</div>
+</section>
+</main>
+<!-- Shared Bottom Navigation Bar (Configured with relative destination links) -->
+<nav aria-label="Bottom Navigation" class="sticky bottom-0 z-30 flex gap-2 border-t border-[#e8ecf2] bg-[#f8fafb] px-4 pb-3 pt-2"><a class="flex flex-1 flex-col items-center justify-center gap-1 py-1 rounded-xl text-primary font-bold transition-colors bg-secondary-container/60" href="index.html"><span class="material-symbols-outlined text-[22px]" style="font-variation-settings: 'FILL' 1;">grid_view</span><span class="text-[11px] font-bold leading-none tracking-tight">المنصة</span></a><a class="flex flex-1 flex-col items-center justify-center gap-1 py-1 rounded-xl text-secondary hover:text-primary transition-colors" href="home.html"><span class="material-symbols-outlined text-[22px]">home</span><span class="text-[11px] font-medium leading-none tracking-tight" id="nav-home-text">الرئيسية</span></a><a class="flex flex-1 flex-col items-center justify-center gap-1 py-1 rounded-xl text-secondary hover:text-primary transition-colors" href="property-details.html"><span class="material-symbols-outlined text-[22px]">domain</span><span class="text-[11px] font-medium leading-none tracking-tight" id="nav-props-text">العقارات</span></a><a class="flex flex-1 flex-col items-center justify-center gap-1 py-1 rounded-xl text-secondary hover:text-primary transition-colors" href="appointments.html"><span class="material-symbols-outlined text-[22px]">calendar_month</span><span class="text-[11px] font-medium leading-none tracking-tight" id="nav-appts-text">المواعيد</span></a></nav>
+</div>
+<!-- Subscription Dialog Modal -->
+<dialog class="p-0 backdrop:bg-primary/40 rounded-2xl shadow-2xl w-[90%] max-w-sm m-auto border border-outline-variant" id="subscribe-modal">
+<div class="bg-surface-container-lowest p-5 flex flex-col gap-4 text-center">
+<div class="size-12 rounded-full bg-secondary-container text-primary mx-auto flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]">mark_email_read</span>
+</div>
+<div>
+<h3 class="text-base font-bold text-primary" id="modal-sub-title">الاشتراك في النشرة العقارية</h3>
+<p class="text-xs text-secondary mt-1" id="modal-sub-desc">تلقَّ العروض الحصرية والفرص الاستثمارية المرخصة فور إدراجها.</p>
+</div>
+<input class="w-full text-xs rounded-lg border-outline-variant focus:border-primary focus:ring-primary py-2 px-3" id="modal-sub-input" placeholder="example@email.com" type="email">
+<div class="flex gap-2">
+<button class="flex-1 py-2 rounded-lg bg-primary-container text-on-primary font-bold text-xs hover:bg-tertiary transition-colors" id="modal-sub-confirm" type="button">
+          تأكيد الاشتراك
+        </button>
+<button class="flex-1 py-2 rounded-lg border border-outline text-secondary font-bold text-xs hover:bg-surface-container transition-colors" id="modal-sub-cancel" type="button">
+          إلغاء
+        </button>
+</div>
+</div>
+</dialog>
+<!-- Interactive JavaScript Engine -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Localized Strings Data
+      const i18n = {
+        ar: {
+          dir: 'rtl',
+          lang: 'ar',
+          brandHeader: 'ديسانا | Disana',
+          badgeLicense: 'مرخص من الهيئة العامة للعقار',
+          langLabel: 'العربية / EN',
+          heroTitle: 'منصة ديسانا العقارية',
+          falLicense: 'ترخيص الوساطة والتسويق فال #1200034',
+          heroDesc: 'البوابة الذكية المعتمدة للبحث عن العقارات، حجز الجولات الاستكشافية وتنسيق الاستشارات القانونية والمالية بكل موثوقية.',
+          statFollowers: 'متابع',
+          statListings: 'عقار معتمد',
+          statRating: 'تقييم موثق',
+          followBtn: 'متابعة المنصة',
+          followingBtn: '✓ تتابع المنصة',
+          subscribeBtn: 'اشتراك بالعروض',
+          subscribedBtn: '✓ تم الاشتراك',
+          destTitle: 'الوجهات العقارية الرئيسية',
+          destBadge: 'سريع وآمن',
+          linkHomeTitle: 'الصفحة الرئيسية | Home Feed',
+          linkHomeDesc: 'استعراض أحدث الفلل، الشقق والأراضي السكنية والتجارية',
+          linkDetailsTitle: 'تفاصيل العقار وحجز موعد | Property Details',
+          linkDetailsDesc: 'المواصفات الهندسية، الأسعار وحجز الجولات الميدانية',
+          linkApptsTitle: 'إدارة المواعيد والطلبات | Appointments & Inquiries',
+          linkApptsDesc: 'متابعة حالة الزيارات الميدانية، العقود والاستفسارات',
+          trustTitle: 'عمليات عقارية موثقة ونظامية',
+          trustBody: 'جميع الصفقات ومذكرات التفاهم تتم وفق معايير الهيئة العامة للعقار بالمملكة العربية السعودية وحفظ حقوق كافة الأطراف.',
+          navHome: 'الرئيسية',
+          navProps: 'العقارات',
+          navAppts: 'المواعيد',
+          modalSubTitle: 'الاشتراك في النشرة العقارية',
+          modalSubDesc: 'تلقَّ العروض الحصرية والفرص الاستثمارية المرخصة فور إدراجها.',
+          modalSubConfirm: 'تأكيد الاشتراك',
+          modalSubCancel: 'إلغاء',
+          modalSuccessAlert: 'تم تسجيل بريدك بنجاح لتلقي أحدث العروض الحصرية!'
+        },
+        en: {
+          dir: 'ltr',
+          lang: 'en',
+          brandHeader: 'Disana Real Estate Platform',
+          badgeLicense: 'REGA Licensed Real Estate Broker',
+          langLabel: 'EN / العربية',
+          heroTitle: 'Disana Real Estate Platform',
+          falLicense: 'Fal Brokerage License #1200034',
+          heroDesc: 'The verified smart portal to discover luxury properties, book in-person site tours, and arrange secure legal & financial real estate consultations.',
+          statFollowers: 'Followers',
+          statListings: 'Listings',
+          statRating: 'Rating',
+          followBtn: 'Follow',
+          followingBtn: '✓ Following',
+          subscribeBtn: 'Subscribe',
+          subscribedBtn: '✓ Subscribed',
+          destTitle: 'Core Destinations',
+          destBadge: 'FAST & SECURE',
+          linkHomeTitle: 'Home Feed | الصفحة الرئيسية',
+          linkHomeDesc: 'Explore premium villas, modern apartments, and verified plots',
+          linkDetailsTitle: 'Property Details | تفاصيل العقار وحجز موعد',
+          linkDetailsDesc: 'Architectural specifications, pricing, and site tour booking',
+          linkApptsTitle: 'Appointments & Inquiries | إدارة المواعيد والطلبات',
+          linkApptsDesc: 'Track live visiting statuses, inquiries, and verified contracts',
+          trustTitle: 'Verified & Regulatory Real Estate',
+          trustBody: 'All transactions strictly comply with the Real Estate General Authority (REGA) of Saudi Arabia to guarantee utmost transparency and security.',
+          navHome: 'Home',
+          navProps: 'Properties',
+          navAppts: 'Appointments',
+          modalSubTitle: 'Subscribe to Real Estate Digest',
+          modalSubDesc: 'Receive exclusive, pre-market listings and verified opportunities directly.',
+          modalSubConfirm: 'Confirm Subscription',
+          modalSubCancel: 'Cancel',
+          modalSuccessAlert: 'Successfully subscribed to exclusive Disana real estate notifications!'
         }
+      };
 
-        setLanguage(currentLang);
-    </script>
-</body>
-</html>
+      // Read preference or default to Arabic
+      let currentLang = localStorage.getItem('disana_lang') || 'ar';
+      let isFollowing = localStorage.getItem('disana_following') === 'true';
+      let isSubscribed = localStorage.getItem('disana_subscribed') === 'true';
+
+      function applyLanguage(lang) {
+        const t = i18n[lang];
+        document.documentElement.lang = t.lang;
+        document.documentElement.dir = t.dir;
+
+        // Header
+        document.getElementById('brand-header-title').textContent = t.brandHeader;
+        document.getElementById('badge-license').textContent = t.badgeLicense;
+        document.getElementById('lang-label').textContent = t.langLabel;
+
+        // Hero
+        document.getElementById('hero-title').textContent = t.heroTitle;
+        document.getElementById('fal-license-id').textContent = t.falLicense;
+        document.getElementById('hero-desc').textContent = t.heroDesc;
+
+        // Stats
+        document.getElementById('stat-followers-label').textContent = t.statFollowers;
+        document.getElementById('stat-listings-label').textContent = t.statListings;
+        document.getElementById('stat-rating-label').textContent = t.statRating;
+
+        // Follow Button
+        const followText = document.getElementById('follow-text');
+        followText.textContent = isFollowing ? t.followingBtn : t.followBtn;
+
+        // Subscribe Button
+        const subText = document.getElementById('subscribe-text');
+        subText.textContent = isSubscribed ? t.subscribedBtn : t.subscribeBtn;
+
+        // Destinations
+        document.getElementById('destinations-title').childNodes[2].textContent = ' ' + t.destTitle;
+        document.getElementById('destinations-badge').textContent = t.destBadge;
+        document.getElementById('link-home-title').textContent = t.linkHomeTitle;
+        document.getElementById('link-home-desc').textContent = t.linkHomeDesc;
+        document.getElementById('link-details-title').textContent = t.linkDetailsTitle;
+        document.getElementById('link-details-desc').textContent = t.linkDetailsDesc;
+        document.getElementById('link-appointments-title').textContent = t.linkApptsTitle;
+        document.getElementById('link-appointments-desc').textContent = t.linkApptsDesc;
+
+        // Trust
+        document.getElementById('trust-title').textContent = t.trustTitle;
+        document.getElementById('trust-body').textContent = t.trustBody;
+
+        // Nav
+        document.getElementById('nav-home-text').textContent = t.navHome;
+        document.getElementById('nav-props-text').textContent = t.navProps;
+        document.getElementById('nav-appts-text').textContent = t.navAppts;
+
+        // Modal
+        document.getElementById('modal-sub-title').textContent = t.modalSubTitle;
+        document.getElementById('modal-sub-desc').textContent = t.modalSubDesc;
+        document.getElementById('modal-sub-confirm').textContent = t.modalSubConfirm;
+        document.getElementById('modal-sub-cancel').textContent = t.modalSubCancel;
+
+        // Update Followers count text display based on state
+        const followersCountElem = document.getElementById('followers-count');
+        followersCountElem.textContent = isFollowing ? '12.41K' : '12.4K';
+
+        localStorage.setItem('disana_lang', lang);
+      }
+
+      // Initial Apply
+      applyLanguage(currentLang);
+
+      // Language Switcher Handler
+      const langBtn = document.getElementById('lang-toggle-btn');
+      langBtn.addEventListener('click', () => {
+        currentLang = currentLang === 'ar' ? 'en' : 'ar';
+        applyLanguage(currentLang);
+      });
+
+      // Follow Counter Interactive Toggle
+      const followBtn = document.getElementById('follow-btn');
+      const followIcon = document.getElementById('follow-icon');
+      
+      if (isFollowing) {
+        followBtn.classList.replace('bg-primary-container', 'bg-secondary-container');
+        followBtn.classList.replace('text-on-primary', 'text-primary');
+        followIcon.textContent = 'check';
+      }
+
+      followBtn.addEventListener('click', () => {
+        isFollowing = !isFollowing;
+        localStorage.setItem('disana_following', isFollowing);
+        
+        if (isFollowing) {
+          followBtn.classList.replace('bg-primary-container', 'bg-secondary-container');
+          followBtn.classList.replace('text-on-primary', 'text-primary');
+          followIcon.textContent = 'check';
+        } else {
+          followBtn.classList.replace('bg-secondary-container', 'bg-primary-container');
+          followBtn.classList.replace('text-primary', 'text-on-primary');
+          followIcon.textContent = 'person_add';
+        }
+        applyLanguage(currentLang);
+      });
+
+      // Subscribe Modal Workflow
+      const subscribeBtn = document.getElementById('subscribe-btn');
+      const subscribeModal = document.getElementById('subscribe-modal');
+      const modalSubConfirm = document.getElementById('modal-sub-confirm');
+      const modalSubCancel = document.getElementById('modal-sub-cancel');
+      const modalSubInput = document.getElementById('modal-sub-input');
+
+      subscribeBtn.addEventListener('click', () => {
+        if (!isSubscribed) {
+          subscribeModal.showModal();
+        } else {
+          isSubscribed = false;
+          localStorage.setItem('disana_subscribed', 'false');
+          subscribeBtn.classList.remove('bg-secondary-container');
+          applyLanguage(currentLang);
+        }
+      });
+
+      modalSubCancel.addEventListener('click', () => {
+        subscribeModal.close();
+      });
+
+      modalSubConfirm.addEventListener('click', () => {
+        const email = modalSubInput.value.trim();
+        if (email && email.includes('@')) {
+          isSubscribed = true;
+          localStorage.setItem('disana_subscribed', 'true');
+          subscribeModal.close();
+          subscribeBtn.classList.add('bg-secondary-container');
+          applyLanguage(currentLang);
+          alert(i18n[currentLang].modalSuccessAlert);
+        } else {
+          modalSubInput.focus();
+          modalSubInput.classList.add('ring-2', 'ring-error');
+          setTimeout(() => {
+            modalSubInput.classList.remove('ring-2', 'ring-error');
+          }, 1500);
+        }
+      });
+    });
+  </script>
+
+
+
+
+
+
+</body></html>
