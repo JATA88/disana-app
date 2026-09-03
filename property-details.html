@@ -12,18 +12,23 @@
         .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
         .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
         ::-webkit-scrollbar { display: none; }
+        main { padding-top: 80px !important; }
+        .lang-btn { transition: all 0.2s; cursor: pointer; padding: 6px 14px; border-radius: 50px; border: 1px solid #e0e3e5; background: white; font-size: 13px; }
+        .lang-btn:hover { background: #00224e; color: white; border-color: #00224e; }
+        [dir="ltr"] .lang-btn { margin-right: 8px; }
     </style>
 </head>
 <body class="bg-[#f7f9fb] text-[#191c1e] flex flex-col min-h-screen">
-    <header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
+    <header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
         <div class="h-16 px-4 flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <a href="index.html" aria-label="رجوع" class="w-11 h-11 flex items-center justify-center text-[#00224e] rounded-full hover:bg-[#eceef0] transition-colors">
                     <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
                 </a>
-                <h1 class="text-[18px] font-bold text-[#191c1e]">تفاصيل العقار</h1>
+                <h1 class="text-[18px] font-bold text-[#191c1e]" id="pageTitle">تفاصيل العقار</h1>
             </div>
             <div class="flex items-center gap-2">
+                <button onclick="toggleLanguage()" class="lang-btn" id="langToggleBtn">English</button>
                 <div class="w-8 h-8 rounded-full bg-[#00224e] flex items-center justify-center">
                     <span class="material-symbols-outlined text-white text-[18px]">person</span>
                 </div>
@@ -31,21 +36,21 @@
         </div>
     </header>
 
-    <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-[#f7f9fb] px-4 py-4">
+    <main class="flex-1 flex flex-col relative w-full pb-24 bg-[#f7f9fb] px-4 py-4">
         <div class="flex flex-col gap-4">
             <div class="bg-white rounded-xl p-4 shadow-sm">
                 <div class="flex items-center justify-between mb-2">
-                    <h2 class="text-[20px] font-bold text-[#00224e]">فيلا المروج المودرن</h2>
-                    <span class="text-[14px] font-bold text-[#00224e]">3,800,000 ر.س</span>
+                    <h2 class="text-[20px] font-bold text-[#00224e]" id="propertyName">فيلا المروج المودرن</h2>
+                    <span class="text-[14px] font-bold text-[#00224e]" id="propertyPrice">3,800,000 ر.س</span>
                 </div>
-                <p class="text-[14px] text-[#525f71]">حي المروج، شمال الرياض • طراز نيو-كلاسيك مودرن</p>
+                <p class="text-[14px] text-[#525f71]" id="propertyLocation">حي المروج، شمال الرياض • طراز نيو-كلاسيك مودرن</p>
                 <div class="grid grid-cols-2 gap-3 mt-4">
-                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center"><span class="text-[12px] text-[#525f71] block">المساحة الكلية</span><span class="text-[16px] font-bold text-[#00224e]">450 م² صافي</span></div>
-                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center"><span class="text-[12px] text-[#525f71] block">أجنحة النوم</span><span class="text-[16px] font-bold text-[#00224e]">5 أجنحة ماستر</span></div>
-                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center"><span class="text-[12px] text-[#525f71] block">دورات المياه</span><span class="text-[16px] font-bold text-[#00224e]">6 دورات مياه</span></div>
-                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center"><span class="text-[12px] text-[#525f71] block">مواقف السيارات</span><span class="text-[16px] font-bold text-[#00224e]">موقف خاص مزدوج</span></div>
+                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center"><span class="text-[12px] text-[#525f71] block" id="areaLabel">المساحة الكلية</span><span class="text-[16px] font-bold text-[#00224e]">450 م² صافي</span></div>
+                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center"><span class="text-[12px] text-[#525f71] block" id="roomsLabel">أجنحة النوم</span><span class="text-[16px] font-bold text-[#00224e]">5 أجنحة ماستر</span></div>
+                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center"><span class="text-[12px] text-[#525f71] block" id="bathroomsLabel">دورات المياه</span><span class="text-[16px] font-bold text-[#00224e]">6 دورات مياه</span></div>
+                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center"><span class="text-[12px] text-[#525f71] block" id="parkingLabel">مواقف السيارات</span><span class="text-[16px] font-bold text-[#00224e]">موقف خاص مزدوج</span></div>
                 </div>
-                <div class="mt-4"><h3 class="text-[16px] font-bold text-[#00224e]">الوصف</h3><p class="text-[14px] text-[#525f71] mt-1">صُممت هذه الفيلا بعناية هندسية فائقة لتوفير تدفق ضوئي طبيعي مع واجهات زجاجية مزدوجة بارتفاع مضاعف. تحتوي على مصعد كهربائي بانورامي متكامل، صالون ضيافة مستقل، حديقة داخلية مفتوحة (سكاي لايت)، ومنظومة ذكية بالكامل للتحكم بالحرارة والأمان.</p></div>
+                <div class="mt-4"><h3 class="text-[16px] font-bold text-[#00224e]" id="descTitle">الوصف</h3><p class="text-[14px] text-[#525f71] mt-1" id="propertyDesc">صُممت هذه الفيلا بعناية هندسية فائقة لتوفير تدفق ضوئي طبيعي مع واجهات زجاجية مزدوجة بارتفاع مضاعف. تحتوي على مصعد كهربائي بانورامي متكامل، صالون ضيافة مستقل، حديقة داخلية مفتوحة (سكاي لايت)، ومنظومة ذكية بالكامل للتحكم بالحرارة والأمان.</p></div>
                 <div class="flex flex-wrap gap-2 mt-4">
                     <span class="bg-[#f2f4f6] px-3 py-1 rounded-full text-[12px] text-[#525f71]">⚡ سمارت هوم</span>
                     <span class="bg-[#f2f4f6] px-3 py-1 rounded-full text-[12px] text-[#525f71]">🛗 مصعد إيطالي</span>
@@ -55,8 +60,8 @@
             </div>
 
             <div class="bg-white rounded-xl p-4 shadow-sm">
-                <h3 class="text-[16px] font-bold text-[#00224e]">حجز موعد للمعاينة</h3>
-                <p class="text-[13px] text-[#525f71] mt-1">اختر التوقيت ونوع الزيارة المناسب</p>
+                <h3 class="text-[16px] font-bold text-[#00224e]" id="bookingTitle">حجز موعد للمعاينة</h3>
+                <p class="text-[13px] text-[#525f71] mt-1" id="bookingDesc">اختر التوقيت ونوع الزيارة المناسب</p>
                 <div class="grid grid-cols-2 gap-2 mt-3">
                     <button onclick="selectBookingType('حضورية')" class="py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold" id="btnInPerson">معاينة حضورية</button>
                     <button onclick="selectBookingType('هاتفية')" class="py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]" id="btnPhone">استشارة هاتفية</button>
@@ -66,32 +71,124 @@
                     <button onclick="selectDate('غداً', this)" class="py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]">غداً 25/10</button>
                     <button onclick="selectDate('الأربعاء', this)" class="py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]">الأربعاء 26/10</button>
                 </div>
-                <button onclick="confirmBooking()" class="block w-full mt-4 py-3 bg-[#00224e] text-white text-center rounded-xl font-bold hover:opacity-90 transition">✅ تأكيد حجز الموعد</button>
+                <button onclick="confirmBooking()" class="block w-full mt-4 py-3 bg-[#00224e] text-white text-center rounded-xl font-bold hover:opacity-90 transition" id="confirmBtn">✅ تأكيد حجز الموعد</button>
             </div>
         </div>
     </main>
 
     <nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#f7f9fb]/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,34,78,0.04)]">
         <div class="h-16 px-4 flex items-center justify-around">
-            <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]"><span class="material-symbols-outlined text-[24px]">real_estate_agent</span><span class="text-[11px]">الرئيسية</span></a>
-            <a href="property-details.html" class="flex flex-col items-center justify-center gap-1 text-[#00224e] font-bold"><span class="material-symbols-outlined text-[24px]">apartment</span><span class="text-[11px]">العقارات</span></a>
-            <a href="appointments.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]"><span class="material-symbols-outlined text-[24px]">calendar_month</span><span class="text-[11px]">المواعيد</span></a>
+            <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
+                <span class="material-symbols-outlined text-[24px]">real_estate_agent</span>
+                <span class="text-[11px]" id="navHome">الرئيسية</span>
+            </a>
+            <a href="property-details.html" class="flex flex-col items-center justify-center gap-1 text-[#00224e] font-bold">
+                <span class="material-symbols-outlined text-[24px]">apartment</span>
+                <span class="text-[11px]" id="navProperties">العقارات</span>
+            </a>
+            <a href="appointments.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
+                <span class="material-symbols-outlined text-[24px]">calendar_month</span>
+                <span class="text-[11px]" id="navAppointments">المواعيد</span>
+            </a>
         </div>
     </nav>
 
     <script>
+        const translations = {
+            ar: {
+                pageTitle: 'تفاصيل العقار',
+                propertyName: 'فيلا المروج المودرن',
+                propertyPrice: '3,800,000 ر.س',
+                propertyLocation: 'حي المروج، شمال الرياض • طراز نيو-كلاسيك مودرن',
+                areaLabel: 'المساحة الكلية',
+                roomsLabel: 'أجنحة النوم',
+                bathroomsLabel: 'دورات المياه',
+                parkingLabel: 'مواقف السيارات',
+                descTitle: 'الوصف',
+                bookingTitle: 'حجز موعد للمعاينة',
+                bookingDesc: 'اختر التوقيت ونوع الزيارة المناسب',
+                btnInPerson: 'معاينة حضورية',
+                btnPhone: 'استشارة هاتفية',
+                confirmBtn: '✅ تأكيد حجز الموعد',
+                navHome: 'الرئيسية',
+                navProperties: 'العقارات',
+                navAppointments: 'المواعيد',
+                btnLang: 'English'
+            },
+            en: {
+                pageTitle: 'Property Details',
+                propertyName: 'Modern Al-Murooj Villa',
+                propertyPrice: '3,800,000 SAR',
+                propertyLocation: 'Al-Murooj, North Riyadh • Neo-Classic Modern',
+                areaLabel: 'Total Area',
+                roomsLabel: 'Bedrooms',
+                bathroomsLabel: 'Bathrooms',
+                parkingLabel: 'Parking',
+                descTitle: 'Description',
+                bookingTitle: 'Book a Viewing',
+                bookingDesc: 'Select time and visit type',
+                btnInPerson: 'In-Person Visit',
+                btnPhone: 'Phone Consultation',
+                confirmBtn: '✅ Confirm Booking',
+                navHome: 'Home',
+                navProperties: 'Properties',
+                navAppointments: 'Appointments',
+                btnLang: 'عربي'
+            }
+        };
+
+        let currentLang = localStorage.getItem('disana_lang') || 'ar';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('disana_lang', lang);
+            const t = translations[lang];
+            document.getElementById('pageTitle').textContent = t.pageTitle;
+            document.getElementById('propertyName').textContent = t.propertyName;
+            document.getElementById('propertyPrice').textContent = t.propertyPrice;
+            document.getElementById('propertyLocation').textContent = t.propertyLocation;
+            document.getElementById('areaLabel').textContent = t.areaLabel;
+            document.getElementById('roomsLabel').textContent = t.roomsLabel;
+            document.getElementById('bathroomsLabel').textContent = t.bathroomsLabel;
+            document.getElementById('parkingLabel').textContent = t.parkingLabel;
+            document.getElementById('descTitle').textContent = t.descTitle;
+            document.getElementById('bookingTitle').textContent = t.bookingTitle;
+            document.getElementById('bookingDesc').textContent = t.bookingDesc;
+            document.getElementById('btnInPerson').textContent = t.btnInPerson;
+            document.getElementById('btnPhone').textContent = t.btnPhone;
+            document.getElementById('confirmBtn').textContent = t.confirmBtn;
+            document.getElementById('navHome').textContent = t.navHome;
+            document.getElementById('navProperties').textContent = t.navProperties;
+            document.getElementById('navAppointments').textContent = t.navAppointments;
+            document.getElementById('langToggleBtn').textContent = t.btnLang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+        }
+
+        function toggleLanguage() {
+            const newLang = currentLang === 'ar' ? 'en' : 'ar';
+            setLanguage(newLang);
+        }
+
         let bookingType = 'حضورية', bookingDate = 'اليوم';
+
         function selectBookingType(type) {
             bookingType = type;
             document.getElementById('btnInPerson').className = type === 'حضورية' ? 'py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold' : 'py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]';
             document.getElementById('btnPhone').className = type === 'هاتفية' ? 'py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold' : 'py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]';
         }
+
         function selectDate(date, btn) {
             bookingDate = date;
             document.querySelectorAll('.grid-cols-3 button').forEach(b => { b.className = 'py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]'; });
             btn.className = 'py-2 rounded-lg bg-[#00224e] text-white text-[13px]';
         }
-        function confirmBooking() { alert(✅ تم حجز موعد ${bookingType} بتاريخ ${bookingDate}\nسيتم إرسال التفاصيل إلى بريدك الإلكتروني.); }
+
+        function confirmBooking() {
+            alert(currentLang === 'ar' ? ✅ تم حجز موعد ${bookingType} بتاريخ ${bookingDate} : ✅ ${bookingType} booking confirmed for ${bookingDate});
+        }
+
+        setLanguage(currentLang);
     </script>
 </body>
 </html>
