@@ -20,8 +20,7 @@
 <a class="flex items-center gap-space-xs" href="home.html"><span class="font-headline-md text-headline-md text-primary tracking-tight">ديسانا</span><span class="material-symbols-outlined text-primary text-[20px]" title="موثق">verified</span></a>
 </div>
 <div class="flex items-center gap-space-xs">
-<button id="lang-toggle-btn" onclick="toggleLanguage()" title="تغيير اللغة" class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm flex items-center gap-1.5 border border-surface-container-high hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px] text-primary">translate</span><span id="langLabel" class="">العربية / EN</span></button>
-<!-- أزرار متابعة واشتراك في الهيدر -->
+<button id="lang-toggle-btn" onclick="toggleLanguage()" class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm flex items-center gap-1.5 border border-surface-container-high hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px] text-primary">translate</span><span id="langLabel">العربية / EN</span></button>
 <button id="followBtnHeader" onclick="toggleFollow()" class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm flex items-center gap-1.5 border border-surface-container-high hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]" id="followIconHeader">person_add</span><span id="followTextHeader">متابعة</span></button>
 <button id="subscribeBtnHeader" onclick="toggleSubscribe()" class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm flex items-center gap-1.5 border border-surface-container-high hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]" id="subIconHeader">notifications</span><span id="subTextHeader">اشتراك</span></button>
 <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div>
@@ -89,13 +88,11 @@ const db = firebase.database();
 
 // ===== State =====
 let currentTab = 'appointments';
-let editingKey = null;
-let editingType = null;
 let isFollowing = localStorage.getItem('disana_following') === 'true';
 let isSubscribed = localStorage.getItem('disana_subscribed') === 'true';
+let currentLang = localStorage.getItem('disana_lang') || 'ar';
 
 // ===== Localization =====
-let currentLang = localStorage.getItem('disana_lang') || 'ar';
 const i18n = {
     ar: { 
         langLabel: 'EN / العربية', 
@@ -106,7 +103,9 @@ const i18n = {
         follow: 'متابعة',
         following: 'مُتابَع',
         subscribe: 'اشتراك',
-        subscribed: 'مشترك'
+        subscribed: 'مشترك',
+        noAppointments: 'لا توجد مواعيد',
+        noRequests: 'لا توجد طلبات'
     },
     en: { 
         langLabel: 'العربية / EN', 
@@ -117,7 +116,9 @@ const i18n = {
         follow: 'Follow',
         following: 'Following',
         subscribe: 'Subscribe',
-        subscribed: 'Subscribed'
+        subscribed: 'Subscribed',
+        noAppointments: 'No appointments',
+        noRequests: 'No requests'
     }
 };
 
@@ -174,7 +175,6 @@ function switchTab(tab) {
         document.getElementById('tab-btn-market').classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
     }
 }
-switchTab('appointments');
 
 // ===== Load Appointments =====
 function loadAppointments() {
@@ -201,7 +201,7 @@ function loadAppointments() {
         }
         badge.textContent = count + ' موعد';
         document.getElementById('apptCount').textContent = count;
-        if (count === 0) container.innerHTML = <div class="p-4 text-center text-secondary text-sm">${i18n[currentLang].noData}</div>;
+        if (count === 0) container.innerHTML = <div class="p-4 text-center text-secondary text-sm">${i18n[currentLang].noAppointments}</div>;
     });
 }
 
@@ -230,7 +230,7 @@ function loadRequests() {
         }
         badge.textContent = count + ' طلبات';
         document.getElementById('reqCount').textContent = count;
-        if (count === 0) container.innerHTML = <div class="p-4 text-center text-secondary text-sm">${i18n[currentLang].noData}</div>;
+        if (count === 0) container.innerHTML = <div class="p-4 text-center text-secondary text-sm">${i18n[currentLang].noRequests}</div>;
     });
 }
 
@@ -273,5 +273,6 @@ function deleteAllItems() {
 
 // ===== Init =====
 applyLanguage();
+switchTab('appointments');
 </script>
 </body></html>
