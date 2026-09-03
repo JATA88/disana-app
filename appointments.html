@@ -7,7 +7,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     <style>
@@ -15,6 +14,7 @@
         .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
         .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
         ::-webkit-scrollbar { display: none; }
+        main { padding-top: 80px !important; } /* ✅ حل مشكلة اختفاء النصوص */
         .tab-btn.active {
             background-color: white !important;
             color: #00224e !important;
@@ -26,18 +26,36 @@
             color: #525f71 !important;
             font-weight: 400 !important;
         }
+        .lang-btn {
+            transition: all 0.2s;
+            cursor: pointer;
+            padding: 6px 14px;
+            border-radius: 50px;
+            border: 1px solid #e0e3e5;
+            background: white;
+            font-size: 13px;
+        }
+        .lang-btn:hover {
+            background: #00224e;
+            color: white;
+            border-color: #00224e;
+        }
+        [dir="ltr"] .lang-btn {
+            margin-right: 8px;
+        }
     </style>
 </head>
 <body class="bg-[#f7f9fb] text-[#191c1e] flex flex-col min-h-screen">
-    <header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
+    <header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
         <div class="h-16 px-4 flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <a href="index.html" aria-label="رجوع" class="w-11 h-11 flex items-center justify-center text-[#00224e] rounded-full hover:bg-[#eceef0] transition-colors">
                     <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
                 </a>
-                <h1 class="text-[18px] font-bold text-[#191c1e]">المواعيد</h1>
+                <h1 class="text-[18px] font-bold text-[#191c1e]" id="pageTitle">المواعيد</h1>
             </div>
             <div class="flex items-center gap-2">
+                <button onclick="toggleLanguage()" class="lang-btn" id="langToggleBtn">English</button>
                 <div class="w-8 h-8 rounded-full bg-[#00224e] flex items-center justify-center">
                     <span class="material-symbols-outlined text-white text-[18px]">person</span>
                 </div>
@@ -45,31 +63,37 @@
         </div>
     </header>
 
-    <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-[#f7f9fb] px-4 py-4">
+    <main class="flex-1 flex flex-col relative w-full pb-24 bg-[#f7f9fb] px-4 py-4">
         <div class="flex flex-col gap-4">
 
             <!-- أزرار التبويبات -->
             <div class="bg-[#eceef0] p-1 rounded-xl flex gap-1" id="tabContainer">
-                <button onclick="switchTab('appointments')" class="tab-btn active flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabAppointments">المواعيد (3)</button>
-                <button onclick="switchTab('my-requests')" class="tab-btn flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabMyRequests">طلباتي</button>
-                <button onclick="switchTab('market')" class="tab-btn flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabMarket">طلبات السوق</button>
+                <button onclick="switchTab('appointments')" class="tab-btn active flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabAppointments">
+                    <span id="tabAppointmentsLabel">المواعيد (3)</span>
+                </button>
+                <button onclick="switchTab('my-requests')" class="tab-btn flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabMyRequests">
+                    <span id="tabMyRequestsLabel">طلباتي</span>
+                </button>
+                <button onclick="switchTab('market')" class="tab-btn flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabMarket">
+                    <span id="tabMarketLabel">طلبات السوق</span>
+                </button>
             </div>
 
             <!-- زر إضافة طلب -->
-            <button onclick="showAddRequest()" class="w-full py-3 rounded-xl bg-[#00224e] text-white text-[14px] font-bold flex items-center justify-center gap-2 shadow-sm hover:opacity-90 transition">
+            <button onclick="showAddRequest()" class="w-full py-3 rounded-xl bg-[#00224e] text-white text-[14px] font-bold flex items-center justify-center gap-2 shadow-sm hover:opacity-90 transition" id="addRequestBtn">
                 <span class="material-symbols-outlined text-[20px]">add_circle</span>
-                + إضافة طلب أو إعلان عقاري جديد
+                <span id="addRequestBtnLabel">+ إضافة طلب أو إعلان عقاري جديد</span>
             </button>
 
             <!-- نموذج إضافة طلب -->
             <div id="addRequestForm" class="hidden bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]">
-                <h3 class="text-[16px] font-bold text-[#00224e] mb-2">إضافة طلب جديد</h3>
+                <h3 class="text-[16px] font-bold text-[#00224e] mb-2" id="addFormTitle">إضافة طلب جديد</h3>
                 <input type="text" id="reqTitle" placeholder="عنوان الطلب" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
                 <input type="text" id="reqBudget" placeholder="الميزانية" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
                 <input type="text" id="reqLocation" placeholder="الموقع المطلوب" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
                 <textarea id="reqDesc" placeholder="تفاصيل الطلب" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2" rows="2"></textarea>
-                <button onclick="addRequest()" class="w-full py-2 rounded-lg bg-[#00224e] text-white text-sm font-bold">💾 حفظ الطلب</button>
-                <button onclick="hideAddRequest()" class="w-full py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-sm font-bold mt-2">إلغاء</button>
+                <button onclick="addRequest()" class="w-full py-2 rounded-lg bg-[#00224e] text-white text-sm font-bold" id="saveRequestBtn">💾 حفظ الطلب</button>
+                <button onclick="hideAddRequest()" class="w-full py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-sm font-bold mt-2" id="cancelRequestBtn">إلغاء</button>
             </div>
 
             <!-- محتوى المواعيد -->
@@ -77,42 +101,42 @@
                 <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
                     <div class="flex items-center justify-between">
                         <h3 class="text-[16px] font-bold text-[#00224e]">فيلا دي سيلفا المعاصرة</h3>
-                        <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">✅ مؤكد</span>
+                        <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full" id="statusConfirmed1">✅ مؤكد</span>
                     </div>
-                    <p class="text-[13px] text-[#525f71] mt-1">الخميس، 24 أكتوبر 10:30 ص • المستشار: عبدالله السالم</p>
+                    <p class="text-[13px] text-[#525f71] mt-1" id="appointment1Details">الخميس، 24 أكتوبر 10:30 ص • المستشار: عبدالله السالم</p>
                     <div class="flex items-center justify-between mt-2">
-                        <span class="text-[12px] text-[#525f71]">حي الملقا، الرياض</span>
+                        <span class="text-[12px] text-[#525f71]" id="appointment1Location">حي الملقا، الرياض</span>
                         <div class="flex gap-2">
-                            <button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">تعديل</button>
-                            <button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">إلغاء</button>
+                            <button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg" id="editBtn1">تعديل</button>
+                            <button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg" id="deleteBtn1">إلغاء</button>
                         </div>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
                     <div class="flex items-center justify-between">
                         <h3 class="text-[16px] font-bold text-[#00224e]">بنتهاوس الأفق الفاخر</h3>
-                        <span class="text-[11px] bg-[#e0e3e5] text-[#525f71] px-2 py-1 rounded-full">⏳ قيد المراجعة</span>
+                        <span class="text-[11px] bg-[#e0e3e5] text-[#525f71] px-2 py-1 rounded-full" id="statusPending2">⏳ قيد المراجعة</span>
                     </div>
-                    <p class="text-[13px] text-[#525f71] mt-1">السبت، 26 أكتوبر 04:00 م • المستشار: فهد الغامدي</p>
+                    <p class="text-[13px] text-[#525f71] mt-1" id="appointment2Details">السبت، 26 أكتوبر 04:00 م • المستشار: فهد الغامدي</p>
                     <div class="flex items-center justify-between mt-2">
-                        <span class="text-[12px] text-[#525f71]">حي حطين، الرياض</span>
+                        <span class="text-[12px] text-[#525f71]" id="appointment2Location">حي حطين، الرياض</span>
                         <div class="flex gap-2">
-                            <button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">تعديل</button>
-                            <button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">إلغاء</button>
+                            <button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg" id="editBtn2">تعديل</button>
+                            <button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg" id="deleteBtn2">إلغاء</button>
                         </div>
                     </div>
                 </div>
                 <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
                     <div class="flex items-center justify-between">
                         <h3 class="text-[16px] font-bold text-[#00224e]">مجمع ريزيدنس التجاري</h3>
-                        <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">✅ مؤكد</span>
+                        <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full" id="statusConfirmed3">✅ مؤكد</span>
                     </div>
-                    <p class="text-[13px] text-[#525f71] mt-1">الاثنين، 28 أكتوبر 12:00 م • المستشار: نورة الشمري</p>
+                    <p class="text-[13px] text-[#525f71] mt-1" id="appointment3Details">الاثنين، 28 أكتوبر 12:00 م • المستشار: نورة الشمري</p>
                     <div class="flex items-center justify-between mt-2">
-                        <span class="text-[12px] text-[#525f71]">حي الياسمين، الرياض</span>
+                        <span class="text-[12px] text-[#525f71]" id="appointment3Location">حي الياسمين، الرياض</span>
                         <div class="flex gap-2">
-                            <button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">تعديل</button>
-                            <button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">إلغاء</button>
+                            <button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg" id="editBtn3">تعديل</button>
+                            <button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg" id="deleteBtn3">إلغاء</button>
                         </div>
                     </div>
                 </div>
@@ -127,19 +151,19 @@
             <div id="marketContent" class="hidden">
                 <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
                     <div class="flex items-center justify-between">
-                        <h4 class="text-[14px] font-bold text-[#00224e]">أرض تجارية استثمارية</h4>
-                        <span class="text-[14px] font-bold text-[#00224e]">12-15 مليون ر.س</span>
+                        <h4 class="text-[14px] font-bold text-[#00224e]" id="market1Title">أرض تجارية استثمارية</h4>
+                        <span class="text-[14px] font-bold text-[#00224e]" id="market1Price">12-15 مليون ر.س</span>
                     </div>
-                    <p class="text-[12px] text-[#525f71]">حي النرجس • شوارع 30+ • 1,200 م²</p>
-                    <button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold">تقديم عقار مطابق</button>
+                    <p class="text-[12px] text-[#525f71]" id="market1Desc">حي النرجس • شوارع 30+ • 1,200 م²</p>
+                    <button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold" id="market1Btn">تقديم عقار مطابق</button>
                 </div>
                 <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
                     <div class="flex items-center justify-between">
-                        <h4 class="text-[14px] font-bold text-[#00224e]">عمارة سكنية عوائل</h4>
-                        <span class="text-[14px] font-bold text-[#00224e]">8.5 مليون ر.س</span>
+                        <h4 class="text-[14px] font-bold text-[#00224e]" id="market2Title">عمارة سكنية عوائل</h4>
+                        <span class="text-[14px] font-bold text-[#00224e]" id="market2Price">8.5 مليون ر.س</span>
                     </div>
-                    <p class="text-[12px] text-[#525f71]">حي المروج أو الورود • دخل لا يقل عن 8.5%</p>
-                    <button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold">تقديم عقار مطابق</button>
+                    <p class="text-[12px] text-[#525f71]" id="market2Desc">حي المروج أو الورود • دخل لا يقل عن 8.5%</p>
+                    <button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold" id="market2Btn">تقديم عقار مطابق</button>
                 </div>
             </div>
         </div>
@@ -149,40 +173,146 @@
         <div class="h-16 px-4 flex items-center justify-around">
             <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
                 <span class="material-symbols-outlined text-[24px]">real_estate_agent</span>
-                <span class="text-[11px]">الرئيسية</span>
+                <span class="text-[11px]" id="navHome">الرئيسية</span>
             </a>
             <a href="property-details.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
                 <span class="material-symbols-outlined text-[24px]">apartment</span>
-                <span class="text-[11px]">العقارات</span>
+                <span class="text-[11px]" id="navProperties">العقارات</span>
             </a>
             <a href="appointments.html" class="flex flex-col items-center justify-center gap-1 text-[#00224e] font-bold">
                 <span class="material-symbols-outlined text-[24px]">calendar_month</span>
-                <span class="text-[11px]">المواعيد</span>
+                <span class="text-[11px]" id="navAppointments">المواعيد</span>
             </a>
         </div>
     </nav>
 
     <script>
-        // ★★★ ضع رابط Firebase الخاص بك هنا ★★★
+        // Firebase Config (ضع رابطك)
         const firebaseConfig = {
             databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/"
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // =============== التبديل بين التبويبات ===============
+        // الترجمة
+        const translations = {
+            ar: {
+                pageTitle: 'المواعيد',
+                tabAppointments: 'المواعيد (3)',
+                tabMyRequests: 'طلباتي',
+                tabMarket: 'طلبات السوق',
+                addBtn: '+ إضافة طلب أو إعلان عقاري جديد',
+                addFormTitle: 'إضافة طلب جديد',
+                saveBtn: '💾 حفظ الطلب',
+                cancelBtn: 'إلغاء',
+                noRequests: 'لا توجد طلبات حالياً.',
+                navHome: 'الرئيسية',
+                navProperties: 'العقارات',
+                navAppointments: 'المواعيد',
+                btnLang: 'English',
+                statusConfirmed: '✅ مؤكد',
+                statusPending: '⏳ قيد المراجعة',
+                editBtn: 'تعديل',
+                deleteBtn: 'إلغاء',
+                market1Title: 'أرض تجارية استثمارية',
+                market1Price: '12-15 مليون ر.س',
+                market1Desc: 'حي النرجس • شوارع 30+ • 1,200 م²',
+                market1Btn: 'تقديم عقار مطابق',
+                market2Title: 'عمارة سكنية عوائل',
+                market2Price: '8.5 مليون ر.س',
+                market2Desc: 'حي المروج أو الورود • دخل لا يقل عن 8.5%',
+                market2Btn: 'تقديم عقار مطابق'
+            },
+            en: {
+                pageTitle: 'Appointments',
+                tabAppointments: 'Appointments (3)',
+                tabMyRequests: 'My Requests',
+                tabMarket: 'Market Requests',
+                addBtn: '+ Add Request or Property Listing',
+                addFormTitle: 'Add New Request',
+                saveBtn: '💾 Save Request',
+                cancelBtn: 'Cancel',
+                noRequests: 'No requests yet.',
+                navHome: 'Home',
+                navProperties: 'Properties',
+                navAppointments: 'Appointments',
+                btnLang: 'عربي',
+                statusConfirmed: '✅ Confirmed',
+                statusPending: '⏳ Pending',
+                editBtn: 'Edit',
+                deleteBtn: 'Cancel',
+                market1Title: 'Commercial Land Investment',
+                market1Price: '12-15 Million SAR',
+                market1Desc: 'Al-Narjis • 30+ Streets • 1,200 m²',
+                market1Btn: 'Submit Matching Property',
+                market2Title: 'Residential Building',
+                market2Price: '8.5 Million SAR',
+                market2Desc: 'Al-Murooj or Al-Wurud • 8.5%+ ROI',
+                market2Btn: 'Submit Matching Property'
+            }
+        };
+
+        let currentLang = localStorage.getItem('disana_lang') || 'ar';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('disana_lang', lang);
+            const t = translations[lang];
+
+            document.getElementById('pageTitle').textContent = t.pageTitle;
+            document.getElementById('tabAppointmentsLabel').textContent = t.tabAppointments;
+            document.getElementById('tabMyRequestsLabel').textContent = t.tabMyRequests;
+            document.getElementById('tabMarketLabel').textContent = t.tabMarket;
+            document.getElementById('addRequestBtnLabel').textContent = t.addBtn;
+            document.getElementById('addFormTitle').textContent = t.addFormTitle;
+            document.getElementById('saveRequestBtn').textContent = t.saveBtn;
+            document.getElementById('cancelRequestBtn').textContent = t.cancelBtn;
+            document.getElementById('navHome').textContent = t.navHome;
+            document.getElementById('navProperties').textContent = t.navProperties;
+            document.getElementById('navAppointments').textContent = t.navAppointments;
+            document.getElementById('langToggleBtn').textContent = t.btnLang;
+
+            // تحديث النصوص الديناميكية
+            document.querySelectorAll('[id^="status"]').forEach(el => {
+                if (el.textContent.includes('✅ مؤكد') || el.textContent.includes('✅ Confirmed')) {
+                    el.textContent = t.statusConfirmed;
+                } else if (el.textContent.includes('⏳ قيد المراجعة') || el.textContent.includes('⏳ Pending')) {
+                    el.textContent = t.statusPending;
+                }
+            });
+            document.querySelectorAll('[id^="editBtn"]').forEach(el => el.textContent = t.editBtn);
+            document.querySelectorAll('[id^="deleteBtn"]').forEach(el => el.textContent = t.deleteBtn);
+
+            document.getElementById('market1Title').textContent = t.market1Title;
+            document.getElementById('market1Price').textContent = t.market1Price;
+            document.getElementById('market1Desc').textContent = t.market1Desc;
+            document.getElementById('market1Btn').textContent = t.market1Btn;
+            document.getElementById('market2Title').textContent = t.market2Title;
+            document.getElementById('market2Price').textContent = t.market2Price;
+            document.getElementById('market2Desc').textContent = t.market2Desc;
+            document.getElementById('market2Btn').textContent = t.market2Btn;
+
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+        }
+
+        function toggleLanguage() {
+            const newLang = currentLang === 'ar' ? 'en' : 'ar';
+            setLanguage(newLang);
+            // إعادة تحميل الطلبات لتحديث الرسائل
+            loadMyRequests();
+        }
+
+        // دوال التبويبات
         function switchTab(tab) {
-            // إخفاء كل المحتوى
             document.getElementById('appointmentsContent').classList.add('hidden');
             document.getElementById('myRequestsContent').classList.add('hidden');
             document.getElementById('marketContent').classList.add('hidden');
 
-            // إزالة الكلاس النشط من كل الأزرار
             document.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.classList.remove('active');
             });
 
-            // إظهار المحتوى المطلوب وتفعيل الزر المناسب
             if (tab === 'appointments') {
                 document.getElementById('appointmentsContent').classList.remove('hidden');
                 document.getElementById('tabAppointments').classList.add('active');
@@ -196,7 +326,7 @@
             }
         }
 
-        // =============== تحميل طلباتي من Firebase ===============
+        // تحميل طلباتي من Firebase
         function loadMyRequests() {
             const list = document.getElementById('myRequestsList');
             db.ref('requests').on('value', (snapshot) => {
@@ -211,81 +341,73 @@
                         div.innerHTML = `
                             <div class="flex items-center justify-between">
                                 <h4 class="text-[14px] font-bold text-[#00224e]">${r.title || 'طلب'}</h4>
-                                <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">🆕 طلب</span>
+                                <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">🆕 ${currentLang === 'ar' ? 'طلب' : 'Request'}</span>
                             </div>
                             <p class="text-[12px] text-[#525f71]">${r.location || ''} ${r.budget ? '• ' + r.budget : ''}</p>
                             <div class="flex gap-2 mt-2">
-                                <button onclick="editRequest('${key}')" class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">✏️ تعديل</button>
-                                <button onclick="deleteRequest('${key}')" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">🗑️ حذف</button>
+                                <button onclick="editRequest('${key}')" class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">✏️ ${currentLang === 'ar' ? 'تعديل' : 'Edit'}</button>
+                                <button onclick="deleteRequest('${key}')" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">🗑️ ${currentLang === 'ar' ? 'حذف' : 'Delete'}</button>
                             </div>
                         `;
                         list.appendChild(div);
                     });
                 } else {
-                    list.innerHTML = '<p class="text-[#525f71] text-center text-sm py-4">لا توجد طلبات حالياً.</p>';
+                    list.innerHTML = <p class="text-[#525f71] text-center text-sm py-4">${translations[currentLang].noRequests}</p>;
                 }
             });
         }
 
-        // =============== إضافة طلب ===============
+        // دوال الإضافة والحذف والتعديل
         function addRequest() {
             const title = document.getElementById('reqTitle').value.trim();
             const budget = document.getElementById('reqBudget').value.trim();
             const location = document.getElementById('reqLocation').value.trim();
             const desc = document.getElementById('reqDesc').value.trim();
-            if (!title) { alert('⚠️ الرجاء إدخال عنوان الطلب'); return; }
-
+            if (!title) { alert(currentLang === 'ar' ? '⚠️ الرجاء إدخال عنوان الطلب' : '⚠️ Please enter request title'); return; }
             db.ref('requests').push({ title, budget, location, desc })
                 .then(() => {
-                    alert('✅ تم إضافة الطلب بنجاح!');
+                    alert(currentLang === 'ar' ? '✅ تم إضافة الطلب بنجاح!' : '✅ Request added successfully!');
                     document.getElementById('reqTitle').value = '';
                     document.getElementById('reqBudget').value = '';
                     document.getElementById('reqLocation').value = '';
                     document.getElementById('reqDesc').value = '';
                     hideAddRequest();
                 })
-                .catch(err => alert('❌ فشل الإضافة: ' + err.message));
+                .catch(err => alert(currentLang === 'ar' ? '❌ فشل الإضافة: ' + err.message : '❌ Failed: ' + err.message));
         }
 
-        // =============== حذف طلب ===============
         function deleteRequest(key) {
-            if (!confirm('هل أنت متأكد من حذف هذا الطلب؟')) return;
+            if (!confirm(currentLang === 'ar' ? 'هل أنت متأكد من حذف هذا الطلب؟' : 'Are you sure you want to delete this request?')) return;
             db.ref('requests/' + key).remove()
-                .then(() => alert('🗑️ تم حذف الطلب بنجاح'))
-                .catch(err => alert('❌ فشل الحذف: ' + err.message));
+                .then(() => alert(currentLang === 'ar' ? '🗑️ تم حذف الطلب بنجاح' : '🗑️ Request deleted'))
+                .catch(err => alert(currentLang === 'ar' ? '❌ فشل الحذف: ' + err.message : '❌ Failed: ' + err.message));
         }
 
-        // =============== تعديل طلب ===============
         function editRequest(key) {
-            const newTitle = prompt('أدخل العنوان الجديد للطلب:');
+            const newTitle = prompt(currentLang === 'ar' ? 'أدخل العنوان الجديد للطلب:' : 'Enter new request title:');
             if (newTitle !== null && newTitle.trim() !== '') {
                 db.ref('requests/' + key).update({ title: newTitle.trim() })
-                    .then(() => alert('✅ تم تحديث الطلب بنجاح'))
-                    .catch(err => alert('❌ فشل التحديث: ' + err.message));
+                    .then(() => alert(currentLang === 'ar' ? '✅ تم تحديث الطلب بنجاح' : '✅ Request updated'))
+                    .catch(err => alert(currentLang === 'ar' ? '❌ فشل التحديث: ' + err.message : '❌ Failed: ' + err.message));
             }
         }
 
-        // =============== إلغاء موعد ===============
         function cancelAppointment(btn) {
-            if (confirm('هل أنت متأكد من إلغاء هذا الموعد؟')) {
+            if (confirm(currentLang === 'ar' ? 'هل أنت متأكد من إلغاء هذا الموعد؟' : 'Are you sure you want to cancel this appointment?')) {
                 const card = btn.closest('.bg-white');
                 card.style.transition = 'all 0.3s ease';
                 card.style.opacity = '0';
                 setTimeout(() => card.remove(), 300);
-                alert('🗑️ تم إلغاء الموعد بنجاح');
+                alert(currentLang === 'ar' ? '🗑️ تم إلغاء الموعد بنجاح' : '🗑️ Appointment cancelled');
             }
         }
 
-        // =============== إظهار/إخفاء نموذج الإضافة ===============
-        function showAddRequest() {
-            document.getElementById('addRequestForm').classList.remove('hidden');
-        }
-        function hideAddRequest() {
-            document.getElementById('addRequestForm').classList.add('hidden');
-        }
+        function showAddRequest() { document.getElementById('addRequestForm').classList.remove('hidden'); }
+        function hideAddRequest() { document.getElementById('addRequestForm').classList.add('hidden'); }
 
         // تفعيل التبويب الأول عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
+            setLanguage(currentLang);
             switchTab('appointments');
         });
     </script>
