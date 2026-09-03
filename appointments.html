@@ -14,7 +14,7 @@
         .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
         .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
         ::-webkit-scrollbar { display: none; }
-        main { padding-top: 80px !important; } /* ✅ حل مشكلة اختفاء النصوص */
+        main { padding-top: 80px !important; }
         .tab-btn.active {
             background-color: white !important;
             color: #00224e !important;
@@ -66,7 +66,6 @@
     <main class="flex-1 flex flex-col relative w-full pb-24 bg-[#f7f9fb] px-4 py-4">
         <div class="flex flex-col gap-4">
 
-            <!-- أزرار التبويبات -->
             <div class="bg-[#eceef0] p-1 rounded-xl flex gap-1" id="tabContainer">
                 <button onclick="switchTab('appointments')" class="tab-btn active flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabAppointments">
                     <span id="tabAppointmentsLabel">المواعيد (3)</span>
@@ -79,13 +78,11 @@
                 </button>
             </div>
 
-            <!-- زر إضافة طلب -->
             <button onclick="showAddRequest()" class="w-full py-3 rounded-xl bg-[#00224e] text-white text-[14px] font-bold flex items-center justify-center gap-2 shadow-sm hover:opacity-90 transition" id="addRequestBtn">
                 <span class="material-symbols-outlined text-[20px]">add_circle</span>
                 <span id="addRequestBtnLabel">+ إضافة طلب أو إعلان عقاري جديد</span>
             </button>
 
-            <!-- نموذج إضافة طلب -->
             <div id="addRequestForm" class="hidden bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]">
                 <h3 class="text-[16px] font-bold text-[#00224e] mb-2" id="addFormTitle">إضافة طلب جديد</h3>
                 <input type="text" id="reqTitle" placeholder="عنوان الطلب" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
@@ -96,7 +93,6 @@
                 <button onclick="hideAddRequest()" class="w-full py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-sm font-bold mt-2" id="cancelRequestBtn">إلغاء</button>
             </div>
 
-            <!-- محتوى المواعيد -->
             <div id="appointmentsContent">
                 <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
                     <div class="flex items-center justify-between">
@@ -142,12 +138,10 @@
                 </div>
             </div>
 
-            <!-- محتوى طلباتي -->
             <div id="myRequestsContent" class="hidden">
                 <div id="myRequestsList"></div>
             </div>
 
-            <!-- محتوى طلبات السوق -->
             <div id="marketContent" class="hidden">
                 <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
                     <div class="flex items-center justify-between">
@@ -187,14 +181,10 @@
     </nav>
 
     <script>
-        // Firebase Config (ضع رابطك)
-        const firebaseConfig = {
-            databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/"
-        };
+        const firebaseConfig = { databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/" };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // الترجمة
         const translations = {
             ar: {
                 pageTitle: 'المواعيد',
@@ -258,7 +248,6 @@
             currentLang = lang;
             localStorage.setItem('disana_lang', lang);
             const t = translations[lang];
-
             document.getElementById('pageTitle').textContent = t.pageTitle;
             document.getElementById('tabAppointmentsLabel').textContent = t.tabAppointments;
             document.getElementById('tabMyRequestsLabel').textContent = t.tabMyRequests;
@@ -271,8 +260,6 @@
             document.getElementById('navProperties').textContent = t.navProperties;
             document.getElementById('navAppointments').textContent = t.navAppointments;
             document.getElementById('langToggleBtn').textContent = t.btnLang;
-
-            // تحديث النصوص الديناميكية
             document.querySelectorAll('[id^="status"]').forEach(el => {
                 if (el.textContent.includes('✅ مؤكد') || el.textContent.includes('✅ Confirmed')) {
                     el.textContent = t.statusConfirmed;
@@ -282,7 +269,6 @@
             });
             document.querySelectorAll('[id^="editBtn"]').forEach(el => el.textContent = t.editBtn);
             document.querySelectorAll('[id^="deleteBtn"]').forEach(el => el.textContent = t.deleteBtn);
-
             document.getElementById('market1Title').textContent = t.market1Title;
             document.getElementById('market1Price').textContent = t.market1Price;
             document.getElementById('market1Desc').textContent = t.market1Desc;
@@ -291,28 +277,21 @@
             document.getElementById('market2Price').textContent = t.market2Price;
             document.getElementById('market2Desc').textContent = t.market2Desc;
             document.getElementById('market2Btn').textContent = t.market2Btn;
-
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
+            loadMyRequests();
         }
 
         function toggleLanguage() {
             const newLang = currentLang === 'ar' ? 'en' : 'ar';
             setLanguage(newLang);
-            // إعادة تحميل الطلبات لتحديث الرسائل
-            loadMyRequests();
         }
 
-        // دوال التبويبات
         function switchTab(tab) {
             document.getElementById('appointmentsContent').classList.add('hidden');
             document.getElementById('myRequestsContent').classList.add('hidden');
             document.getElementById('marketContent').classList.add('hidden');
-
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
             if (tab === 'appointments') {
                 document.getElementById('appointmentsContent').classList.remove('hidden');
                 document.getElementById('tabAppointments').classList.add('active');
@@ -326,7 +305,6 @@
             }
         }
 
-        // تحميل طلباتي من Firebase
         function loadMyRequests() {
             const list = document.getElementById('myRequestsList');
             db.ref('requests').on('value', (snapshot) => {
@@ -357,13 +335,15 @@
             });
         }
 
-        // دوال الإضافة والحذف والتعديل
         function addRequest() {
             const title = document.getElementById('reqTitle').value.trim();
             const budget = document.getElementById('reqBudget').value.trim();
             const location = document.getElementById('reqLocation').value.trim();
             const desc = document.getElementById('reqDesc').value.trim();
-            if (!title) { alert(currentLang === 'ar' ? '⚠️ الرجاء إدخال عنوان الطلب' : '⚠️ Please enter request title'); return; }
+            if (!title) {
+                alert(currentLang === 'ar' ? '⚠️ الرجاء إدخال عنوان الطلب' : '⚠️ Please enter request title');
+                return;
+            }
             db.ref('requests').push({ title, budget, location, desc })
                 .then(() => {
                     alert(currentLang === 'ar' ? '✅ تم إضافة الطلب بنجاح!' : '✅ Request added successfully!');
@@ -405,7 +385,6 @@
         function showAddRequest() { document.getElementById('addRequestForm').classList.remove('hidden'); }
         function hideAddRequest() { document.getElementById('addRequestForm').classList.add('hidden'); }
 
-        // تفعيل التبويب الأول عند تحميل الصفحة
         document.addEventListener('DOMContentLoaded', function() {
             setLanguage(currentLang);
             switchTab('appointments');
