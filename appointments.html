@@ -1,335 +1,240 @@
-<!DOCTYPE html><html dir="rtl" lang="ar"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary": "#ffffff", "tertiary": "#002150", "surface-bright": "#f7f9fb", "surface-container-high": "#e6e8ea", "on-error": "#ffffff", "surface": "#f7f9fb", "on-secondary-container": "#566475", "surface-dim": "#d8dadc", "outline-variant": "#c4c6d1", "primary": "#00224e", "inverse-surface": "#2d3133", "on-background": "#191c1e", "on-surface-variant": "#434750", "primary-fixed": "#d7e2ff", "tertiary-fixed": "#d8e2ff", "on-surface": "#191c1e", "on-secondary-fixed-variant": "#3a4859", "on-tertiary-fixed-variant": "#004494", "background": "#f7f9fb", "inverse-on-surface": "#eff1f3", "on-secondary-fixed": "#0f1c2c", "secondary-fixed": "#d6e4f9", "outline": "#747781", "on-primary-container": "#84a3e0", "primary-container": "#12386e", "error-container": "#ffdad6", "on-tertiary-container": "#71a1ff", "secondary-fixed-dim": "#bac8dc", "surface-container": "#eceef0", "on-tertiary": "#ffffff", "surface-container-highest": "#e0e3e5", "on-tertiary-fixed": "#001a41", "on-primary-fixed": "#001b3f", "on-primary-fixed-variant": "#24467d", "primary-fixed-dim": "#abc7ff", "surface-container-low": "#f2f4f6", "inverse-primary": "#abc7ff", "surface-container-lowest": "#ffffff", "error": "#ba1a1a", "tertiary-container": "#003679", "secondary": "#525f71", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#adc6ff", "surface-tint": "#3e5e96", "on-error-container": "#93000a", "secondary-container": "#d3e1f6", "surface-variant": "#e0e3e5" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-lg": "1.5rem", "space-2xs": "0.25rem", "space-sm": "0.75rem", "gutter-mobile": "0.75rem", "margin-mobile": "1rem", "space-xs": "0.5rem", "space-2xl": "3rem", "space-md": "1rem", "space-xl": "2rem" }, "fontFamily": { "label-sm": ["Cairo"], "headline-md": ["Cairo"], "label-md": ["Cairo"], "body-md": ["Cairo"], "headline-sm": ["Cairo"], "headline-lg": ["Cairo"], "body-sm": ["Cairo"], "body-lg": ["Cairo"], "label-lg": ["Cairo"], "display": ["Cairo"] }, "fontSize": { "label-sm": ["11px", { "lineHeight": "16px", "fontWeight": "700" }], "headline-md": ["22px", { "lineHeight": "32px", "fontWeight": "700" }], "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-lg": ["28px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "label-lg": ["15px", { "lineHeight": "22px", "fontWeight": "600" }], "display": ["36px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }] } } } }</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-</head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><a class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary transition-colors hover:bg-surface-container-highest" href="home.html" title="الرجوع للرئيسية"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a><a class="flex items-center gap-space-xs" href="home.html"><span class="font-headline-md text-headline-md text-primary tracking-tight">ديسانا</span><span class="material-symbols-outlined text-primary text-[20px]" title="موثق">verified</span></a></div><div class="flex items-center gap-space-xs"><button class="px-2.5 py-1 rounded-lg bg-surface-container-high text-primary font-label-sm text-label-sm hover:bg-surface-container-highest transition-colors" id="lang-toggle-btn" onclick="toggleLanguage()" title="تغيير اللغة">EN</button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface"><div class="flex flex-col w-full pb-8">
-<!-- Segmented Control Bar -->
-<div class="px-margin-mobile py-space-sm">
-<div class="p-1 rounded-xl bg-surface-container-high flex items-center gap-1 shadow-sm" id="tabSwitcher">
-<button class="flex-1 py-2 px-2 text-center rounded-lg font-label-md text-label-md transition-all duration-200 bg-surface-container-lowest text-primary shadow-sm" id="tab-btn-appointments" onclick="switchTab('appointments')">
-        المواعيد (3)
-      </button>
-<button class="flex-1 py-2 px-2 text-center rounded-lg font-label-md text-label-md transition-all duration-200 text-secondary hover:text-primary" id="tab-btn-my-requests" onclick="switchTab('my-requests')">
-        طلباتي (2)
-      </button>
-<button class="flex-1 py-2 px-2 text-center rounded-lg font-label-md text-label-md transition-all duration-200 text-secondary hover:text-primary" id="tab-btn-market" onclick="switchTab('market')">
-        طلبات السوق
-      </button>
-</div>
-</div><div class="px-margin-mobile pb-space-sm flex flex-col gap-2.5"><button class="w-full py-2.5 px-4 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex flex-col items-center justify-center gap-0.5 shadow-sm active:scale-95 transition-transform"><span class="flex items-center gap-1.5 font-bold"><span class="material-symbols-outlined text-[20px]">add_circle</span>إضافة طلب أو إعلان عقاري جديد</span><span class="text-[11px] text-primary-fixed opacity-90">(متاح لجميع المشتركين • الوصف بحد أقصى 100 كلمة)</span></button><div class="rounded-xl p-3 bg-secondary-container text-on-secondary-container flex items-start gap-2.5 shadow-sm"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">info</span><div class="flex flex-col gap-0.5 flex-1"><span class="font-label-sm text-label-sm font-bold text-primary">تنبيه النظام المفتوح:</span><p class="font-body-sm text-body-sm text-primary leading-tight">الإعلانات والمواعيد عامة ومباشرة للجميع • تنتهي صلاحية أي طلب أو موعد وتُحذف تلقائياً من النظام بعد مرور 30 يوماً</p></div></div></div>
-<!-- Content Pane: Appointments -->
-<div class="flex flex-col px-margin-mobile gap-space-md" id="pane-appointments">
-<!-- Subheader Action Tracker -->
-<div class="flex items-center justify-between py-space-xs">
-<div class="flex items-center gap-2">
-<span class="w-2.5 h-2.5 rounded-full bg-primary animate-pulse"></span>
-<h2 class="font-headline-sm text-headline-sm text-primary">المواعيد النشطة والمجدولة</h2>
-</div>
-<span class="font-label-sm text-label-sm px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container">3 مواعيد</span>
-</div>
-<!-- Appointment Card 1 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm relative overflow-hidden">
-<div class="flex items-start justify-between">
-<div class="flex items-center gap-space-xs">
-<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary font-bold">
-<span class="material-symbols-outlined text-[20px]">villa</span>
-</div>
-<div>
-<span class="font-headline-sm text-headline-sm text-primary block leading-tight">فيلا دي سيلفا المعاصرة</span>
-<span class="font-body-sm text-body-sm text-secondary block mt-0.5">رمز المرجع: #DS-8840</span>
-</div>
-</div>
-<span class="px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">check_circle</span>
-          مؤكد
-        </span>
-</div>
-<!-- Detail Badges -->
-<div class="grid grid-cols-2 gap-2 my-1">
-<div class="bg-surface-container-low rounded-lg p-2 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[18px]">calendar_today</span>
-<div>
-<span class="font-body-sm text-body-sm text-secondary block">التاريخ والوقت</span>
-<span class="font-label-md text-label-md text-primary block">الخميس، 24 أكتوبر 10:30 ص</span>
-</div>
-</div>
-<div class="bg-surface-container-low rounded-lg p-2 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[18px]">badge</span>
-<div>
-<span class="font-body-sm text-body-sm text-secondary block">المستشار العقاري</span>
-<span class="font-label-md text-label-md text-primary block">عبدالله السالم</span>
-</div>
-</div>
-</div>
-<div class="flex items-center justify-between pt-2">
-<div class="flex items-center gap-1 text-secondary">
-<span class="material-symbols-outlined text-[16px]">location_on</span>
-<span class="font-body-sm text-body-sm">حي الملقا، الرياض</span>
-</div>
-<div class="flex items-center gap-2"><button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md transition-colors hover:bg-surface-container-highest" onclick="openEditModal(this, '#DS-8840')">تعديل</button><button class="px-3 py-1.5 rounded-lg bg-error-container text-error font-label-md text-label-md transition-colors" onclick="openCancelModal(this, '#DS-8840')">إلغاء</button></div>
-</div>
-</div>
-<!-- Appointment Card 2 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
-<div class="flex items-start justify-between">
-<div class="flex items-center gap-space-xs">
-<div class="w-10 h-10 rounded-full bg-secondary-fixed flex items-center justify-center text-primary font-bold">
-<span class="material-symbols-outlined text-[20px]">apartment</span>
-</div>
-<div>
-<span class="font-headline-sm text-headline-sm text-primary block leading-tight">بنتهاوس الأفق الفاخر</span>
-<span class="font-body-sm text-body-sm text-secondary block mt-0.5">رمز المرجع: #DS-4102</span>
-</div>
-</div>
-<span class="px-2.5 py-1 rounded-full bg-surface-container-highest text-secondary font-label-sm text-label-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">hourglass_top</span>
-          قيد المراجعة
-        </span>
-</div>
-<div class="grid grid-cols-2 gap-2 my-1">
-<div class="bg-surface-container-low rounded-lg p-2 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[18px]">event</span>
-<div>
-<span class="font-body-sm text-body-sm text-secondary block">التاريخ والوقت</span>
-<span class="font-label-md text-label-md text-primary block">السبت، 26 أكتوبر 04:00 م</span>
-</div>
-</div>
-<div class="bg-surface-container-low rounded-lg p-2 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[18px]">support_agent</span>
-<div>
-<span class="font-body-sm text-body-sm text-secondary block">المستشار العقاري</span>
-<span class="font-label-md text-label-md text-primary block">فهد الغامدي</span>
-</div>
-</div>
-</div>
-<div class="flex items-center justify-between pt-2">
-<div class="flex items-center gap-1 text-secondary">
-<span class="material-symbols-outlined text-[16px]">location_on</span>
-<span class="font-body-sm text-body-sm">حي حطين، الرياض</span>
-</div>
-<div class="flex items-center gap-2"><button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md transition-colors hover:bg-surface-container-highest" onclick="openEditModal(this, '#DS-4102')">تعديل</button><button class="px-3 py-1.5 rounded-lg bg-error-container text-error font-label-md text-label-md transition-colors" onclick="openCancelModal(this, '#DS-4102')">إلغاء</button></div>
-</div>
-</div>
-<!-- Appointment Card 3 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm opacity-95">
-<div class="flex items-start justify-between">
-<div class="flex items-center gap-space-xs">
-<div class="w-10 h-10 rounded-full bg-primary-fixed-dim flex items-center justify-center text-primary font-bold">
-<span class="material-symbols-outlined text-[20px]">domain</span>
-</div>
-<div>
-<span class="font-headline-sm text-headline-sm text-primary block leading-tight">مجمع ريزيدنس التجاري</span>
-<span class="font-body-sm text-body-sm text-secondary block mt-0.5">رمز المرجع: #DS-9912</span>
-</div>
-</div>
-<span class="px-2.5 py-1 rounded-full bg-primary/10 text-primary font-label-sm text-label-sm flex items-center gap-1">
-<span class="material-symbols-outlined text-[14px]">check_circle</span>
-          مؤكد
-        </span>
-</div>
-<div class="grid grid-cols-2 gap-2 my-1">
-<div class="bg-surface-container-low rounded-lg p-2 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[18px]">calendar_today</span>
-<div>
-<span class="font-body-sm text-body-sm text-secondary block">التاريخ والوقت</span>
-<span class="font-label-md text-label-md text-primary block">الاثنين، 28 أكتوبر 12:00 م</span>
-</div>
-</div>
-<div class="bg-surface-container-low rounded-lg p-2 flex items-center gap-2">
-<span class="material-symbols-outlined text-primary text-[18px]">badge</span>
-<div>
-<span class="font-body-sm text-body-sm text-secondary block">المستشار العقاري</span>
-<span class="font-label-md text-label-md text-primary block">نورة الشمري</span>
-</div>
-</div>
-</div>
-<div class="flex items-center justify-between pt-2">
-<div class="flex items-center gap-1 text-secondary">
-<span class="material-symbols-outlined text-[16px]">location_on</span>
-<span class="font-body-sm text-body-sm">حي الياسمين، الرياض</span>
-</div>
-<div class="flex items-center gap-2"><button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md transition-colors hover:bg-surface-container-highest" onclick="openEditModal(this, '#DS-9912')">تعديل</button><button class="px-3 py-1.5 rounded-lg bg-error-container text-error font-label-md text-label-md transition-colors" onclick="openCancelModal(this, '#DS-9912')">إلغاء</button></div>
-</div>
-</div>
-</div>
-<!-- Content Pane: My Demands -->
-<div class="hidden flex flex-col px-margin-mobile gap-space-md" id="pane-my-requests">
-<!-- Action Banner: Add New Custom Property Request -->
-<div class="rounded-xl p-space-md bg-primary text-on-primary shadow-md relative overflow-hidden">
-<div class="flex items-start justify-between relative z-10">
-<div class="flex flex-col gap-1 max-w-[70%]">
-<span class="font-label-sm text-label-sm text-primary-fixed uppercase tracking-wider">خدمة النخبة</span>
-<h3 class="font-headline-sm text-headline-sm text-on-primary">طلب عقار بمواصفات خاصة</h3>
-<p class="font-body-sm text-body-sm text-primary-fixed opacity-90 mt-1">دع فريق ديسانا يبحث عن عقارك المثالي بدقة استثنائية وفق رغباتك.</p>
-</div>
-<div class="w-12 h-12 rounded-full bg-on-primary/10 flex items-center justify-center text-on-primary">
-<span class="material-symbols-outlined text-[28px]">search_hands_free</span>
-</div>
-</div>
-<div class="mt-space-md pt-space-xs relative z-10 flex">
-<button class="w-full py-2.5 px-space-md rounded-lg bg-surface-container-lowest text-primary font-label-lg text-label-lg flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform">
-<span class="material-symbols-outlined text-[20px]">add_circle</span>
-          إضافة طلب جديد
-        </button>
-</div>
-</div>
-<!-- Active Demands Section -->
-<div class="flex items-center justify-between mt-2">
-<h3 class="font-headline-sm text-headline-sm text-primary">طلباتي النشطة</h3>
-<span class="font-label-sm text-label-sm text-secondary">محدث الآن</span>
-</div>
-<!-- Demand Card 1 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
-<h4 class="font-headline-sm text-headline-sm text-primary">فيلا مستقلة مودرن</h4>
-</div>
-<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-label-sm text-label-sm">
-          طلب ساري
-        </span>
-</div>
-<div class="grid grid-cols-3 gap-2 py-2">
-<div class="bg-surface-container-low rounded-lg p-2 text-center">
-<span class="font-body-sm text-body-sm text-secondary block">المنطقة</span>
-<span class="font-label-md text-label-md text-primary block mt-0.5">شمال الرياض</span>
-</div>
-<div class="bg-surface-container-low rounded-lg p-2 text-center">
-<span class="font-body-sm text-body-sm text-secondary block">الميزانية</span>
-<span class="font-label-md text-label-md text-primary block mt-0.5">4.5 - 6.0 مليون</span>
-</div>
-<div class="bg-surface-container-low rounded-lg p-2 text-center">
-<span class="font-body-sm text-body-sm text-secondary block">المساحة</span>
-<span class="font-label-md text-label-md text-primary block mt-0.5">500م² فأكثر</span>
-</div>
-</div>
-<!-- Match status callout -->
-<div class="rounded-lg p-3 bg-secondary-container text-on-secondary-container flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[20px] text-primary">auto_awesome</span>
-<span class="font-label-md text-label-md text-primary">تم إيجاد 4 عقارات مطابقة بكتالوج ديسانا</span>
-</div>
-<button class="font-label-sm text-label-sm text-primary underline underline-offset-4">عرض النتائج</button>
-</div>
-</div>
-<!-- Demand Card 2 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
-<h4 class="font-headline-sm text-headline-sm text-primary">مكتب إداري استثماري</h4>
-</div>
-<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-secondary font-label-sm text-label-sm">
-          بحث جاري
-        </span>
-</div>
-<div class="grid grid-cols-3 gap-2 py-2">
-<div class="bg-surface-container-low rounded-lg p-2 text-center">
-<span class="font-body-sm text-body-sm text-secondary block">المنطقة</span>
-<span class="font-label-md text-label-md text-primary block mt-0.5">طريق الملك فهد</span>
-</div>
-<div class="bg-surface-container-low rounded-lg p-2 text-center">
-<span class="font-body-sm text-body-sm text-secondary block">الميزانية</span>
-<span class="font-label-md text-label-md text-primary block mt-0.5">200 ألف/سنوي</span>
-</div>
-<div class="bg-surface-container-low rounded-lg p-2 text-center">
-<span class="font-body-sm text-body-sm text-secondary block">المساحة</span>
-<span class="font-label-md text-label-md text-primary block mt-0.5">180 - 240م²</span>
-</div>
-</div>
-<!-- Match status callout -->
-<div class="rounded-lg p-3 bg-surface-container text-secondary flex items-center justify-between">
-<div class="flex items-center gap-2">
-<span class="material-symbols-outlined text-[18px]">manage_search</span>
-<span class="font-body-sm text-body-sm">جاري مراجعة العروض الجديدة من قبل الوسيط</span>
-</div>
-<span class="font-label-sm text-label-sm">1 مطابقة</span>
-</div>
-</div>
-</div>
-<!-- Content Pane: Market Demands -->
-<div class="hidden flex flex-col px-margin-mobile gap-space-md" id="pane-market">
-<div class="flex items-center justify-between py-space-xs">
-<div>
-<h3 class="font-headline-sm text-headline-sm text-primary">طلبات المستثمرين النشطة</h3>
-<p class="font-body-sm text-body-sm text-secondary mt-0.5">فرص للبيع السريع للملاك والوسطاء المرخصين</p>
-</div>
-<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-primary text-on-primary">حيوي الآن</span>
-</div>
-<!-- Market Request 1 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-3">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-[18px]">monetization_on</span>
-</div>
-<div>
-<span class="font-headline-sm text-headline-sm text-primary block">أرض تجارية استثمارية</span>
-<span class="font-body-sm text-body-sm text-secondary">مشتري جاهز (كاش)</span>
-</div>
-</div>
-<span class="font-label-md text-label-md text-primary">12-15 مليون ر.س</span>
-</div>
-<div class="flex flex-wrap gap-2 text-secondary">
-<span class="font-label-sm text-label-sm px-2 py-1 rounded-md bg-surface-container">حي النرجس</span>
-<span class="font-label-sm text-label-sm px-2 py-1 rounded-md bg-surface-container">شوارع 30+</span>
-<span class="font-label-sm text-label-sm px-2 py-1 rounded-md bg-surface-container">1,200 م²</span>
-</div>
-<div class="pt-2 flex items-center justify-between">
-<span class="font-body-sm text-body-sm text-secondary">نُشر قبل 3 ساعات</span>
-<button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md transition-opacity hover:opacity-90">
-          تقديم عقار مطابق
-        </button>
-</div>
-</div>
-<!-- Market Request 2 -->
-<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-3">
-<div class="flex items-center justify-between">
-<div class="flex items-center gap-2">
-<div class="w-8 h-8 rounded-lg bg-surface-container-high flex items-center justify-center text-primary">
-<span class="material-symbols-outlined text-[18px]">apartment</span>
-</div>
-<div>
-<span class="font-headline-sm text-headline-sm text-primary block">عمارة سكنية عوائل</span>
-<span class="font-body-sm text-body-sm text-secondary">صندوق استثماري خاص</span>
-</div>
-</div>
-<span class="font-label-md text-label-md text-primary">8.5 مليون ر.س</span>
-</div>
-<div class="flex flex-wrap gap-2 text-secondary">
-<span class="font-label-sm text-label-sm px-2 py-1 rounded-md bg-surface-container">حي المروج أو الورود</span>
-<span class="font-label-sm text-label-sm px-2 py-1 rounded-md bg-surface-container">دخل لا يقل عن 8.5%</span>
-</div>
-<div class="pt-2 flex items-center justify-between">
-<span class="font-body-sm text-body-sm text-secondary">نُشر بالأمس</span>
-<button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-label-md text-label-md transition-opacity hover:opacity-90">
-          تقديم عقار مطابق
-        </button>
-</div>
-</div>
-</div>
-</div>
-<script>
-  function switchTab(tabId) {
-    const tabs = ['appointments', 'my-requests', 'market'];
-    
-    tabs.forEach(t => {
-      const pane = document.getElementById('pane-' + t);
-      const btn = document.getElementById('tab-btn-' + t);
-      
-      if (t === tabId) {
-        pane.classList.remove('hidden');
-        btn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
-        btn.classList.remove('text-secondary');
-      } else {
-        pane.classList.add('hidden');
-        btn.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
-        btn.classList.add('text-secondary');
-      }
-    });
-  }
-</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_10px_rgba(0,34,78,0.04)]" data-active-classes="text-primary font-bold"><div class="flex justify-around items-center h-20 px-margin-mobile"><a class="flex flex-col items-center justify-center gap-space-2xs min-w-[56px] min-h-[44px] text-secondary hover:text-primary transition-colors" data-path="alrayiysia" href="home.html"><span class="material-symbols-outlined text-[24px]">real_estate_agent</span><span class="font-label-sm text-label-sm">الرئيسية</span></a><a class="flex flex-col items-center justify-center gap-space-2xs min-w-[56px] min-h-[44px] text-secondary hover:text-primary transition-colors" data-path="aleaqarat" href="property-details.html"><span class="material-symbols-outlined text-[24px]">apartment</span><span class="font-label-sm text-label-sm">العقارات</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-space-2xs min-w-[56px] min-h-[44px] transition-colors text-primary font-bold" data-path="almawaeid" href="appointments.html"><span class="material-symbols-outlined text-[24px]">calendar_today</span><span class="font-label-sm text-label-sm">المواعيد</span></a></div></nav><div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm p-4" id="action-modal"><div class="bg-surface-container-lowest rounded-xl max-w-sm w-full p-space-md shadow-md flex flex-col gap-space-sm"><div class="flex items-center justify-between"><h3 class="font-headline-sm text-headline-sm text-primary" id="modal-title">تأكيد الإجراء</h3><button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-secondary" onclick="closeModal()"><span class="material-symbols-outlined text-[18px]">close</span></button></div><p class="font-body-sm text-body-sm text-secondary" id="modal-desc">هل أنت متأكد من تنفيذ هذا الإجراء؟</p><div class="hidden flex flex-col gap-2 my-1" id="modal-edit-inputs"><label class="font-label-sm text-label-sm text-primary">الموعد الجديد المطلوب</label><input class="p-2 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-primary border-none outline-none" id="edit-date-input" type="date"><input class="p-2 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-primary border-none outline-none" id="edit-time-input" type="time"></div><div class="flex items-center justify-end gap-2 pt-2"><button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md" onclick="closeModal()">إغلاق</button><button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md" id="modal-confirm-btn" onclick="confirmModalAction()">تأكيد</button></div></div></div><script>let currentAction = null; let currentCard = null; function openEditModal(btn, ref) { currentAction = 'edit'; currentCard = btn.closest('.bg-surface-container-lowest'); document.getElementById('modal-title').textContent = 'تعديل الموعد: ' + ref; document.getElementById('modal-desc').textContent = 'حدد التاريخ والوقت الجديد للمعاينة:'; document.getElementById('modal-edit-inputs').classList.remove('hidden'); document.getElementById('modal-confirm-btn').className = 'px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md'; document.getElementById('modal-confirm-btn').textContent = 'حفظ التعديل'; document.getElementById('action-modal').classList.remove('hidden'); } function openCancelModal(btn, ref) { currentAction = 'cancel'; currentCard = btn.closest('.bg-surface-container-lowest'); document.getElementById('modal-title').textContent = 'إلغاء الموعد: ' + ref; document.getElementById('modal-desc').textContent = 'هل أنت متأكد من رغبتك في إلغاء هذا الموعد؟ لن يمكن التراجع بعد الإلغاء.'; document.getElementById('modal-edit-inputs').classList.add('hidden'); document.getElementById('modal-confirm-btn').className = 'px-3 py-1.5 rounded-lg bg-error-container text-error font-label-md text-label-md'; document.getElementById('modal-confirm-btn').textContent = 'تأكيد الإلغاء'; document.getElementById('action-modal').classList.remove('hidden'); } function closeModal() { document.getElementById('action-modal').classList.add('hidden'); currentAction = null; currentCard = null; } function confirmModalAction() { if (currentAction === 'cancel' && currentCard) { currentCard.style.transition = 'all 0.3s ease'; currentCard.style.opacity = '0'; setTimeout(() => currentCard.remove(), 300); } else if (currentAction === 'edit' && currentCard) { alert('تم تقديم طلب تعديل الموعد بنجاح وسيتم إشعارك بالتأكيد.'); } closeModal(); } function toggleLanguage() { const html = document.documentElement; const isRTL = html.getAttribute('dir') === 'rtl'; const btn = document.getElementById('lang-toggle-btn'); if (isRTL) { html.setAttribute('dir', 'ltr'); html.setAttribute('lang', 'en'); if (btn) btn.textContent = 'AR'; } else { html.setAttribute('dir', 'rtl'); html.setAttribute('lang', 'ar'); if (btn) btn.textContent = 'EN'; } }</script>
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+    <title>المواعيد والطلبات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background: #f7f9fb; overscroll-behavior: none; }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+        .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+        ::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-[#f7f9fb] text-[#191c1e] flex flex-col min-h-screen">
+    <header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
+        <div class="h-16 px-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <a href="index.html" aria-label="رجوع" class="w-11 h-11 flex items-center justify-center text-[#00224e] rounded-full hover:bg-[#eceef0] transition-colors">
+                    <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+                </a>
+                <h1 class="text-[18px] font-bold text-[#191c1e]">المواعيد</h1>
+            </div>
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-[#00224e] flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-[18px]">person</span>
+                </div>
+            </div>
+        </div>
+    </header>
 
-</body></html>
+    <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-[#f7f9fb] px-4 py-4">
+        <div class="flex flex-col gap-4">
+            <!-- أزرار التبويبات -->
+            <div class="bg-[#eceef0] p-1 rounded-xl flex gap-1">
+                <button onclick="switchTab('appointments')" class="flex-1 py-2 rounded-lg bg-white text-[#00224e] text-[13px] font-bold shadow-sm" id="tabAppointments">المواعيد (3)</button>
+                <button onclick="switchTab('my-requests')" class="flex-1 py-2 rounded-lg text-[#525f71] text-[13px]" id="tabMyRequests">طلباتي (2)</button>
+                <button onclick="switchTab('market')" class="flex-1 py-2 rounded-lg text-[#525f71] text-[13px]" id="tabMarket">طلبات السوق</button>
+            </div>
+
+            <!-- زر إضافة طلب (يعمل) -->
+            <button onclick="showAddRequest()" class="w-full py-3 rounded-xl bg-[#00224e] text-white text-[14px] font-bold flex items-center justify-center gap-2 shadow-sm hover:opacity-90 transition">
+                <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                + إضافة طلب أو إعلان عقاري جديد
+            </button>
+
+            <!-- نموذج إضافة طلب (يظهر عند الضغط على الزر) -->
+            <div id="addRequestForm" class="hidden bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]">
+                <h3 class="text-[16px] font-bold text-[#00224e] mb-2">إضافة طلب جديد</h3>
+                <input type="text" id="reqTitle" placeholder="عنوان الطلب (مثال: مطلوب فيلا في حطين)" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
+                <input type="text" id="reqBudget" placeholder="الميزانية (مثال: 2,000,000 - 3,000,000 ر.س)" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
+                <input type="text" id="reqLocation" placeholder="الموقع المطلوب" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
+                <textarea id="reqDesc" placeholder="تفاصيل الطلب" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2" rows="2"></textarea>
+                <button onclick="addRequest()" class="w-full py-2 rounded-lg bg-[#00224e] text-white text-sm font-bold">💾 حفظ الطلب</button>
+                <button onclick="hideAddRequest()" class="w-full py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-sm font-bold mt-2">إلغاء</button>
+            </div>
+
+            <!-- محتوى المواعيد -->
+            <div id="appointmentsContent">
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-[16px] font-bold text-[#00224e]">فيلا دي سيلفا المعاصرة</h3>
+                        <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">✅ مؤكد</span>
+                    </div>
+                    <p class="text-[13px] text-[#525f71] mt-1">الخميس، 24 أكتوبر 10:30 ص • المستشار: عبدالله السالم</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-[12px] text-[#525f71]">حي الملقا، الرياض</span>
+                        <div class="flex gap-2">
+                            <button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">تعديل</button>
+                            <button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">إلغاء</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-[16px] font-bold text-[#00224e]">بنتهاوس الأفق الفاخر</h3>
+                        <span class="text-[11px] bg-[#e0e3e5] text-[#525f71] px-2 py-1 rounded-full">⏳ قيد المراجعة</span>
+                    </div>
+                    <p class="text-[13px] text-[#525f71] mt-1">السبت، 26 أكتوبر 04:00 م • المستشار: فهد الغامدي</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-[12px] text-[#525f71]">حي حطين، الرياض</span>
+                        <div class="flex gap-2">
+                            <button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">تعديل</button>
+                            <button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">إلغاء</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-[16px] font-bold text-[#00224e]">مجمع ريزيدنس التجاري</h3>
+                        <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">✅ مؤكد</span>
+                    </div>
+                    <p class="text-[13px] text-[#525f71] mt-1">الاثنين، 28 أكتوبر 12:00 م • المستشار: نورة الشمري</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-[12px] text-[#525f71]">حي الياسمين، الرياض</span>
+                        <div class="flex gap-2">
+                            <button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">تعديل</button>
+                            <button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">إلغاء</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- محتوى طلباتي (يظهر عند الضغط على التبويب) -->
+            <div id="myRequestsContent" class="hidden">
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-[14px] font-bold text-[#00224e]">فيلا مستقلة مودرن</h4>
+                        <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">طلب ساري</span>
+                    </div>
+                    <p class="text-[12px] text-[#525f71]">شمال الرياض • 4.5 - 6.0 مليون • 500م² فأكثر</p>
+                </div>
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-[14px] font-bold text-[#00224e]">مكتب إداري استثماري</h4>
+                        <span class="text-[11px] bg-[#e0e3e5] text-[#525f71] px-2 py-1 rounded-full">بحث جاري</span>
+                    </div>
+                    <p class="text-[12px] text-[#525f71]">طريق الملك فهد • 200 ألف/سنوي • 180-240م²</p>
+                </div>
+            </div>
+
+            <!-- محتوى طلبات السوق (يظهر عند الضغط على التبويب) -->
+            <div id="marketContent" class="hidden">
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-[14px] font-bold text-[#00224e]">أرض تجارية استثمارية</h4>
+                        <span class="text-[14px] font-bold text-[#00224e]">12-15 مليون ر.س</span>
+                    </div>
+                    <p class="text-[12px] text-[#525f71]">حي النرجس • شوارع 30+ • 1,200 م²</p>
+                    <button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold">تقديم عقار مطابق</button>
+                </div>
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-[14px] font-bold text-[#00224e]">عمارة سكنية عوائل</h4>
+                        <span class="text-[14px] font-bold text-[#00224e]">8.5 مليون ر.س</span>
+                    </div>
+                    <p class="text-[12px] text-[#525f71]">حي المروج أو الورود • دخل لا يقل عن 8.5%</p>
+                    <button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold">تقديم عقار مطابق</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#f7f9fb]/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,34,78,0.04)]">
+        <div class="h-16 px-4 flex items-center justify-around">
+            <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
+                <span class="material-symbols-outlined text-[24px]">real_estate_agent</span>
+                <span class="text-[11px]">الرئيسية</span>
+            </a>
+            <a href="property-details.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
+                <span class="material-symbols-outlined text-[24px]">apartment</span>
+                <span class="text-[11px]">العقارات</span>
+            </a>
+            <a href="appointments.html" class="flex flex-col items-center justify-center gap-1 text-[#00224e] font-bold">
+                <span class="material-symbols-outlined text-[24px]">calendar_month</span>
+                <span class="text-[11px]">المواعيد</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // التبديل بين التبويبات
+        function switchTab(tab) {
+            // إعادة تعيين الأزرار
+            document.querySelectorAll('.bg-[#eceef0] button').forEach(btn => {
+                btn.className = 'flex-1 py-2 rounded-lg text-[#525f71] text-[13px]';
+            });
+
+            // إخفاء كل المحتوى
+            document.getElementById('appointmentsContent').classList.add('hidden');
+            document.getElementById('myRequestsContent').classList.add('hidden');
+            document.getElementById('marketContent').classList.add('hidden');
+
+            if (tab === 'appointments') {
+                document.getElementById('tabAppointments').className = 'flex-1 py-2 rounded-lg bg-white text-[#00224e] text-[13px] font-bold shadow-sm';
+                document.getElementById('appointmentsContent').classList.remove('hidden');
+            } else if (tab === 'my-requests') {
+                document.getElementById('tabMyRequests').className = 'flex-1 py-2 rounded-lg bg-white text-[#00224e] text-[13px] font-bold shadow-sm';
+                document.getElementById('myRequestsContent').classList.remove('hidden');
+            } else {
+                document.getElementById('tabMarket').className = 'flex-1 py-2 rounded-lg bg-white text-[#00224e] text-[13px] font-bold shadow-sm';
+                document.getElementById('marketContent').classList.remove('hidden');
+            }
+        }
+
+        // إلغاء موعد
+        function cancelAppointment(btn) {
+            if (confirm('هل أنت متأكد من إلغاء هذا الموعد؟')) {
+                const card = btn.closest('.bg-white');
+                card.style.transition = 'all 0.3s ease';
+                card.style.opacity = '0';
+                setTimeout(() => card.remove(), 300);
+                alert('🗑️ تم إلغاء الموعد بنجاح');
+            }
+        }
+
+        // عرض نموذج إضافة طلب
+        function showAddRequest() {
+            document.getElementById('addRequestForm').classList.remove('hidden');
+        }
+        function hideAddRequest() {
+            document.getElementById('addRequestForm').classList.add('hidden');
+        }
+
+        // إضافة طلب جديد
+        function addRequest() {
+            const title = document.getElementById('reqTitle').value.trim();
+            const budget = document.getElementById('reqBudget').value.trim();
+            const location = document.getElementById('reqLocation').value.trim();
+            const desc = document.getElementById('reqDesc').value.trim();
+
+            if (!title) { alert('⚠️ الرجاء إدخال عنوان الطلب'); return; }
+
+            // إضافة الطلب إلى قائمة "طلباتي"
+            const container = document.getElementById('myRequestsContent');
+            const newRequest = document.createElement('div');
+            newRequest.className = 'bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3';
+            newRequest.innerHTML = `
+                <div class="flex items-center justify-between">
+                    <h4 class="text-[14px] font-bold text-[#00224e]">${title}</h4>
+                    <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">🆕 طلب جديد</span>
+                </div>
+                <p class="text-[12px] text-[#525f71]">${location || ''} ${budget ? '• ' + budget : ''} ${desc ? '• ' + desc : ''}</p>
+            `;
+            container.appendChild(newRequest);
+
+            // تفريغ الحقول وإخفاء النموذج
+            document.getElementById('reqTitle').value = '';
+            document.getElementById('reqBudget').value = '';
+            document.getElementById('reqLocation').value = '';
+            document.getElementById('reqDesc').value = '';
+            hideAddRequest();
+
+            alert('✅ تم إضافة الطلب بنجاح!');
+        }
+    </script>
+</body>
+</html>
