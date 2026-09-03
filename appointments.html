@@ -7,6 +7,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
     <style>
@@ -14,8 +15,17 @@
         .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
         .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
         ::-webkit-scrollbar { display: none; }
-        .tab-btn.active { background-color: white !important; color: #00224e !important; font-weight: 700 !important; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
-        .tab-btn { background-color: transparent !important; color: #525f71 !important; font-weight: 400 !important; }
+        .tab-btn.active {
+            background-color: white !important;
+            color: #00224e !important;
+            font-weight: 700 !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .tab-btn {
+            background-color: transparent !important;
+            color: #525f71 !important;
+            font-weight: 400 !important;
+        }
     </style>
 </head>
 <body class="bg-[#f7f9fb] text-[#191c1e] flex flex-col min-h-screen">
@@ -37,16 +47,21 @@
 
     <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-[#f7f9fb] px-4 py-4">
         <div class="flex flex-col gap-4">
-            <div class="bg-[#eceef0] p-1 rounded-xl flex gap-1">
+
+            <!-- أزرار التبويبات -->
+            <div class="bg-[#eceef0] p-1 rounded-xl flex gap-1" id="tabContainer">
                 <button onclick="switchTab('appointments')" class="tab-btn active flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabAppointments">المواعيد (3)</button>
                 <button onclick="switchTab('my-requests')" class="tab-btn flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabMyRequests">طلباتي</button>
                 <button onclick="switchTab('market')" class="tab-btn flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabMarket">طلبات السوق</button>
             </div>
 
+            <!-- زر إضافة طلب -->
             <button onclick="showAddRequest()" class="w-full py-3 rounded-xl bg-[#00224e] text-white text-[14px] font-bold flex items-center justify-center gap-2 shadow-sm hover:opacity-90 transition">
-                <span class="material-symbols-outlined text-[20px]">add_circle</span> + إضافة طلب أو إعلان عقاري جديد
+                <span class="material-symbols-outlined text-[20px]">add_circle</span>
+                + إضافة طلب أو إعلان عقاري جديد
             </button>
 
+            <!-- نموذج إضافة طلب -->
             <div id="addRequestForm" class="hidden bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]">
                 <h3 class="text-[16px] font-bold text-[#00224e] mb-2">إضافة طلب جديد</h3>
                 <input type="text" id="reqTitle" placeholder="عنوان الطلب" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
@@ -57,70 +72,200 @@
                 <button onclick="hideAddRequest()" class="w-full py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-sm font-bold mt-2">إلغاء</button>
             </div>
 
+            <!-- محتوى المواعيد -->
             <div id="appointmentsContent">
-                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30"><div class="flex items-center justify-between"><h3 class="text-[16px] font-bold text-[#00224e]">فيلا دي سيلفا المعاصرة</h3><span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">✅ مؤكد</span></div><p class="text-[13px] text-[#525f71] mt-1">الخميس، 24 أكتوبر 10:30 ص • المستشار: عبدالله السالم</p><div class="flex items-center justify-between mt-2"><span class="text-[12px] text-[#525f71]">حي الملقا، الرياض</span><div class="flex gap-2"><button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">تعديل</button><button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">إلغاء</button></div></div></div>
-                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3"><div class="flex items-center justify-between"><h3 class="text-[16px] font-bold text-[#00224e]">بنتهاوس الأفق الفاخر</h3><span class="text-[11px] bg-[#e0e3e5] text-[#525f71] px-2 py-1 rounded-full">⏳ قيد المراجعة</span></div><p class="text-[13px] text-[#525f71] mt-1">السبت، 26 أكتوبر 04:00 م • المستشار: فهد الغامدي</p><div class="flex items-center justify-between mt-2"><span class="text-[12px] text-[#525f71]">حي حطين، الرياض</span><div class="flex gap-2"><button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">تعديل</button><button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">إلغاء</button></div></div></div>
-                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3"><div class="flex items-center justify-between"><h3 class="text-[16px] font-bold text-[#00224e]">مجمع ريزيدنس التجاري</h3><span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">✅ مؤكد</span></div><p class="text-[13px] text-[#525f71] mt-1">الاثنين، 28 أكتوبر 12:00 م • المستشار: نورة الشمري</p><div class="flex items-center justify-between mt-2"><span class="text-[12px] text-[#525f71]">حي الياسمين، الرياض</span><div class="flex gap-2"><button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">تعديل</button><button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">إلغاء</button></div></div></div>
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-[16px] font-bold text-[#00224e]">فيلا دي سيلفا المعاصرة</h3>
+                        <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">✅ مؤكد</span>
+                    </div>
+                    <p class="text-[13px] text-[#525f71] mt-1">الخميس، 24 أكتوبر 10:30 ص • المستشار: عبدالله السالم</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-[12px] text-[#525f71]">حي الملقا، الرياض</span>
+                        <div class="flex gap-2">
+                            <button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">تعديل</button>
+                            <button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">إلغاء</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-[16px] font-bold text-[#00224e]">بنتهاوس الأفق الفاخر</h3>
+                        <span class="text-[11px] bg-[#e0e3e5] text-[#525f71] px-2 py-1 rounded-full">⏳ قيد المراجعة</span>
+                    </div>
+                    <p class="text-[13px] text-[#525f71] mt-1">السبت، 26 أكتوبر 04:00 م • المستشار: فهد الغامدي</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-[12px] text-[#525f71]">حي حطين، الرياض</span>
+                        <div class="flex gap-2">
+                            <button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">تعديل</button>
+                            <button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">إلغاء</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-[16px] font-bold text-[#00224e]">مجمع ريزيدنس التجاري</h3>
+                        <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">✅ مؤكد</span>
+                    </div>
+                    <p class="text-[13px] text-[#525f71] mt-1">الاثنين، 28 أكتوبر 12:00 م • المستشار: نورة الشمري</p>
+                    <div class="flex items-center justify-between mt-2">
+                        <span class="text-[12px] text-[#525f71]">حي الياسمين، الرياض</span>
+                        <div class="flex gap-2">
+                            <button class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">تعديل</button>
+                            <button onclick="cancelAppointment(this)" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">إلغاء</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div id="myRequestsContent" class="hidden"><div id="myRequestsList"></div></div>
+            <!-- محتوى طلباتي -->
+            <div id="myRequestsContent" class="hidden">
+                <div id="myRequestsList"></div>
+            </div>
+
+            <!-- محتوى طلبات السوق -->
             <div id="marketContent" class="hidden">
-                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30"><div class="flex items-center justify-between"><h4 class="text-[14px] font-bold text-[#00224e]">أرض تجارية استثمارية</h4><span class="text-[14px] font-bold text-[#00224e]">12-15 مليون ر.س</span></div><p class="text-[12px] text-[#525f71]">حي النرجس • شوارع 30+ • 1,200 م²</p><button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold">تقديم عقار مطابق</button></div>
-                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3"><div class="flex items-center justify-between"><h4 class="text-[14px] font-bold text-[#00224e]">عمارة سكنية عوائل</h4><span class="text-[14px] font-bold text-[#00224e]">8.5 مليون ر.س</span></div><p class="text-[12px] text-[#525f71]">حي المروج أو الورود • دخل لا يقل عن 8.5%</p><button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold">تقديم عقار مطابق</button></div>
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-[14px] font-bold text-[#00224e]">أرض تجارية استثمارية</h4>
+                        <span class="text-[14px] font-bold text-[#00224e]">12-15 مليون ر.س</span>
+                    </div>
+                    <p class="text-[12px] text-[#525f71]">حي النرجس • شوارع 30+ • 1,200 م²</p>
+                    <button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold">تقديم عقار مطابق</button>
+                </div>
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-[14px] font-bold text-[#00224e]">عمارة سكنية عوائل</h4>
+                        <span class="text-[14px] font-bold text-[#00224e]">8.5 مليون ر.س</span>
+                    </div>
+                    <p class="text-[12px] text-[#525f71]">حي المروج أو الورود • دخل لا يقل عن 8.5%</p>
+                    <button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold">تقديم عقار مطابق</button>
+                </div>
             </div>
         </div>
     </main>
 
     <nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#f7f9fb]/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,34,78,0.04)]">
         <div class="h-16 px-4 flex items-center justify-around">
-            <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]"><span class="material-symbols-outlined text-[24px]">real_estate_agent</span><span class="text-[11px]">الرئيسية</span></a>
-            <a href="property-details.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]"><span class="material-symbols-outlined text-[24px]">apartment</span><span class="text-[11px]">العقارات</span></a>
-            <a href="appointments.html" class="flex flex-col items-center justify-center gap-1 text-[#00224e] font-bold"><span class="material-symbols-outlined text-[24px]">calendar_month</span><span class="text-[11px]">المواعيد</span></a>
+            <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
+                <span class="material-symbols-outlined text-[24px]">real_estate_agent</span>
+                <span class="text-[11px]">الرئيسية</span>
+            </a>
+            <a href="property-details.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
+                <span class="material-symbols-outlined text-[24px]">apartment</span>
+                <span class="text-[11px]">العقارات</span>
+            </a>
+            <a href="appointments.html" class="flex flex-col items-center justify-center gap-1 text-[#00224e] font-bold">
+                <span class="material-symbols-outlined text-[24px]">calendar_month</span>
+                <span class="text-[11px]">المواعيد</span>
+            </a>
         </div>
     </nav>
 
     <script>
         // ★★★ ضع رابط Firebase الخاص بك هنا ★★★
-        const firebaseConfig = { databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app" };
+        const firebaseConfig = {
+            databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/"
+        };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
+        // =============== التبديل بين التبويبات ===============
         function switchTab(tab) {
-            ['appointmentsContent', 'myRequestsContent', 'marketContent'].forEach(id => document.getElementById(id).classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-            if (tab === 'appointments') { document.getElementById('appointmentsContent').classList.remove('hidden'); document.getElementById('tabAppointments').classList.add('active'); }
-            else if (tab === 'my-requests') { document.getElementById('myRequestsContent').classList.remove('hidden'); document.getElementById('tabMyRequests').classList.add('active'); loadMyRequests(); }
-            else if (tab === 'market') { document.getElementById('marketContent').classList.remove('hidden'); document.getElementById('tabMarket').classList.add('active'); }
+            // إخفاء كل المحتوى
+            document.getElementById('appointmentsContent').classList.add('hidden');
+            document.getElementById('myRequestsContent').classList.add('hidden');
+            document.getElementById('marketContent').classList.add('hidden');
+
+            // إزالة الكلاس النشط من كل الأزرار
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // إظهار المحتوى المطلوب وتفعيل الزر المناسب
+            if (tab === 'appointments') {
+                document.getElementById('appointmentsContent').classList.remove('hidden');
+                document.getElementById('tabAppointments').classList.add('active');
+            } else if (tab === 'my-requests') {
+                document.getElementById('myRequestsContent').classList.remove('hidden');
+                document.getElementById('tabMyRequests').classList.add('active');
+                loadMyRequests();
+            } else if (tab === 'market') {
+                document.getElementById('marketContent').classList.remove('hidden');
+                document.getElementById('tabMarket').classList.add('active');
+            }
         }
 
+        // =============== تحميل طلباتي من Firebase ===============
         function loadMyRequests() {
             const list = document.getElementById('myRequestsList');
             db.ref('requests').on('value', (snapshot) => {
                 const data = snapshot.val();
                 list.innerHTML = '';
                 if (data) {
-                    Object.keys(data).reverse().forEach(key => {
+                    const keys = Object.keys(data);
+                    keys.reverse().forEach(key => {
                         const r = data[key];
                         const div = document.createElement('div');
                         div.className = 'bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3';
-                        div.innerHTML = <div class="flex items-center justify-between"><h4 class="text-[14px] font-bold text-[#00224e]">${r.title || 'طلب'}</h4><span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">🆕 طلب</span></div><p class="text-[12px] text-[#525f71]">${r.location || ''} ${r.budget ? '• ' + r.budget : ''}</p>;
+                        div.innerHTML = `
+                            <div class="flex items-center justify-between">
+                                <h4 class="text-[14px] font-bold text-[#00224e]">${r.title || 'طلب'}</h4>
+                                <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">🆕 طلب</span>
+                            </div>
+                            <p class="text-[12px] text-[#525f71]">${r.location || ''} ${r.budget ? '• ' + r.budget : ''}</p>
+                            <div class="flex gap-2 mt-2">
+                                <button onclick="editRequest('${key}')" class="text-[12px] text-[#00224e] bg-[#f2f4f6] px-3 py-1 rounded-lg">✏️ تعديل</button>
+                                <button onclick="deleteRequest('${key}')" class="text-[12px] text-[#ba1a1a] bg-[#ffdad6] px-3 py-1 rounded-lg">🗑️ حذف</button>
+                            </div>
+                        `;
                         list.appendChild(div);
                     });
-                } else { list.innerHTML = '<p class="text-[#525f71] text-center text-sm py-4">لا توجد طلبات.</p>'; }
+                } else {
+                    list.innerHTML = '<p class="text-[#525f71] text-center text-sm py-4">لا توجد طلبات حالياً.</p>';
+                }
             });
         }
 
+        // =============== إضافة طلب ===============
         function addRequest() {
             const title = document.getElementById('reqTitle').value.trim();
             const budget = document.getElementById('reqBudget').value.trim();
             const location = document.getElementById('reqLocation').value.trim();
             const desc = document.getElementById('reqDesc').value.trim();
             if (!title) { alert('⚠️ الرجاء إدخال عنوان الطلب'); return; }
+
             db.ref('requests').push({ title, budget, location, desc })
-                .then(() => { alert('✅ تم إضافة الطلب بنجاح!'); document.getElementById('reqTitle').value = ''; document.getElementById('reqBudget').value = ''; document.getElementById('reqLocation').value = ''; document.getElementById('reqDesc').value = ''; hideAddRequest(); })
+                .then(() => {
+                    alert('✅ تم إضافة الطلب بنجاح!');
+                    document.getElementById('reqTitle').value = '';
+                    document.getElementById('reqBudget').value = '';
+                    document.getElementById('reqLocation').value = '';
+                    document.getElementById('reqDesc').value = '';
+                    hideAddRequest();
+                })
                 .catch(err => alert('❌ فشل الإضافة: ' + err.message));
         }
 
+        // =============== حذف طلب ===============
+        function deleteRequest(key) {
+            if (!confirm('هل أنت متأكد من حذف هذا الطلب؟')) return;
+            db.ref('requests/' + key).remove()
+                .then(() => alert('🗑️ تم حذف الطلب بنجاح'))
+                .catch(err => alert('❌ فشل الحذف: ' + err.message));
+        }
+
+        // =============== تعديل طلب ===============
+        function editRequest(key) {
+            const newTitle = prompt('أدخل العنوان الجديد للطلب:');
+            if (newTitle !== null && newTitle.trim() !== '') {
+                db.ref('requests/' + key).update({ title: newTitle.trim() })
+                    .then(() => alert('✅ تم تحديث الطلب بنجاح'))
+                    .catch(err => alert('❌ فشل التحديث: ' + err.message));
+            }
+        }
+
+        // =============== إلغاء موعد ===============
         function cancelAppointment(btn) {
             if (confirm('هل أنت متأكد من إلغاء هذا الموعد؟')) {
                 const card = btn.closest('.bg-white');
@@ -131,10 +276,18 @@
             }
         }
 
-        function showAddRequest() { document.getElementById('addRequestForm').classList.remove('hidden'); }
-        function hideAddRequest() { document.getElementById('addRequestForm').classList.add('hidden'); }
+        // =============== إظهار/إخفاء نموذج الإضافة ===============
+        function showAddRequest() {
+            document.getElementById('addRequestForm').classList.remove('hidden');
+        }
+        function hideAddRequest() {
+            document.getElementById('addRequestForm').classList.add('hidden');
+        }
 
-        document.addEventListener('DOMContentLoaded', function() { switchTab('appointments'); });
+        // تفعيل التبويب الأول عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            switchTab('appointments');
+        });
     </script>
 </body>
 </html>
