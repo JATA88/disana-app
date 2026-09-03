@@ -1,10 +1,12 @@
-<!DOCTYPE html><html dir="rtl" lang="ar" style=""><head>
-<meta charset="utf-8">
-<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
-<link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!DOCTYPE html>
+
+<html dir="rtl" lang="ar" style=""><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <script id="tailwind-config">
     tailwind.config = {
@@ -60,6 +62,15 @@
     .shake-anim {
       animation: shake 0.35s ease-in-out;
     }
+    /* Explicit high-contrast classes for filter chips to guarantee legibility */
+    .filter-chip-active {
+      background-color: #12386e !important;
+      color: #ffffff !important;
+    }
+    .filter-chip-inactive {
+      background-color: #f2f4f6 !important;
+      color: #1e293b !important;
+    }
   </style>
 </head>
 <body class="bg-surface text-on-surface font-ar-mode flex flex-col min-h-screen select-none">
@@ -68,7 +79,7 @@
 <div class="h-14 px-4 flex items-center justify-between">
 <div class="flex items-center gap-2.5">
 <div class="w-8 h-8 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shadow-xs">
-<svg class="w-4.5 h-4.5 text-on-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24">
+<svg class="w-4.5 h-4.5 text-on-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24">
 <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
 <polyline points="2 17 12 22 22 17"></polyline>
 <polyline points="2 12 12 17 22 12"></polyline>
@@ -90,7 +101,7 @@
 </div>
 </div>
 </header>
-<!-- Main Content Area: Shifted upwards with reduced top padding and tighter vertical flow -->
+<!-- Main Content Area -->
 <main class="flex flex-col relative w-full pt-15 sm:pt-16 pb-24 bg-surface min-h-screen" style="padding-top: calc(3.6rem + env(safe-area-inset-top, 0px)); padding-bottom: calc(6.5rem + env(safe-area-inset-bottom, 16px));">
 <div class="flex flex-col w-full px-4 gap-2.5 max-w-xl mx-auto">
 <!-- Hero Banner -->
@@ -99,7 +110,7 @@
 <div class="flex items-start justify-between">
 <div class="flex items-center gap-2.5">
 <div class="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center backdrop-blur-xs">
-<svg class="w-5 h-5 text-on-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24">
+<svg class="w-5 h-5 text-on-primary" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24">
 <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
 <polyline points="2 17 12 22 22 17"></polyline>
 <polyline points="2 12 12 17 22 12"></polyline>
@@ -144,17 +155,17 @@
 <div class="bg-surface-container-lowest rounded-2xl p-2.5 sm:p-3 shadow-xs flex flex-col gap-2">
 <div class="flex items-center bg-surface-container rounded-xl px-3 py-1.5 gap-2">
 <span class="material-symbols-outlined text-secondary text-[19px]">search</span>
-<input class="bg-transparent w-full text-on-surface placeholder:text-secondary text-xs focus:outline-none" id="input-search" placeholder="ابحث بنوع العقار أو المدينة..." type="text">
+<input class="bg-transparent w-full text-on-surface placeholder:text-secondary text-xs focus:outline-none" id="input-search" placeholder="ابحث بنوع العقار أو المدينة..." type="text"/>
 <button class="hidden text-secondary hover:text-primary" id="btn-clear-search">
 <span class="material-symbols-outlined text-[16px]">cancel</span>
 </button>
 </div>
-<!-- Filter Chips -->
+<!-- Filter Chips with Guaranteed Legibility -->
 <div class="flex items-center gap-1.5 overflow-x-auto pb-0.5" id="filter-chips">
-<button class="filter-chip px-3 py-1 rounded-full text-xs font-medium bg-primary text-on-primary transition-all" data-type="all" id="chip-all">الكل</button>
-<button class="filter-chip px-3 py-1 rounded-full text-xs font-medium bg-surface-container text-secondary hover:text-primary transition-all" data-type="sale" id="chip-sale">بيع</button>
-<button class="filter-chip px-3 py-1 rounded-full text-xs font-medium bg-surface-container text-secondary hover:text-primary transition-all" data-type="rent" id="chip-rent">إيجار</button>
-<button class="filter-chip px-3 py-1 rounded-full text-xs font-medium bg-surface-container text-secondary hover:text-primary transition-all" data-type="land" id="chip-land">أراضي</button>
+<button class="filter-chip px-3.5 py-1 rounded-full text-xs font-semibold transition-colors duration-150 filter-chip-active" data-type="all" id="chip-all">الكل</button>
+<button class="filter-chip px-3.5 py-1 rounded-full text-xs font-semibold transition-colors duration-150 filter-chip-inactive" data-type="sale" id="chip-sale">بيع</button>
+<button class="filter-chip px-3.5 py-1 rounded-full text-xs font-semibold transition-colors duration-150 filter-chip-inactive" data-type="rent" id="chip-rent">إيجار</button>
+<button class="filter-chip px-3.5 py-1 rounded-full text-xs font-semibold transition-colors duration-150 filter-chip-inactive" data-type="land" id="chip-land">أراضي</button>
 </div>
 </div>
 <!-- Feed / List Container -->
@@ -222,10 +233,10 @@
 </div>
 <p class="text-xs text-secondary leading-relaxed" id="lbl-mgmt-desc">ديسانا توفر نظاماً حراً يتيح لأي مستخدم حذف أو تصحيح بيانات إعلاناته ومواعيده بنقرة زر دون تعقيدات.</p>
 <div class="flex flex-col gap-2.5 pt-1" id="management-records-feed">
-            <div class="p-5 text-center text-xs text-secondary bg-surface-container rounded-xl">
-              لا توجد سجلات مسجلة حالياً للتعديل أو الحذف.
-            </div>
-          </div>
+<div class="p-5 text-center text-xs text-secondary bg-surface-container rounded-xl">
+    لا توجد سجلات مسجلة حالياً للتعديل أو الحذف.
+  </div>
+</div>
 </div>
 </section>
 </div>
@@ -253,19 +264,19 @@
 <label class="text-xs font-bold text-on-surface" id="lbl-category-type">نوع العقار</label>
 <div class="grid grid-cols-4 gap-1.5" id="group-prop-category">
 <label class="cursor-pointer">
-<input checked="" class="peer sr-only" name="prop-category" type="radio" value="شقة">
+<input checked="" class="peer sr-only" name="prop-category" type="radio" value="شقة"/>
 <div class="py-1.5 text-center rounded-xl bg-surface-container text-secondary text-xs font-semibold peer-checked:bg-primary peer-checked:text-on-primary transition-all hover:bg-surface-container-high" id="opt-cat-apt">شقة</div>
 </label>
 <label class="cursor-pointer">
-<input class="peer sr-only" name="prop-category" type="radio" value="فيلا">
+<input class="peer sr-only" name="prop-category" type="radio" value="فيلا"/>
 <div class="py-1.5 text-center rounded-xl bg-surface-container text-secondary text-xs font-semibold peer-checked:bg-primary peer-checked:text-on-primary transition-all hover:bg-surface-container-high" id="opt-cat-villa">فيلا</div>
 </label>
 <label class="cursor-pointer">
-<input class="peer sr-only" name="prop-category" type="radio" value="أرض">
+<input class="peer sr-only" name="prop-category" type="radio" value="أرض"/>
 <div class="py-1.5 text-center rounded-xl bg-surface-container text-secondary text-xs font-semibold peer-checked:bg-primary peer-checked:text-on-primary transition-all hover:bg-surface-container-high" id="opt-cat-land">أرض</div>
 </label>
 <label class="cursor-pointer">
-<input class="peer sr-only" name="prop-category" type="radio" value="مكتب">
+<input class="peer sr-only" name="prop-category" type="radio" value="مكتب"/>
 <div class="py-1.5 text-center rounded-xl bg-surface-container text-secondary text-xs font-semibold peer-checked:bg-primary peer-checked:text-on-primary transition-all hover:bg-surface-container-high" id="opt-cat-office">مكتب</div>
 </label>
 </div>
@@ -275,11 +286,11 @@
 <label class="text-xs font-bold text-on-surface" id="lbl-op-type">نوع العرض</label>
 <div class="grid grid-cols-2 gap-2">
 <label class="cursor-pointer">
-<input checked="" class="peer sr-only" name="prop-type" type="radio" value="sale">
+<input checked="" class="peer sr-only" name="prop-type" type="radio" value="sale"/>
 <div class="py-2 text-center rounded-xl bg-surface-container text-secondary text-xs font-semibold peer-checked:bg-primary-container peer-checked:text-on-primary transition-all hover:bg-surface-container-high" id="opt-sale">بيع</div>
 </label>
 <label class="cursor-pointer">
-<input class="peer sr-only" name="prop-type" type="radio" value="rent">
+<input class="peer sr-only" name="prop-type" type="radio" value="rent"/>
 <div class="py-2 text-center rounded-xl bg-surface-container text-secondary text-xs font-semibold peer-checked:bg-primary-container peer-checked:text-on-primary transition-all hover:bg-surface-container-high" id="opt-rent">إيجار</div>
 </label>
 </div>
@@ -287,23 +298,23 @@
 <!-- Title -->
 <div class="flex flex-col gap-1">
 <label class="text-xs font-semibold text-on-surface" id="lbl-title-input">عنوان الإعلان</label>
-<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="prop-input-title" placeholder="مثال: فيلا عصرية مع مسبح وحديقة" required="" type="text">
+<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="prop-input-title" placeholder="مثال: فيلا عصرية مع مسبح وحديقة" required="" type="text"/>
 </div>
 <!-- City & Price -->
 <div class="grid grid-cols-2 gap-2">
 <div class="flex flex-col gap-1">
 <label class="text-xs font-semibold text-on-surface" id="lbl-city-input">المدينة / الحي</label>
-<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="prop-input-city" placeholder="مثال: الرياض - النرجس" required="" type="text">
+<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="prop-input-city" placeholder="مثال: الرياض - النرجس" required="" type="text"/>
 </div>
 <div class="flex flex-col gap-1">
 <label class="text-xs font-semibold text-on-surface" id="lbl-price-input">السعر</label>
-<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="prop-input-price" placeholder="مثال: 1,850,000 ريال" required="" type="text">
+<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="prop-input-price" placeholder="مثال: 1,850,000 ريال" required="" type="text"/>
 </div>
 </div>
 <!-- Contact info -->
 <div class="flex flex-col gap-1">
 <label class="text-xs font-semibold text-on-surface" id="lbl-contact-input">رقم التواصل / الاسم</label>
-<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="prop-input-contact" placeholder="مثال: 0501234567 - أبو فهد" required="" type="text">
+<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="prop-input-contact" placeholder="مثال: 0501234567 - أبو فهد" required="" type="text"/>
 </div>
 <!-- Description with 100-word limit -->
 <div class="flex flex-col gap-1">
@@ -346,20 +357,20 @@
 <form class="flex flex-col gap-2.5" id="form-appt-modal">
 <div class="flex flex-col gap-1">
 <label class="text-xs font-semibold text-on-surface" id="lbl-appt-name">اسم العميل أو الجهة</label>
-<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface focus:outline-none focus:ring-1 focus:ring-primary" id="appt-input-name" placeholder="الاسم الكامل" required="" type="text">
+<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface focus:outline-none focus:ring-1 focus:ring-primary" id="appt-input-name" placeholder="الاسم الكامل" required="" type="text"/>
 </div>
 <div class="flex flex-col gap-1">
 <label class="text-xs font-semibold text-on-surface" id="lbl-appt-target">العقار المعني أو المدينة</label>
-<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface focus:outline-none focus:ring-1 focus:ring-primary" id="appt-input-target" placeholder="معرف الإعلان أو عنوان العقار" required="" type="text">
+<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface focus:outline-none focus:ring-1 focus:ring-primary" id="appt-input-target" placeholder="معرف الإعلان أو عنوان العقار" required="" type="text"/>
 </div>
 <div class="grid grid-cols-2 gap-2">
 <div class="flex flex-col gap-1">
 <label class="text-xs font-semibold text-on-surface" id="lbl-appt-date">تاريخ المعاينة</label>
-<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface focus:outline-none focus:ring-1 focus:ring-primary" id="appt-input-date" required="" type="date">
+<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface focus:outline-none focus:ring-1 focus:ring-primary" id="appt-input-date" required="" type="date"/>
 </div>
 <div class="flex flex-col gap-1">
 <label class="text-xs font-semibold text-on-surface" id="lbl-appt-time">التوقيت المفضل</label>
-<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface focus:outline-none focus:ring-1 focus:ring-primary" id="appt-input-time" required="" type="time">
+<input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface focus:outline-none focus:ring-1 focus:ring-primary" id="appt-input-time" required="" type="time"/>
 </div>
 </div>
 <span class="text-[11px] text-secondary pt-0.5" id="lbl-appt-auto-del">يُحفظ الموعد بقاعدة بيانات ديسانا ويحذف تلقائياً بعد 30 يوماً</span>
@@ -408,7 +419,7 @@
           heroDesc: 'إدارة واستكشاف الأصول العقارية الراقية',
           heroLangLbl: 'EN',
           followBtn: 'متابعة المنصة',
-          followingBtn: 'تمت المتابعة',
+          followingBtn: 'متابَع ✓',
           subscribeBtn: 'اشتراك معتمد',
           tabListings: 'العقارات',
           tabAdd: '+ إضافة عقار',
@@ -477,7 +488,7 @@
           toastPropAdded: 'تم تثبيت الطلب وإضافة العقار بنجاح!',
           toastApptAdded: 'تم تثبيت الطلب والموعد بنجاح',
           toastDeleted: 'تم حذف العقار بنجاح',
-          toastFollowed: 'شكراً لمتابعتك ديسانا',
+          toastFollowed: 'شكراً لمتابعتك منصة ديسانا!',
           toastUnfollowed: 'تم إلغاء المتابعة',
           toastSubscribed: 'تم تفعيل التنبيهات العقارية بنجاح',
           fillRequired: 'يرجى تعبئة جميع الحقول المطلوبة',
@@ -489,8 +500,8 @@
           heroTitle: 'Disana Real Estate Platform',
           heroDesc: 'High-end asset discovery and management',
           heroLangLbl: 'AR',
-          followBtn: 'Follow Platform',
-          followingBtn: 'Following',
+          followBtn: '+ Follow Platform',
+          followingBtn: 'Following ✓',
           subscribeBtn: 'Verified Sub',
           tabListings: 'Listings',
           tabAdd: '+ Add Property',
@@ -500,7 +511,7 @@
           filterAll: 'All',
           filterSale: 'Sale',
           filterRent: 'Rent',
-          filterLand: 'Land',
+          filterLand: 'Lands',
           emptyTitle: 'No properties available currently',
           emptyDesc: 'Our updated real estate directory awaits your first listing. Post your property to reach verified investors.',
           emptyAddBtn: '+ Add New Property Now',
@@ -518,7 +529,7 @@
           opType: 'Listing Type',
           optSale: 'Sale',
           optRent: 'Rent',
-          optLand: 'Land',
+          optLand: 'Lands',
           lblTitle: 'Listing Title',
           phTitle: 'e.g. Modern Villa with Pool & Garden',
           lblCity: 'City / District',
@@ -559,11 +570,11 @@
           toastPropAdded: 'Order confirmed & Property added successfully!',
           toastApptAdded: 'Request submitted successfully',
           toastDeleted: 'Property deleted successfully',
-          toastFollowed: 'Thanks for following Disana',
+          toastFollowed: 'Thanks for following Disana Platform!',
           toastUnfollowed: 'Unfollowed successfully',
           toastSubscribed: 'Real estate alerts activated',
           fillRequired: 'Please fill all required fields',
-          typeLabels: { sale: 'Sale', rent: 'Rent', land: 'Land' }
+          typeLabels: { sale: 'Sale', rent: 'Rent', land: 'Lands' }
         }
       };
 
@@ -584,8 +595,7 @@
         try {
           localStorage.setItem('disana_props', JSON.stringify(state.properties));
           localStorage.setItem('disana_appts', JSON.stringify(state.appointments));
-          localStorage.setItem('disana_followers', state.followers);
-          localStorage.setItem('disana_isFollowing', state.isFollowing);
+          localStorage.setItem('disana_isFollowing', state.isFollowing ? 'true' : 'false');
         } catch (e) {
           console.warn('LocalStorage error:', e);
         }
@@ -597,8 +607,6 @@
           if (p) state.properties = JSON.parse(p);
           const a = localStorage.getItem('disana_appts');
           if (a) state.appointments = JSON.parse(a);
-          const f = localStorage.getItem('disana_followers');
-          if (f) state.followers = parseInt(f, 10) || 0;
           state.isFollowing = localStorage.getItem('disana_isFollowing') === 'true';
         } catch (e) {
           console.warn('Local read error:', e);
@@ -653,47 +661,54 @@
       const btnFollow = document.getElementById('btn-follow');
       const countFollowers = document.getElementById('count-followers');
       const icoFollow = document.getElementById('ico-follow');
+      const lblFollow = document.getElementById('lbl-follow');
 
       function updateFollowState() {
-        if (countFollowers) countFollowers.textContent = state.followers;
+        if (countFollowers) {
+          countFollowers.textContent = Number(state.followers || 0);
+        }
         const d = i18n[state.lang];
         if (state.isFollowing) {
           if (icoFollow) icoFollow.textContent = 'check_circle';
-          const lbl = document.getElementById('lbl-follow');
-          if (lbl) lbl.textContent = d.followingBtn;
+          if (lblFollow) lblFollow.textContent = d.followingBtn;
           if (btnFollow) {
-            btnFollow.classList.add('ring-2', 'ring-primary-container');
+            btnFollow.classList.add('ring-2', 'ring-white/80', 'bg-white/95');
           }
         } else {
           if (icoFollow) icoFollow.textContent = 'add_circle';
-          const lbl = document.getElementById('lbl-follow');
-          if (lbl) lbl.textContent = d.followBtn;
+          if (lblFollow) lblFollow.textContent = d.followBtn;
           if (btnFollow) {
-            btnFollow.classList.remove('ring-2', 'ring-primary-container');
+            btnFollow.classList.remove('ring-2', 'ring-white/80', 'bg-white/95');
           }
         }
       }
 
+      // Global Live Sync for followers count across devices
       async function fetchFirebaseFollowers() {
         try {
-          const res = await fetch(FOLLOWERS_URL);
+          const controller = new AbortController();
+          const timer = setTimeout(() => controller.abort(), 4000);
+          const res = await fetch(FOLLOWERS_URL, { cache: 'no-store', signal: controller.signal });
+          clearTimeout(timer);
+
           if (res.ok) {
             const data = await res.json();
-            if (typeof data === 'number') {
-              state.followers = data;
-              persistLocal();
+            if (typeof data === 'number' && !isNaN(data)) {
+              state.followers = Math.max(0, data);
               updateFollowState();
             } else if (data === null) {
-              // initialize if node doesn't exist yet
+              // initialize if not existing
               await fetch(FOLLOWERS_URL, {
                 method: 'PUT',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(state.followers || 0)
+                body: JSON.stringify(0)
               });
+              state.followers = 0;
+              updateFollowState();
             }
           }
         } catch (e) {
-          console.warn('Firebase followers fetch notice:', e);
+          // silently ignore network blips during polling
         }
       }
 
@@ -704,32 +719,30 @@
 
         const willFollow = !state.isFollowing;
         state.isFollowing = willFollow;
-
-        // Optimistic local update
-        if (willFollow) {
-          state.followers += 1;
-        } else {
-          state.followers = Math.max(0, state.followers - 1);
-        }
-
         persistLocal();
-        updateFollowState();
 
         const d = i18n[state.lang];
         showToast(willFollow ? d.toastFollowed : d.toastUnfollowed, willFollow ? 'favorite' : 'person_remove');
 
         try {
-          // Sync update to Firebase Realtime Database
-          // Fetch current authoritative count from Firebase first to prevent race condition overwrite
-          const currentRes = await fetch(FOLLOWERS_URL);
-          let remoteCount = 0;
-          if (currentRes.ok) {
-            const val = await currentRes.json();
-            if (typeof val === 'number') remoteCount = val;
+          // 1. Fetch current global authoritative count directly from Firebase
+          let latestCount = 0;
+          try {
+            const getRes = await fetch(FOLLOWERS_URL, { cache: 'no-store' });
+            if (getRes.ok) {
+              const val = await getRes.json();
+              if (typeof val === 'number' && !isNaN(val)) {
+                latestCount = val;
+              }
+            }
+          } catch (e) {
+            latestCount = state.followers || 0;
           }
 
-          let updatedCount = willFollow ? remoteCount + 1 : Math.max(0, remoteCount - 1);
+          // 2. Compute updated count (increment if follow, decrement if unfollow)
+          let updatedCount = willFollow ? latestCount + 1 : Math.max(0, latestCount - 1);
 
+          // 3. Immediately write new count to Firebase RTDB via PUT
           await fetch(FOLLOWERS_URL, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
@@ -737,21 +750,46 @@
           });
 
           state.followers = updatedCount;
-          persistLocal();
           updateFollowState();
         } catch (err) {
-          console.warn('Firebase followers sync error:', err);
+          console.warn('Firebase followers update error:', err);
+          // Fallback optimistic display
+          state.followers = willFollow ? (state.followers + 1) : Math.max(0, state.followers - 1);
+          updateFollowState();
         } finally {
           isFollowUpdating = false;
         }
       }
 
-      btnFollow.addEventListener('click', handleFollowClick);
+      if (btnFollow) {
+        btnFollow.addEventListener('click', handleFollowClick);
+      }
 
       // Subscribe button feedback
       document.getElementById('btn-subscribe').addEventListener('click', () => {
         showToast(i18n[state.lang].toastSubscribed, 'verified');
       });
+
+      // Filter styling helper to maintain 100% visible text at all times
+      function updateFilterChipsUI() {
+        const chips = document.querySelectorAll('.filter-chip');
+        chips.forEach(chip => {
+          const type = chip.dataset.type;
+          const isSelected = type === state.activeFilter;
+          
+          if (isSelected) {
+            chip.classList.remove('filter-chip-inactive');
+            chip.classList.add('filter-chip-active');
+            chip.style.backgroundColor = '#12386e';
+            chip.style.color = '#ffffff';
+          } else {
+            chip.classList.remove('filter-chip-active');
+            chip.classList.add('filter-chip-inactive');
+            chip.style.backgroundColor = '#f2f4f6';
+            chip.style.color = '#1e293b';
+          }
+        });
+      }
 
       // Render Everything according to current Language
       function applyLocalization() {
@@ -785,12 +823,13 @@
         document.getElementById('tab-btn-appts').textContent = d.tabAppts;
         document.getElementById('tab-btn-mgmt').textContent = d.tabMgmt;
 
-        // Search & Filters
+        // Search & Filters Text
         document.getElementById('input-search').placeholder = d.searchPlaceholder;
         document.getElementById('chip-all').textContent = d.filterAll;
         document.getElementById('chip-sale').textContent = d.filterSale;
         document.getElementById('chip-rent').textContent = d.filterRent;
         document.getElementById('chip-land').textContent = d.filterLand;
+        updateFilterChipsUI();
 
         // Empty state & No results state
         document.getElementById('txt-empty-title').textContent = d.emptyTitle;
@@ -954,7 +993,7 @@
         }
       });
 
-      // Firebase Sync Engine - Safe with fallback
+      // Firebase Sync Engine
       async function syncToFirebase(endpoint, record) {
         try {
           const controller = new AbortController();
@@ -1048,7 +1087,7 @@
         renderManagement();
       }
 
-      // CRITICAL SUBMISSION HANDLER: Complete property saving & order confirmation
+      // SUBMISSION HANDLER
       window.handlePropertySubmit = async function (e) {
         if (e) {
           if (typeof e.preventDefault === 'function') e.preventDefault();
@@ -1071,7 +1110,7 @@
         if (!title || !city || !price || !contact) {
           if (modalDialog) {
             modalDialog.classList.remove('shake-anim');
-            void modalDialog.offsetWidth; // trigger reflow
+            void modalDialog.offsetWidth;
             modalDialog.classList.add('shake-anim');
           }
           showToast(i18n[state.lang].fillRequired, 'error');
@@ -1284,28 +1323,16 @@
           state.searchQuery = '';
           state.activeFilter = 'all';
           btnClearSearch.classList.add('hidden');
-          document.querySelectorAll('.filter-chip').forEach(b => {
-            if (b.dataset.type === 'all') {
-              b.classList.add('bg-primary', 'text-on-primary');
-              b.classList.remove('bg-surface-container', 'text-secondary');
-            } else {
-              b.classList.remove('bg-primary', 'text-on-primary');
-              b.classList.add('bg-surface-container', 'text-secondary');
-            }
-          });
+          updateFilterChipsUI();
           renderListings();
         });
       }
 
+      // Filter Chips Click Listener with full visual retention
       document.querySelectorAll('.filter-chip').forEach(btn => {
         btn.addEventListener('click', () => {
-          document.querySelectorAll('.filter-chip').forEach(b => {
-            b.classList.remove('bg-primary', 'text-on-primary');
-            b.classList.add('bg-surface-container', 'text-secondary');
-          });
-          btn.classList.add('bg-primary', 'text-on-primary');
-          btn.classList.remove('bg-surface-container', 'text-secondary');
           state.activeFilter = btn.dataset.type;
+          updateFilterChipsUI();
           renderListings();
         });
       });
@@ -1489,12 +1516,12 @@
       updateFollowState();
       applyLocalization();
       loadRemoteData();
+      
+      // Realtime Followers synchronization immediately on boot
       fetchFirebaseFollowers();
 
-      // Polling for real-time live followers sync every 6 seconds
+      // Continuous automatic polling every 6 seconds to keep followers in sync across all devices
       setInterval(fetchFirebaseFollowers, 6000);
     })();
   </script>
-
-
 </body></html>
