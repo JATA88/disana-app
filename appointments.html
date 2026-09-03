@@ -12,6 +12,17 @@
         .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
         .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
         ::-webkit-scrollbar { display: none; }
+        .tab-btn.active {
+            background-color: white !important;
+            color: #00224e !important;
+            font-weight: 700 !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .tab-btn {
+            background-color: transparent !important;
+            color: #525f71 !important;
+            font-weight: 400 !important;
+        }
     </style>
 </head>
 <body class="bg-[#f7f9fb] text-[#191c1e] flex flex-col min-h-screen">
@@ -33,24 +44,25 @@
 
     <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-[#f7f9fb] px-4 py-4">
         <div class="flex flex-col gap-4">
-            <!-- أزرار التبويبات -->
-            <div class="bg-[#eceef0] p-1 rounded-xl flex gap-1">
-                <button onclick="switchTab('appointments')" class="flex-1 py-2 rounded-lg bg-white text-[#00224e] text-[13px] font-bold shadow-sm" id="tabAppointments">المواعيد (3)</button>
-                <button onclick="switchTab('my-requests')" class="flex-1 py-2 rounded-lg text-[#525f71] text-[13px]" id="tabMyRequests">طلباتي (2)</button>
-                <button onclick="switchTab('market')" class="flex-1 py-2 rounded-lg text-[#525f71] text-[13px]" id="tabMarket">طلبات السوق</button>
+
+            <!-- أزرار التبويبات (تم إصلاحها) -->
+            <div class="bg-[#eceef0] p-1 rounded-xl flex gap-1" id="tabContainer">
+                <button onclick="switchTab('appointments')" class="tab-btn active flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabAppointments">المواعيد (3)</button>
+                <button onclick="switchTab('my-requests')" class="tab-btn flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabMyRequests">طلباتي (2)</button>
+                <button onclick="switchTab('market')" class="tab-btn flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabMarket">طلبات السوق</button>
             </div>
 
-            <!-- زر إضافة طلب (يعمل) -->
+            <!-- زر إضافة طلب -->
             <button onclick="showAddRequest()" class="w-full py-3 rounded-xl bg-[#00224e] text-white text-[14px] font-bold flex items-center justify-center gap-2 shadow-sm hover:opacity-90 transition">
                 <span class="material-symbols-outlined text-[20px]">add_circle</span>
                 + إضافة طلب أو إعلان عقاري جديد
             </button>
 
-            <!-- نموذج إضافة طلب (يظهر عند الضغط على الزر) -->
+            <!-- نموذج إضافة طلب -->
             <div id="addRequestForm" class="hidden bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]">
                 <h3 class="text-[16px] font-bold text-[#00224e] mb-2">إضافة طلب جديد</h3>
-                <input type="text" id="reqTitle" placeholder="عنوان الطلب (مثال: مطلوب فيلا في حطين)" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
-                <input type="text" id="reqBudget" placeholder="الميزانية (مثال: 2,000,000 - 3,000,000 ر.س)" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
+                <input type="text" id="reqTitle" placeholder="عنوان الطلب" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
+                <input type="text" id="reqBudget" placeholder="الميزانية" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
                 <input type="text" id="reqLocation" placeholder="الموقع المطلوب" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2">
                 <textarea id="reqDesc" placeholder="تفاصيل الطلب" class="w-full p-2 rounded-lg border border-[#e0e3e5] text-sm mb-2" rows="2"></textarea>
                 <button onclick="addRequest()" class="w-full py-2 rounded-lg bg-[#00224e] text-white text-sm font-bold">💾 حفظ الطلب</button>
@@ -103,25 +115,27 @@
                 </div>
             </div>
 
-            <!-- محتوى طلباتي (يظهر عند الضغط على التبويب) -->
+            <!-- محتوى طلباتي -->
             <div id="myRequestsContent" class="hidden">
-                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
-                    <div class="flex items-center justify-between">
-                        <h4 class="text-[14px] font-bold text-[#00224e]">فيلا مستقلة مودرن</h4>
-                        <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">طلب ساري</span>
+                <div id="myRequestsList">
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-[14px] font-bold text-[#00224e]">فيلا مستقلة مودرن</h4>
+                            <span class="text-[11px] bg-[#00224e]/10 text-[#00224e] px-2 py-1 rounded-full">طلب ساري</span>
+                        </div>
+                        <p class="text-[12px] text-[#525f71]">شمال الرياض • 4.5 - 6.0 مليون • 500م² فأكثر</p>
                     </div>
-                    <p class="text-[12px] text-[#525f71]">شمال الرياض • 4.5 - 6.0 مليون • 500م² فأكثر</p>
-                </div>
-                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
-                    <div class="flex items-center justify-between">
-                        <h4 class="text-[14px] font-bold text-[#00224e]">مكتب إداري استثماري</h4>
-                        <span class="text-[11px] bg-[#e0e3e5] text-[#525f71] px-2 py-1 rounded-full">بحث جاري</span>
+                    <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
+                        <div class="flex items-center justify-between">
+                            <h4 class="text-[14px] font-bold text-[#00224e]">مكتب إداري استثماري</h4>
+                            <span class="text-[11px] bg-[#e0e3e5] text-[#525f71] px-2 py-1 rounded-full">بحث جاري</span>
+                        </div>
+                        <p class="text-[12px] text-[#525f71]">طريق الملك فهد • 200 ألف/سنوي • 180-240م²</p>
                     </div>
-                    <p class="text-[12px] text-[#525f71]">طريق الملك فهد • 200 ألف/سنوي • 180-240م²</p>
                 </div>
             </div>
 
-            <!-- محتوى طلبات السوق (يظهر عند الضغط على التبويب) -->
+            <!-- محتوى طلبات السوق -->
             <div id="marketContent" class="hidden">
                 <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
                     <div class="flex items-center justify-between">
@@ -140,6 +154,7 @@
                     <button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold">تقديم عقار مطابق</button>
                 </div>
             </div>
+
         </div>
     </main>
 
@@ -161,31 +176,32 @@
     </nav>
 
     <script>
-        // التبديل بين التبويبات
+        // =============== التبديل بين التبويبات (تم إصلاحها) ===============
         function switchTab(tab) {
-            // إعادة تعيين الأزرار
-            document.querySelectorAll('.bg-[#eceef0] button').forEach(btn => {
-                btn.className = 'flex-1 py-2 rounded-lg text-[#525f71] text-[13px]';
-            });
-
-            // إخفاء كل المحتوى
+            // 1. إخفاء كل المحتوى
             document.getElementById('appointmentsContent').classList.add('hidden');
             document.getElementById('myRequestsContent').classList.add('hidden');
             document.getElementById('marketContent').classList.add('hidden');
 
+            // 2. إزالة الكلاس النشط من كل الأزرار
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // 3. إظهار المحتوى المطلوب وتفعيل الزر المناسب
             if (tab === 'appointments') {
-                document.getElementById('tabAppointments').className = 'flex-1 py-2 rounded-lg bg-white text-[#00224e] text-[13px] font-bold shadow-sm';
                 document.getElementById('appointmentsContent').classList.remove('hidden');
+                document.getElementById('tabAppointments').classList.add('active');
             } else if (tab === 'my-requests') {
-                document.getElementById('tabMyRequests').className = 'flex-1 py-2 rounded-lg bg-white text-[#00224e] text-[13px] font-bold shadow-sm';
                 document.getElementById('myRequestsContent').classList.remove('hidden');
-            } else {
-                document.getElementById('tabMarket').className = 'flex-1 py-2 rounded-lg bg-white text-[#00224e] text-[13px] font-bold shadow-sm';
+                document.getElementById('tabMyRequests').classList.add('active');
+            } else if (tab === 'market') {
                 document.getElementById('marketContent').classList.remove('hidden');
+                document.getElementById('tabMarket').classList.add('active');
             }
         }
 
-        // إلغاء موعد
+        // =============== باقي الدوال (نفسها) ===============
         function cancelAppointment(btn) {
             if (confirm('هل أنت متأكد من إلغاء هذا الموعد؟')) {
                 const card = btn.closest('.bg-white');
@@ -196,7 +212,6 @@
             }
         }
 
-        // عرض نموذج إضافة طلب
         function showAddRequest() {
             document.getElementById('addRequestForm').classList.remove('hidden');
         }
@@ -204,7 +219,6 @@
             document.getElementById('addRequestForm').classList.add('hidden');
         }
 
-        // إضافة طلب جديد
         function addRequest() {
             const title = document.getElementById('reqTitle').value.trim();
             const budget = document.getElementById('reqBudget').value.trim();
@@ -213,8 +227,7 @@
 
             if (!title) { alert('⚠️ الرجاء إدخال عنوان الطلب'); return; }
 
-            // إضافة الطلب إلى قائمة "طلباتي"
-            const container = document.getElementById('myRequestsContent');
+            const container = document.getElementById('myRequestsList');
             const newRequest = document.createElement('div');
             newRequest.className = 'bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3';
             newRequest.innerHTML = `
@@ -226,15 +239,18 @@
             `;
             container.appendChild(newRequest);
 
-            // تفريغ الحقول وإخفاء النموذج
             document.getElementById('reqTitle').value = '';
             document.getElementById('reqBudget').value = '';
             document.getElementById('reqLocation').value = '';
             document.getElementById('reqDesc').value = '';
             hideAddRequest();
-
             alert('✅ تم إضافة الطلب بنجاح!');
         }
+
+        // تفعيل التبويب الأول (المواعيد) عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', function() {
+            switchTab('appointments');
+        });
     </script>
 </body>
 </html>
