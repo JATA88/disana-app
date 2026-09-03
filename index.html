@@ -18,11 +18,9 @@
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
     <div class="max-w-md w-full bg-white rounded-2xl shadow-lg p-6 text-center">
-        <!-- زر اللغة -->
         <div class="flex justify-end mb-2">
             <button onclick="toggleLanguage()" class="lang-btn" id="langToggleBtn">English</button>
         </div>
-
         <div class="flex items-center justify-center gap-2 mb-4">
             <span class="text-3xl font-bold text-[#00224e]">ديسانا</span>
             <span class="material-symbols-outlined text-[#00224e] text-2xl">verified</span>
@@ -110,7 +108,6 @@
             setLanguage(newLang);
         }
 
-        // تحميل اللغة المحفوظة عند فتح الصفحة
         setLanguage(currentLang);
     </script>
 </body>
