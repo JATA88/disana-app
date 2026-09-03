@@ -40,27 +40,12 @@
                 </div>
                 <p class="text-[14px] text-[#525f71]">حي المروج، شمال الرياض • طراز نيو-كلاسيك مودرن</p>
                 <div class="grid grid-cols-2 gap-3 mt-4">
-                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center">
-                        <span class="text-[12px] text-[#525f71] block">المساحة الكلية</span>
-                        <span class="text-[16px] font-bold text-[#00224e]">450 م² صافي</span>
-                    </div>
-                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center">
-                        <span class="text-[12px] text-[#525f71] block">أجنحة النوم</span>
-                        <span class="text-[16px] font-bold text-[#00224e]">5 أجنحة ماستر</span>
-                    </div>
-                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center">
-                        <span class="text-[12px] text-[#525f71] block">دورات المياه</span>
-                        <span class="text-[16px] font-bold text-[#00224e]">6 دورات مياه</span>
-                    </div>
-                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center">
-                        <span class="text-[12px] text-[#525f71] block">مواقف السيارات</span>
-                        <span class="text-[16px] font-bold text-[#00224e]">موقف خاص مزدوج</span>
-                    </div>
+                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center"><span class="text-[12px] text-[#525f71] block">المساحة الكلية</span><span class="text-[16px] font-bold text-[#00224e]">450 م² صافي</span></div>
+                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center"><span class="text-[12px] text-[#525f71] block">أجنحة النوم</span><span class="text-[16px] font-bold text-[#00224e]">5 أجنحة ماستر</span></div>
+                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center"><span class="text-[12px] text-[#525f71] block">دورات المياه</span><span class="text-[16px] font-bold text-[#00224e]">6 دورات مياه</span></div>
+                    <div class="bg-[#f2f4f6] rounded-lg p-2 text-center"><span class="text-[12px] text-[#525f71] block">مواقف السيارات</span><span class="text-[16px] font-bold text-[#00224e]">موقف خاص مزدوج</span></div>
                 </div>
-                <div class="mt-4">
-                    <h3 class="text-[16px] font-bold text-[#00224e]">الوصف</h3>
-                    <p class="text-[14px] text-[#525f71] mt-1">صُممت هذه الفيلا بعناية هندسية فائقة لتوفير تدفق ضوئي طبيعي مع واجهات زجاجية مزدوجة بارتفاع مضاعف. تحتوي على مصعد كهربائي بانورامي متكامل، صالون ضيافة مستقل، حديقة داخلية مفتوحة (سكاي لايت)، ومنظومة ذكية بالكامل للتحكم بالحرارة والأمان.</p>
-                </div>
+                <div class="mt-4"><h3 class="text-[16px] font-bold text-[#00224e]">الوصف</h3><p class="text-[14px] text-[#525f71] mt-1">صُممت هذه الفيلا بعناية هندسية فائقة لتوفير تدفق ضوئي طبيعي مع واجهات زجاجية مزدوجة بارتفاع مضاعف. تحتوي على مصعد كهربائي بانورامي متكامل، صالون ضيافة مستقل، حديقة داخلية مفتوحة (سكاي لايت)، ومنظومة ذكية بالكامل للتحكم بالحرارة والأمان.</p></div>
                 <div class="flex flex-wrap gap-2 mt-4">
                     <span class="bg-[#f2f4f6] px-3 py-1 rounded-full text-[12px] text-[#525f71]">⚡ سمارت هوم</span>
                     <span class="bg-[#f2f4f6] px-3 py-1 rounded-full text-[12px] text-[#525f71]">🛗 مصعد إيطالي</span>
@@ -69,7 +54,6 @@
                 </div>
             </div>
 
-            <!-- حجز موعد (يعمل) -->
             <div class="bg-white rounded-xl p-4 shadow-sm">
                 <h3 class="text-[16px] font-bold text-[#00224e]">حجز موعد للمعاينة</h3>
                 <p class="text-[13px] text-[#525f71] mt-1">اختر التوقيت ونوع الزيارة المناسب</p>
@@ -78,53 +62,36 @@
                     <button onclick="selectBookingType('هاتفية')" class="py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]" id="btnPhone">استشارة هاتفية</button>
                 </div>
                 <div class="grid grid-cols-3 gap-2 mt-3">
-                    <button onclick="selectDate('اليوم')" class="py-2 rounded-lg bg-[#00224e] text-white text-[13px]">اليوم 24/10</button>
-                    <button onclick="selectDate('غداً')" class="py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]">غداً 25/10</button>
-                    <button onclick="selectDate('الأربعاء')" class="py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]">الأربعاء 26/10</button>
+                    <button onclick="selectDate('اليوم', this)" class="py-2 rounded-lg bg-[#00224e] text-white text-[13px]">اليوم 24/10</button>
+                    <button onclick="selectDate('غداً', this)" class="py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]">غداً 25/10</button>
+                    <button onclick="selectDate('الأربعاء', this)" class="py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]">الأربعاء 26/10</button>
                 </div>
-                <button onclick="confirmBooking()" class="block w-full mt-4 py-3 bg-[#00224e] text-white text-center rounded-xl font-bold">✅ تأكيد حجز الموعد</button>
+                <button onclick="confirmBooking()" class="block w-full mt-4 py-3 bg-[#00224e] text-white text-center rounded-xl font-bold hover:opacity-90 transition">✅ تأكيد حجز الموعد</button>
             </div>
         </div>
     </main>
 
     <nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#f7f9fb]/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,34,78,0.04)]">
         <div class="h-16 px-4 flex items-center justify-around">
-            <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
-                <span class="material-symbols-outlined text-[24px]">real_estate_agent</span>
-                <span class="text-[11px]">الرئيسية</span>
-            </a>
-            <a href="property-details.html" class="flex flex-col items-center justify-center gap-1 text-[#00224e] font-bold">
-                <span class="material-symbols-outlined text-[24px]">apartment</span>
-                <span class="text-[11px]">العقارات</span>
-            </a>
-            <a href="appointments.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
-                <span class="material-symbols-outlined text-[24px]">calendar_month</span>
-                <span class="text-[11px]">المواعيد</span>
-            </a>
+            <a href="index.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]"><span class="material-symbols-outlined text-[24px]">real_estate_agent</span><span class="text-[11px]">الرئيسية</span></a>
+            <a href="property-details.html" class="flex flex-col items-center justify-center gap-1 text-[#00224e] font-bold"><span class="material-symbols-outlined text-[24px]">apartment</span><span class="text-[11px]">العقارات</span></a>
+            <a href="appointments.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]"><span class="material-symbols-outlined text-[24px]">calendar_month</span><span class="text-[11px]">المواعيد</span></a>
         </div>
     </nav>
 
     <script>
-        let bookingType = 'حضورية';
-        let bookingDate = 'اليوم';
-
+        let bookingType = 'حضورية', bookingDate = 'اليوم';
         function selectBookingType(type) {
             bookingType = type;
             document.getElementById('btnInPerson').className = type === 'حضورية' ? 'py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold' : 'py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]';
             document.getElementById('btnPhone').className = type === 'هاتفية' ? 'py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold' : 'py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]';
         }
-
-        function selectDate(date) {
+        function selectDate(date, btn) {
             bookingDate = date;
-            document.querySelectorAll('.grid-cols-3 button').forEach(btn => {
-                btn.className = 'py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]';
-            });
-            event.target.className = 'py-2 rounded-lg bg-[#00224e] text-white text-[13px]';
+            document.querySelectorAll('.grid-cols-3 button').forEach(b => { b.className = 'py-2 rounded-lg bg-[#f2f4f6] text-[#525f71] text-[13px]'; });
+            btn.className = 'py-2 rounded-lg bg-[#00224e] text-white text-[13px]';
         }
-
-        function confirmBooking() {
-            alert(✅ تم حجز موعد ${bookingType} بتاريخ ${bookingDate}\nسيتم إرسال التفاصيل إلى بريدك الإلكتروني.);
-        }
+        function confirmBooking() { alert(✅ تم حجز موعد ${bookingType} بتاريخ ${bookingDate}\nسيتم إرسال التفاصيل إلى بريدك الإلكتروني.); }
     </script>
 </body>
 </html>
