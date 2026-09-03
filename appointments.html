@@ -1,42 +1,451 @@
-<!DOCTYPE html><html dir="rtl" lang="ar" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary": "#ffffff", "tertiary": "#002150", "surface-bright": "#f7f9fb", "surface-container-high": "#e6e8ea", "on-error": "#ffffff", "surface": "#f7f9fb", "on-secondary-container": "#566475", "surface-dim": "#d8dadc", "outline-variant": "#c4c6d1", "primary": "#00224e", "inverse-surface": "#2d3133", "on-background": "#191c1e", "on-surface-variant": "#434750", "primary-fixed": "#d7e2ff", "tertiary-fixed": "#d8e2ff", "on-surface": "#191c1e", "on-secondary-fixed-variant": "#3a4859", "on-tertiary-fixed-variant": "#004494", "background": "#f7f9fb", "inverse-on-surface": "#eff1f3", "on-secondary-fixed": "#0f1c2c", "secondary-fixed": "#d6e4f9", "outline": "#747781", "on-primary-container": "#84a3e0", "primary-container": "#12386e", "error-container": "#ffdad6", "on-tertiary-container": "#71a1ff", "secondary-fixed-dim": "#bac8dc", "surface-container": "#eceef0", "on-tertiary": "#ffffff", "surface-container-highest": "#e0e3e5", "on-tertiary-fixed": "#001a41", "on-primary-fixed": "#001b3f", "on-primary-fixed-variant": "#24467d", "primary-fixed-dim": "#abc7ff", "surface-container-low": "#f2f4f6", "inverse-primary": "#abc7ff", "surface-container-lowest": "#ffffff", "error": "#ba1a1a", "tertiary-container": "#003679", "secondary": "#525f71", "on-secondary": "#ffffff", "tertiary-fixed-dim": "#adc6ff", "surface-tint": "#3e5e96", "on-error-container": "#93000a", "secondary-container": "#d3e1f6", "surface-variant": "#e0e3e5" }, "borderRadius": { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, "spacing": { "space-lg": "1.5rem", "space-2xs": "0.25rem", "space-sm": "0.75rem", "gutter-mobile": "0.75rem", "margin-mobile": "1rem", "space-xs": "0.5rem", "space-2xl": "3rem", "space-md": "1rem", "space-xl": "2rem" }, "fontFamily": { "label-sm": ["Cairo"], "headline-md": ["Cairo"], "label-md": ["Cairo"], "body-md": ["Cairo"], "headline-sm": ["Cairo"], "headline-lg": ["Cairo"], "body-sm": ["Cairo"], "body-lg": ["Cairo"], "label-lg": ["Cairo"], "display": ["Cairo"] }, "fontSize": { "label-sm": ["11px", { "lineHeight": "16px", "fontWeight": "700" }], "headline-md": ["22px", { "lineHeight": "32px", "fontWeight": "700" }], "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "600" }], "body-md": ["14px", { "lineHeight": "22px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "28px", "fontWeight": "600" }], "headline-lg": ["28px", { "lineHeight": "38px", "letterSpacing": "-0.01em", "fontWeight": "700" }], "body-sm": ["12px", { "lineHeight": "18px", "fontWeight": "400" }], "body-lg": ["16px", { "lineHeight": "26px", "fontWeight": "400" }], "label-lg": ["15px", { "lineHeight": "22px", "fontWeight": "600" }], "display": ["36px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "800" }] } } } }</script><style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
-</head><body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen"><header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><a class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary transition-colors hover:bg-surface-container-highest" href="home.html" title="الرجوع للرئيسية"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a><a class="flex items-center gap-space-xs" href="home.html"><span class="font-headline-md text-headline-md text-primary tracking-tight">ديسانا</span><span class="material-symbols-outlined text-primary text-[20px]" title="موثق">verified</span></a></div><div class="flex items-center gap-space-xs"><button class="px-2.5 py-1 rounded-lg bg-surface-container-high text-primary font-label-sm text-label-sm hover:bg-surface-container-highest transition-colors" id="lang-toggle-btn" onclick="toggleLanguage()" title="تغيير اللغة">EN</button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header><main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface"><div class="flex flex-col w-full pb-8">
-<!-- Segmented Control Bar -->
-<div class="px-margin-mobile py-space-sm">
-<div class="p-1 rounded-xl bg-surface-container-high flex items-center gap-1 shadow-sm" id="tabSwitcher"><button class="flex-1 py-2 px-2 text-center rounded-lg font-label-md text-label-md transition-all duration-200 bg-surface-container-lowest text-primary shadow-sm" id="tab-btn-appointments" onclick="switchTab('appointments')">المواعيد (0)</button><button class="flex-1 py-2 px-2 text-center rounded-lg font-label-md text-label-md transition-all duration-200 text-secondary hover:text-primary" id="tab-btn-my-requests" onclick="switchTab('my-requests')">طلباتي (0)</button><button class="flex-1 py-2 px-2 text-center rounded-lg font-label-md text-label-md transition-all duration-200 text-secondary hover:text-primary" id="tab-btn-market" onclick="switchTab('market')">طلبات السوق (0)</button></div>
-</div><div class="px-margin-mobile pb-space-sm flex flex-col gap-2.5"><button class="w-full py-2.5 px-4 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex flex-col items-center justify-center gap-0.5 shadow-sm active:scale-95 transition-transform"><span class="flex items-center gap-1.5 font-bold"><span class="material-symbols-outlined text-[20px]">add_circle</span>إضافة طلب أو إعلان عقاري جديد</span><span class="text-[11px] text-primary-fixed opacity-90">(متاح لجميع المشتركين • الوصف بحد أقصى 100 كلمة)</span></button><div class="rounded-xl p-3 bg-secondary-container text-on-secondary-container flex items-start gap-2.5 shadow-sm"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">info</span><div class="flex flex-col gap-0.5 flex-1"><span class="font-label-sm text-label-sm font-bold text-primary">تنبيه النظام المفتوح:</span><p class="font-body-sm text-body-sm text-primary leading-tight">الإعلانات والمواعيد عامة ومباشرة للجميع • تنتهي صلاحية أي طلب أو موعد وتُحذف تلقائياً من النظام بعد مرور 30 يوماً</p></div></div></div>
-<!-- Content Pane: Appointments -->
-<div class="flex flex-col px-margin-mobile gap-space-md" id="pane-appointments"><div class="flex items-center justify-between py-space-xs"><div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-primary"></span><h2 class="font-headline-sm text-headline-sm text-primary" id="appts-heading">المواعيد المجدولة</h2></div><span class="font-label-sm text-label-sm px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container" id="appts-count-badge">0 مواعيد</span></div><div id="appointments-list" class="flex flex-col gap-space-sm"></div><div id="empty-appointments-state" class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col items-center justify-center text-center gap-space-md"><div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center text-primary"><span class="material-symbols-outlined text-[36px]">event_busy</span></div><div class="flex flex-col gap-1 max-w-sm"><h3 class="font-headline-sm text-headline-sm text-primary" id="empty-title">لا توجد مواعيد مجدولة حالياً</h3><p class="font-body-md text-body-md text-secondary" id="empty-desc">ابدأ بحجز موعد جديد أو إضافة طلبك العقاري المخصص</p></div><div class="flex flex-col sm:flex-row gap-2 w-full max-w-sm pt-2"><button class="w-full py-2.5 px-4 rounded-xl bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-1.5 shadow-sm active:scale-95 transition-transform"><span class="material-symbols-outlined text-[18px]">add_circle</span><span id="empty-add-btn" class="">+ إضافة طلب أو إعلان جديد</span></button><a href="property-details.html" class="w-full py-2.5 px-4 rounded-xl bg-surface-container-high text-primary font-label-md text-label-md flex items-center justify-center gap-1.5 transition-colors hover:bg-surface-container-highest"><span class="material-symbols-outlined text-[18px]">apartment</span><span id="empty-browse-btn" class="">تصفح العقارات لحجز موعد</span></a></div></div></div>
-<!-- Content Pane: My Demands -->
-<div class="hidden flex flex-col px-margin-mobile gap-space-md" id="pane-my-requests"><div class="flex items-center justify-between py-space-xs"><h3 class="font-headline-sm text-headline-sm text-primary" id="my-req-title">طلباتي النشطة</h3><span class="font-label-sm text-label-sm px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container" id="my-req-count">0 طلبات</span></div><div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col items-center justify-center text-center gap-space-md"><div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-secondary"><span class="material-symbols-outlined text-[32px]">post_add</span></div><div class="flex flex-col gap-1 max-w-sm"><h4 class="font-headline-sm text-headline-sm text-primary" id="empty-req-title">لا توجد طلبات خاصة مضافة</h4><p class="font-body-md text-body-md text-secondary" id="empty-req-desc">يمكنك إضافة طلب عقاري بمواصفات محددة وسيقوم المستشارون بالتواصل معك</p></div><button class="py-2.5 px-space-md rounded-lg bg-primary text-on-primary font-label-md text-label-md flex items-center justify-center gap-2 shadow-sm active:scale-95 transition-transform"><span class="material-symbols-outlined text-[18px]">add_circle</span><span id="empty-req-btn" class="">إضافة طلب عقاري جديد</span></button></div></div>
-<!-- Content Pane: Market Demands -->
-<div class="hidden flex flex-col px-margin-mobile gap-space-md" id="pane-market"><div class="flex items-center justify-between py-space-xs"><div><h3 class="font-headline-sm text-headline-sm text-primary" id="market-title">طلبات السوق المفتوحة</h3><p class="font-body-sm text-body-sm text-secondary mt-0.5" id="market-desc">فرص البيع والشراء للوسطاء والملاك</p></div><span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-secondary" id="market-count">0 عروض</span></div><div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col items-center justify-center text-center gap-space-md"><div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-secondary"><span class="material-symbols-outlined text-[32px]">storefront</span></div><div class="flex flex-col gap-1 max-w-sm"><h4 class="font-headline-sm text-headline-sm text-primary" id="empty-market-title">لا توجد طلبات سوق نشطة</h4><p class="font-body-md text-body-md text-secondary" id="empty-market-desc">سيتم إدراج طلبات السوق الحالية فور ورودها من الشركاء والمشتركين</p></div></div></div>
-</div>
-<script>
-  function switchTab(tabId) {
-    const tabs = ['appointments', 'my-requests', 'market'];
-    
-    tabs.forEach(t => {
-      const pane = document.getElementById('pane-' + t);
-      const btn = document.getElementById('tab-btn-' + t);
-      
-      if (t === tabId) {
-        pane.classList.remove('hidden');
-        btn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
-        btn.classList.remove('text-secondary');
-      } else {
-        pane.classList.add('hidden');
-        btn.classList.remove('bg-surface-container-lowest', 'text-primary', 'shadow-sm');
-        btn.classList.add('text-secondary');
-      }
-    });
-  }
-</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_10px_rgba(0,34,78,0.04)]" data-active-classes="text-primary font-bold"><div class="flex justify-around items-center h-20 px-margin-mobile"><a class="flex flex-col items-center justify-center gap-space-2xs min-w-[56px] min-h-[44px] text-secondary hover:text-primary transition-colors" data-path="alrayiysia" href="home.html"><span class="material-symbols-outlined text-[24px]">real_estate_agent</span><span class="font-label-sm text-label-sm">الرئيسية</span></a><a class="flex flex-col items-center justify-center gap-space-2xs min-w-[56px] min-h-[44px] text-secondary hover:text-primary transition-colors" data-path="aleaqarat" href="property-details.html"><span class="material-symbols-outlined text-[24px]">apartment</span><span class="font-label-sm text-label-sm">العقارات</span></a><a aria-current="page" class="flex flex-col items-center justify-center gap-space-2xs min-w-[56px] min-h-[44px] transition-colors text-primary font-bold" data-path="almawaeid" href="appointments.html"><span class="material-symbols-outlined text-[24px]">calendar_today</span><span class="font-label-sm text-label-sm">المواعيد</span></a></div></nav><div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm p-4" id="action-modal"><div class="bg-surface-container-lowest rounded-xl max-w-sm w-full p-space-md shadow-md flex flex-col gap-space-sm"><div class="flex items-center justify-between"><h3 class="font-headline-sm text-headline-sm text-primary" id="modal-title">تأكيد الإجراء</h3><button class="w-8 h-8 rounded-full bg-surface-container flex items-center justify-center text-secondary" onclick="closeModal()"><span class="material-symbols-outlined text-[18px]">close</span></button></div><p class="font-body-sm text-body-sm text-secondary" id="modal-desc">هل أنت متأكد من تنفيذ هذا الإجراء؟</p><div class="hidden flex flex-col gap-2 my-1" id="modal-edit-inputs"><label class="font-label-sm text-label-sm text-primary">الموعد الجديد المطلوب</label><input class="p-2 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-primary border-none outline-none" id="edit-date-input" type="date"><input class="p-2 rounded-lg bg-surface-container-low font-body-sm text-body-sm text-primary border-none outline-none" id="edit-time-input" type="time"></div><div class="flex items-center justify-end gap-2 pt-2"><button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-primary font-label-md text-label-md" onclick="closeModal()">إغلاق</button><button class="px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md" id="modal-confirm-btn" onclick="confirmModalAction()">تأكيد</button></div></div></div><script>let currentAction = null; let currentCard = null; function openEditModal(btn, ref) { currentAction = 'edit'; currentCard = btn.closest('.bg-surface-container-lowest'); document.getElementById('modal-title').textContent = 'تعديل الموعد: ' + ref; document.getElementById('modal-desc').textContent = 'حدد التاريخ والوقت الجديد للمعاينة:'; document.getElementById('modal-edit-inputs').classList.remove('hidden'); document.getElementById('modal-confirm-btn').className = 'px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md'; document.getElementById('modal-confirm-btn').textContent = 'حفظ التعديل'; document.getElementById('action-modal').classList.remove('hidden'); } function openCancelModal(btn, ref) { currentAction = 'cancel'; currentCard = btn.closest('.bg-surface-container-lowest'); document.getElementById('modal-title').textContent = 'إلغاء الموعد: ' + ref; document.getElementById('modal-desc').textContent = 'هل أنت متأكد من رغبتك في إلغاء هذا الموعد؟ لن يمكن التراجع بعد الإلغاء.'; document.getElementById('modal-edit-inputs').classList.add('hidden'); document.getElementById('modal-confirm-btn').className = 'px-3 py-1.5 rounded-lg bg-error-container text-error font-label-md text-label-md'; document.getElementById('modal-confirm-btn').textContent = 'تأكيد الإلغاء'; document.getElementById('action-modal').classList.remove('hidden'); } function closeModal() { document.getElementById('action-modal').classList.add('hidden'); currentAction = null; currentCard = null; } function confirmModalAction() { if (currentAction === 'cancel' && currentCard) { currentCard.style.transition = 'all 0.3s ease'; currentCard.style.opacity = '0'; setTimeout(() => currentCard.remove(), 300); } else if (currentAction === 'edit' && currentCard) { alert('تم تقديم طلب تعديل الموعد بنجاح وسيتم إشعارك بالتأكيد.'); } closeModal(); } function toggleLanguage() { const html = document.documentElement; const isRTL = html.getAttribute('dir') === 'rtl'; const btn = document.getElementById('lang-toggle-btn'); if (isRTL) { html.setAttribute('dir', 'ltr'); html.setAttribute('lang', 'en'); if (btn) btn.textContent = 'AR'; } else { html.setAttribute('dir', 'rtl'); html.setAttribute('lang', 'ar'); if (btn) btn.textContent = 'EN'; } }</script>
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport">
+    <title>المواعيد والطلبات</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <style>
+        body { font-family: 'Cairo', sans-serif; background: #f7f9fb; overscroll-behavior: none; }
+        .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); }
+        .pt-safe { padding-top: env(safe-area-inset-top, 0px); }
+        ::-webkit-scrollbar { display: none; }
+        main { padding-top: 80px !important; }
+        .tab-btn.active {
+            background-color: white !important;
+            color: #00224e !important;
+            font-weight: 700 !important;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .tab-btn {
+            background-color: transparent !important;
+            color: #525f71 !important;
+            font-weight: 400 !important;
+        }
+        .lang-btn { transition: all 0.2s; cursor: pointer; padding: 6px 14px; border-radius: 50px; border: 1px solid #e0e3e5; background: white; font-size: 13px; }
+        .lang-btn:hover { background: #00224e; color: white; border-color: #00224e; }
+        [dir="ltr"] .lang-btn { margin-right: 8px; }
+        .card { background: white; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04); border-right: 4px solid #00224e; display: flex; justify-content: space-between; align-items: center; }
+        .btn-sm { padding: 4px 12px; border-radius: 6px; font-size: 12px; border: none; cursor: pointer; }
+        .btn-edit { background: #f2f4f6; color: #00224e; }
+        .btn-delete { background: #ffdad6; color: #ba1a1a; }
+        .flex-gap { display: flex; gap: 6px; }
+        .form-box { background: white; border-radius: 12px; padding: 16px; margin: 12px 0; border: 1px solid #e0e3e5; display: none; }
+        .form-box input, .form-box textarea { width: 100%; padding: 10px; border: 1px solid #e0e3e5; border-radius: 8px; margin-bottom: 8px; font-size: 14px; }
+        .btn-primary { background: #00224e; color: white; border: none; padding: 12px; border-radius: 12px; font-size: 16px; width: 100%; cursor: pointer; font-weight: 700; }
+        .btn-primary:hover { opacity: 0.9; }
+        .btn-save { background: #00224e; color: white; border: none; padding: 10px; border-radius: 8px; width: 100%; cursor: pointer; font-weight: 700; }
+        .btn-cancel { background: #f2f4f6; color: #525f71; border: none; padding: 10px; border-radius: 8px; width: 100%; margin-top: 6px; cursor: pointer; }
+    </style>
+</head>
+<body class="bg-[#f7f9fb] text-[#191c1e] flex flex-col min-h-screen">
+    <header class="fixed top-0 w-full z-50 bg-[#f7f9fb]/95 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe">
+        <div class="h-16 px-4 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <a href="index.html" aria-label="رجوع" class="w-11 h-11 flex items-center justify-center text-[#00224e] rounded-full hover:bg-[#eceef0] transition-colors">
+                    <span class="material-symbols-outlined text-[24px]">arrow_forward</span>
+                </a>
+                <h1 class="text-[18px] font-bold text-[#191c1e]" id="pageTitle">المواعيد</h1>
+            </div>
+            <div class="flex items-center gap-2">
+                <button onclick="toggleLanguage()" class="lang-btn" id="langToggleBtn">English</button>
+                <div class="w-8 h-8 rounded-full bg-[#00224e] flex items-center justify-center">
+                    <span class="material-symbols-outlined text-white text-[18px]">person</span>
+                </div>
+            </div>
+        </div>
+    </header>
 
+    <main class="flex-1 flex flex-col relative w-full pb-24 bg-[#f7f9fb] px-4 py-4">
+        <div class="flex flex-col gap-4">
 
+            <!-- التبويبات -->
+            <div class="bg-[#eceef0] p-1 rounded-xl flex gap-1">
+                <button onclick="switchTab('appointments')" class="tab-btn active flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabAppointments">
+                    <span id="tabAppointmentsLabel">المواعيد (0)</span>
+                </button>
+                <button onclick="switchTab('my-requests')" class="tab-btn flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabMyRequests">
+                    <span id="tabMyRequestsLabel">طلباتي (0)</span>
+                </button>
+                <button onclick="switchTab('market')" class="tab-btn flex-1 py-2 rounded-lg text-[13px] transition-all" id="tabMarket">
+                    <span id="tabMarketLabel">طلبات السوق (0)</span>
+                </button>
+            </div>
 
-</body></html>
+            <!-- زر إضافة -->
+            <button onclick="showAddForm()" class="btn-primary" id="addBtn">➕ إضافة طلب أو إعلان عقاري جديد</button>
+
+            <!-- نموذج الإضافة -->
+            <div id="addForm" class="form-box">
+                <h3 id="formTitle">إضافة طلب جديد</h3>
+                <input type="text" id="itemTitle" placeholder="العنوان">
+                <input type="text" id="itemBudget" placeholder="الميزانية (اختياري)">
+                <input type="text" id="itemLocation" placeholder="الموقع (اختياري)">
+                <textarea id="itemDesc" placeholder="الوصف" rows="2"></textarea>
+                <button class="btn-save" id="saveBtn">💾 حفظ</button>
+                <button class="btn-cancel" onclick="hideAddForm()">إلغاء</button>
+            </div>
+
+            <!-- قائمة المواعيد -->
+            <div id="appointmentsContent">
+                <div id="appointmentsList"></div>
+            </div>
+
+            <!-- قائمة طلباتي -->
+            <div id="myRequestsContent" class="hidden">
+                <div id="myRequestsList"></div>
+            </div>
+
+            <!-- قائمة طلبات السوق (ثابتة) -->
+            <div id="marketContent" class="hidden">
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-[14px] font-bold text-[#00224e]" id="market1Title">أرض تجارية استثمارية</h4>
+                        <span class="text-[14px] font-bold text-[#00224e]" id="market1Price">12-15 مليون ر.س</span>
+                    </div>
+                    <p class="text-[12px] text-[#525f71]" id="market1Desc">حي النرجس • شوارع 30+ • 1,200 م²</p>
+                    <button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold" id="market1Btn">تقديم عقار مطابق</button>
+                </div>
+                <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30 mt-3">
+                    <div class="flex items-center justify-between">
+                        <h4 class="text-[14px] font-bold text-[#00224e]" id="market2Title">عمارة سكنية عوائل</h4>
+                        <span class="text-[14px] font-bold text-[#00224e]" id="market2Price">8.5 مليون ر.س</span>
+                    </div>
+                    <p class="text-[12px] text-[#525f71]" id="market2Desc">حي المروج أو الورود • دخل لا يقل عن 8.5%</p>
+                    <button onclick="alert('✅ تم إرسال طلب تقديم العقار للوسيط')" class="mt-2 px-4 py-2 rounded-lg bg-[#00224e] text-white text-[13px] font-bold" id="market2Btn">تقديم عقار مطابق</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <nav class="fixed bottom-0 w-full z-50 pb-safe bg-[#f7f9fb]/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,34,78,0.04)]">
+        <div class="h-16 px-4 flex items-center justify-around">
+            <a href="home.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
+                <span class="material-symbols-outlined text-[24px]">real_estate_agent</span>
+                <span class="text-[11px]" id="navHome">الرئيسية</span>
+            </a>
+            <a href="property-details.html" class="flex flex-col items-center justify-center gap-1 text-[#525f71] hover:text-[#00224e]">
+                <span class="material-symbols-outlined text-[24px]">apartment</span>
+                <span class="text-[11px]" id="navProperties">العقارات</span>
+            </a>
+            <a href="appointments.html" class="flex flex-col items-center justify-center gap-1 text-[#00224e] font-bold">
+                <span class="material-symbols-outlined text-[24px]">calendar_month</span>
+                <span class="text-[11px]" id="navAppointments">المواعيد</span>
+            </a>
+        </div>
+    </nav>
+
+    <script>
+        // Firebase Config (ضع رابطك الصحيح هنا)
+        const firebaseConfig = {
+            databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/"
+        };
+        firebase.initializeApp(firebaseConfig);
+        const db = firebase.database();
+
+        // الترجمة
+        const translations = {
+            ar: {
+                pageTitle: 'المواعيد',
+                tabAppointments: 'المواعيد (0)',
+                tabMyRequests: 'طلباتي (0)',
+                tabMarket: 'طلبات السوق (0)',
+                addBtn: '+ إضافة طلب أو إعلان عقاري جديد',
+                formTitle: 'إضافة طلب جديد',
+                saveBtn: '💾 حفظ',
+                cancelBtn: 'إلغاء',
+                noAppointments: 'لا توجد مواعيد',
+                noRequests: 'لا توجد طلبات',
+                navHome: 'الرئيسية',
+                navProperties: 'العقارات',
+                navAppointments: 'المواعيد',
+                btnLang: 'English',
+                market1Title: 'أرض تجارية استثمارية',
+                market1Price: '12-15 مليون ر.س',
+                market1Desc: 'حي النرجس • شوارع 30+ • 1,200 م²',
+                market1Btn: 'تقديم عقار مطابق',
+                market2Title: 'عمارة سكنية عوائل',
+                market2Price: '8.5 مليون ر.س',
+                market2Desc: 'حي المروج أو الورود • دخل لا يقل عن 8.5%',
+                market2Btn: 'تقديم عقار مطابق',
+                edit: 'تعديل',
+                delete: 'حذف',
+                confirmDelete: 'هل أنت متأكد من الحذف؟'
+            },
+            en: {
+                pageTitle: 'Appointments',
+                tabAppointments: 'Appointments (0)',
+                tabMyRequests: 'My Requests (0)',
+                tabMarket: 'Market Requests (0)',
+                addBtn: '+ Add Request or Property Listing',
+                formTitle: 'Add New Request',
+                saveBtn: '💾 Save',
+                cancelBtn: 'Cancel',
+                noAppointments: 'No appointments',
+                noRequests: 'No requests',
+                navHome: 'Home',
+                navProperties: 'Properties',
+                navAppointments: 'Appointments',
+                btnLang: 'عربي',
+                market1Title: 'Commercial Land Investment',
+                market1Price: '12-15 Million SAR',
+                market1Desc: 'Al-Narjis • 30+ Streets • 1,200 m²',
+                market1Btn: 'Submit Matching Property',
+                market2Title: 'Residential Building',
+                market2Price: '8.5 Million SAR',
+                market2Desc: 'Al-Murooj or Al-Wurud • 8.5%+ ROI',
+                market2Btn: 'Submit Matching Property',
+                edit: 'Edit',
+                delete: 'Delete',
+                confirmDelete: 'Are you sure you want to delete?'
+            }
+        };
+
+        let currentLang = localStorage.getItem('disana_lang') || 'ar';
+        let editingKey = null;
+        let editingType = null;
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('disana_lang', lang);
+            const t = translations[lang];
+            document.getElementById('pageTitle').textContent = t.pageTitle;
+            document.getElementById('tabAppointmentsLabel').textContent = t.tabAppointments;
+            document.getElementById('tabMyRequestsLabel').textContent = t.tabMyRequests;
+            document.getElementById('tabMarketLabel').textContent = t.tabMarket;
+            document.getElementById('addBtn').textContent = t.addBtn;
+            document.getElementById('formTitle').textContent = t.formTitle;
+            document.getElementById('saveBtn').textContent = t.saveBtn;
+            document.getElementById('cancelBtn').textContent = t.cancelBtn;
+            document.getElementById('navHome').textContent = t.navHome;
+            document.getElementById('navProperties').textContent = t.navProperties;
+            document.getElementById('navAppointments').textContent = t.navAppointments;
+            document.getElementById('langToggleBtn').textContent = t.btnLang;
+            document.getElementById('market1Title').textContent = t.market1Title;
+            document.getElementById('market1Price').textContent = t.market1Price;
+            document.getElementById('market1Desc').textContent = t.market1Desc;
+            document.getElementById('market1Btn').textContent = t.market1Btn;
+            document.getElementById('market2Title').textContent = t.market2Title;
+            document.getElementById('market2Price').textContent = t.market2Price;
+            document.getElementById('market2Desc').textContent = t.market2Desc;
+            document.getElementById('market2Btn').textContent = t.market2Btn;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+            // تحديث العناوين الديناميكية في القوائم
+            loadAppointments();
+            loadMyRequests();
+        }
+
+        function toggleLanguage() {
+            const newLang = currentLang === 'ar' ? 'en' : 'ar';
+            setLanguage(newLang);
+        }
+
+        // التبويبات
+        function switchTab(tab) {
+            document.getElementById('appointmentsContent').classList.add('hidden');
+            document.getElementById('myRequestsContent').classList.add('hidden');
+            document.getElementById('marketContent').classList.add('hidden');
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            if (tab === 'appointments') {
+                document.getElementById('appointmentsContent').classList.remove('hidden');
+                document.getElementById('tabAppointments').classList.add('active');
+                loadAppointments();
+            } else if (tab === 'my-requests') {
+                document.getElementById('myRequestsContent').classList.remove('hidden');
+                document.getElementById('tabMyRequests').classList.add('active');
+                loadMyRequests();
+            } else if (tab === 'market') {
+                document.getElementById('marketContent').classList.remove('hidden');
+                document.getElementById('tabMarket').classList.add('active');
+            }
+        }
+
+        // تحميل المواعيد من Firebase
+        function loadAppointments() {
+            const container = document.getElementById('appointmentsList');
+            db.ref('appointments').on('value', (snapshot) => {
+                const data = snapshot.val();
+                container.innerHTML = '';
+                let count = 0;
+                if (data) {
+                    const keys = Object.keys(data);
+                    count = keys.length;
+                    keys.reverse().forEach(key => {
+                        const item = data[key];
+                        container.innerHTML += `
+                            <div class="card">
+                                <div>
+                                    <strong>${item.title || 'بدون عنوان'}</strong>
+                                    <div style="font-size:13px;color:#525f71;">📅 ${item.date || ''} ${item.location ? '📍 ' + item.location : ''}</div>
+                                    <div style="font-size:12px;color:#888;">${item.desc || ''}</div>
+                                </div>
+                                <div class="flex-gap">
+                                    <button class="btn-sm btn-edit" data-key="${key}">${translations[currentLang].edit}</button>
+                                    <button class="btn-sm btn-delete" data-key="${key}">${translations[currentLang].delete}</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    // ربط الأحداث
+                    container.querySelectorAll('.btn-edit').forEach(btn => {
+                        btn.addEventListener('click', () => editItem('appointments', btn.dataset.key));
+                    });
+                    container.querySelectorAll('.btn-delete').forEach(btn => {
+                        btn.addEventListener('click', () => deleteItem('appointments', btn.dataset.key));
+                    });
+                }
+                // تحديث عدد التبويب
+                document.getElementById('tabAppointmentsLabel').textContent = 
+                    (currentLang === 'ar' ? 'المواعيد' : 'Appointments') + ` (${count})`;
+                if (count === 0) {
+                    container.innerHTML = <p class="text-[#525f71] text-center text-sm py-4">${translations[currentLang].noAppointments}</p>;
+                }
+            });
+        }
+
+        // تحميل طلباتي من Firebase
+        function loadMyRequests() {
+            const container = document.getElementById('myRequestsList');
+            db.ref('requests').on('value', (snapshot) => {
+                const data = snapshot.val();
+                container.innerHTML = '';
+                let count = 0;
+                if (data) {
+                    const keys = Object.keys(data);
+                    count = keys.length;
+                    keys.reverse().forEach(key => {
+                        const item = data[key];
+                        container.innerHTML += `
+                            <div class="card">
+                                <div>
+                                    <strong>${item.title || 'بدون عنوان'}</strong>
+                                    <div style="font-size:13px;color:#525f71;">${item.budget ? '💰 ' + item.budget : ''} ${item.location ? '📍 ' + item.location : ''}</div>
+                                    <div style="font-size:12px;color:#888;">${item.desc || ''}</div>
+                                </div>
+                                <div class="flex-gap">
+                                    <button class="btn-sm btn-edit" data-key="${key}">${translations[currentLang].edit}</button>
+                                    <button class="btn-sm btn-delete" data-key="${key}">${translations[currentLang].delete}</button>
+                                </div>
+                            </div>
+                        `;
+                    });
+                    container.querySelectorAll('.btn-edit').forEach(btn => {
+                        btn.addEventListener('click', () => editItem('requests', btn.dataset.key));
+                    });
+                    container.querySelectorAll('.btn-delete').forEach(btn => {
+                        btn.addEventListener('click', () => deleteItem('requests', btn.dataset.key));
+                    });
+                }
+                document.getElementById('tabMyRequestsLabel').textContent = 
+                    (currentLang === 'ar' ? 'طلباتي' : 'My Requests') + ` (${count})`;
+                if (count === 0) {
+                    container.innerHTML = <p class="text-[#525f71] text-center text-sm py-4">${translations[currentLang].noRequests}</p>;
+                }
+            });
+        }
+
+        // إضافة عنصر (موعد أو طلب)
+        function addItem(type) {
+            const title = document.getElementById('itemTitle').value.trim();
+            const budget = document.getElementById('itemBudget').value.trim();
+            const location = document.getElementById('itemLocation').value.trim();
+            const desc = document.getElementById('itemDesc').value.trim();
+            if (!title) {
+                alert(currentLang === 'ar' ? '⚠️ الرجاء إدخال عنوان' : '⚠️ Please enter a title');
+                return;
+            }
+            const data = { title, budget, location, desc };
+            db.ref(type).push(data).then(() => {
+                alert(currentLang === 'ar' ? '✅ تمت الإضافة' : '✅ Added successfully');
+                document.getElementById('itemTitle').value = '';
+                document.getElementById('itemBudget').value = '';
+                document.getElementById('itemLocation').value = '';
+                document.getElementById('itemDesc').value = '';
+                hideAddForm();
+                if (type === 'appointments') loadAppointments();
+                else loadMyRequests();
+            }).catch(err => alert('❌ ' + err.message));
+        }
+
+        // تعديل عنصر
+        function editItem(type, key) {
+            const ref = db.ref(type + '/' + key);
+            ref.once('value').then(snap => {
+                const item = snap.val();
+                if (!item) return;
+                showAddForm();
+                editingKey = key;
+                editingType = type;
+                document.getElementById('itemTitle').value = item.title || '';
+                document.getElementById('itemBudget').value = item.budget || '';
+                document.getElementById('itemLocation').value = item.location || '';
+                document.getElementById('itemDesc').value = item.desc || '';
+                document.getElementById('saveBtn').textContent = currentLang === 'ar' ? '💾 تحديث' : '💾 Update';
+                document.getElementById('saveBtn').onclick = function() { updateItem(type, key); };
+            });
+        }
+
+        // تحديث عنصر
+        function updateItem(type, key) {
+            const title = document.getElementById('itemTitle').value.trim();
+            const budget = document.getElementById('itemBudget').value.trim();
+            const location = document.getElementById('itemLocation').value.trim();
+            const desc = document.getElementById('itemDesc').value.trim();
+            if (!title) {
+                alert(currentLang === 'ar' ? '⚠️ الرجاء إدخال عنوان' : '⚠️ Please enter a title');
+                return;
+            }
+            const data = { title, budget, location, desc };
+            db.ref(type + '/' + key).update(data).then(() => {
+                alert(currentLang === 'ar' ? '✅ تم التحديث' : '✅ Updated successfully');
+                document.getElementById('itemTitle').value = '';
+                document.getElementById('itemBudget').value = '';
+                document.getElementById('itemLocation').value = '';
+                document.getElementById('itemDesc').value = '';
+                hideAddForm();
+                editingKey = null;
+                editingType = null;
+                document.getElementById('saveBtn').textContent = translations[currentLang].saveBtn;
+                document.getElementById('saveBtn').onclick = function() { addItem(type); };
+                if (type === 'appointments') loadAppointments();
+                else loadMyRequests();
+            }).catch(err => alert('❌ ' + err.message));
+        }
+
+        // حذف عنصر
+        function deleteItem(type, key) {
+            if (!confirm(translations[currentLang].confirmDelete)) return;
+            db.ref(type + '/' + key).remove().then(() => {
+                alert(currentLang === 'ar' ? '🗑️ تم الحذف' : '🗑️ Deleted');
+                if (type === 'appointments') loadAppointments();
+                else loadMyRequests();
+            }).catch(err => alert('❌ ' + err.message));
+        }
+
+        // إظهار/إخفاء النموذج
+        function showAddForm() {
+            document.getElementById('addForm').style.display = 'block';
+        }
+        function hideAddForm() {
+            document.getElementById('addForm').style.display = 'none';
+            document.getElementById('itemTitle').value = '';
+            document.getElementById('itemBudget').value = '';
+            document.getElementById('itemLocation').value = '';
+            document.getElementById('itemDesc').value = '';
+            document.getElementById('saveBtn').textContent = translations[currentLang].saveBtn;
+            document.getElementById('saveBtn').onclick = function() { addItem('appointments'); };
+            editingKey = null;
+            editingType = null;
+        }
+
+        // تهيئة الصفحة
+        setLanguage(currentLang);
+        switchTab('appointments');
+    </script>
+</body>
+</html>
