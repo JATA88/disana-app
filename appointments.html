@@ -40,6 +40,9 @@
         .btn-primary:hover { opacity: 0.9; }
         .btn-save { background: #00224e; color: white; border: none; padding: 10px; border-radius: 8px; width: 100%; cursor: pointer; font-weight: 700; }
         .btn-cancel { background: #f2f4f6; color: #525f71; border: none; padding: 10px; border-radius: 8px; width: 100%; margin-top: 6px; cursor: pointer; }
+        .card-title { font-weight: 700; color: #00224e; font-size: 15px; }
+        .card-sub { font-size: 13px; color: #525f71; }
+        .card-desc { font-size: 12px; color: #888; }
     </style>
 </head>
 <body class="bg-[#f7f9fb] text-[#191c1e] flex flex-col min-h-screen">
@@ -86,21 +89,21 @@
                 <input type="text" id="itemBudget" placeholder="الميزانية (اختياري)">
                 <input type="text" id="itemLocation" placeholder="الموقع (اختياري)">
                 <textarea id="itemDesc" placeholder="الوصف" rows="2"></textarea>
-                <button class="btn-save" id="saveBtn">💾 حفظ</button>
+                <button class="btn-save" id="saveBtn" onclick="saveItem()">💾 حفظ</button>
                 <button class="btn-cancel" onclick="hideAddForm()">إلغاء</button>
             </div>
 
-            <!-- قائمة المواعيد -->
+            <!-- محتوى المواعيد -->
             <div id="appointmentsContent">
                 <div id="appointmentsList"></div>
             </div>
 
-            <!-- قائمة طلباتي -->
+            <!-- محتوى طلباتي -->
             <div id="myRequestsContent" class="hidden">
                 <div id="myRequestsList"></div>
             </div>
 
-            <!-- قائمة طلبات السوق (ثابتة) -->
+            <!-- محتوى طلبات السوق (ثابت) -->
             <div id="marketContent" class="hidden">
                 <div class="bg-white rounded-xl p-4 shadow-sm border border-[#e0e3e5]/30">
                     <div class="flex items-center justify-between">
@@ -140,14 +143,14 @@
     </nav>
 
     <script>
-        // Firebase Config (ضع رابطك الصحيح هنا)
+        // 🔥 Firebase Config
         const firebaseConfig = {
             databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/"
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // الترجمة
+        // 🌐 الترجمة الكاملة
         const translations = {
             ar: {
                 pageTitle: 'المواعيد',
@@ -209,10 +212,13 @@
         let editingKey = null;
         let editingType = null;
 
+        // =============== دوال اللغة ===============
         function setLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('disana_lang', lang);
             const t = translations[lang];
+
+            // تحديث جميع النصوص
             document.getElementById('pageTitle').textContent = t.pageTitle;
             document.getElementById('tabAppointmentsLabel').textContent = t.tabAppointments;
             document.getElementById('tabMyRequestsLabel').textContent = t.tabMyRequests;
@@ -225,6 +231,8 @@
             document.getElementById('navProperties').textContent = t.navProperties;
             document.getElementById('navAppointments').textContent = t.navAppointments;
             document.getElementById('langToggleBtn').textContent = t.btnLang;
+
+            // تحديث طلبات السوق
             document.getElementById('market1Title').textContent = t.market1Title;
             document.getElementById('market1Price').textContent = t.market1Price;
             document.getElementById('market1Desc').textContent = t.market1Desc;
@@ -233,9 +241,12 @@
             document.getElementById('market2Price').textContent = t.market2Price;
             document.getElementById('market2Desc').textContent = t.market2Desc;
             document.getElementById('market2Btn').textContent = t.market2Btn;
+
+            // تغيير اتجاه الصفحة
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
-            // تحديث العناوين الديناميكية في القوائم
+
+            // إعادة تحميل القوائم لتحديث الأزرار الداخلية
             loadAppointments();
             loadMyRequests();
         }
@@ -245,12 +256,13 @@
             setLanguage(newLang);
         }
 
-        // التبويبات
+        // =============== التبويبات ===============
         function switchTab(tab) {
             document.getElementById('appointmentsContent').classList.add('hidden');
             document.getElementById('myRequestsContent').classList.add('hidden');
             document.getElementById('marketContent').classList.add('hidden');
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+
             if (tab === 'appointments') {
                 document.getElementById('appointmentsContent').classList.remove('hidden');
                 document.getElementById('tabAppointments').classList.add('active');
@@ -265,7 +277,7 @@
             }
         }
 
-        // تحميل المواعيد من Firebase
+        // =============== تحميل المواعيد ===============
         function loadAppointments() {
             const container = document.getElementById('appointmentsList');
             db.ref('appointments').on('value', (snapshot) => {
@@ -280,26 +292,18 @@
                         container.innerHTML += `
                             <div class="card">
                                 <div>
-                                    <strong>${item.title || 'بدون عنوان'}</strong>
-                                    <div style="font-size:13px;color:#525f71;">📅 ${item.date || ''} ${item.location ? '📍 ' + item.location : ''}</div>
-                                    <div style="font-size:12px;color:#888;">${item.desc || ''}</div>
+                                    <div class="card-title">${item.title || 'بدون عنوان'}</div>
+                                    <div class="card-sub">📅 ${item.date || ''} ${item.location ? '📍 ' + item.location : ''}</div>
+                                    <div class="card-desc">${item.desc || ''}</div>
                                 </div>
                                 <div class="flex-gap">
-                                    <button class="btn-sm btn-edit" data-key="${key}">${translations[currentLang].edit}</button>
-                                    <button class="btn-sm btn-delete" data-key="${key}">${translations[currentLang].delete}</button>
+                                    <button class="btn-sm btn-edit" onclick="editItem('appointments','${key}')">${translations[currentLang].edit}</button>
+                                    <button class="btn-sm btn-delete" onclick="deleteItem('appointments','${key}')">${translations[currentLang].delete}</button>
                                 </div>
                             </div>
                         `;
                     });
-                    // ربط الأحداث
-                    container.querySelectorAll('.btn-edit').forEach(btn => {
-                        btn.addEventListener('click', () => editItem('appointments', btn.dataset.key));
-                    });
-                    container.querySelectorAll('.btn-delete').forEach(btn => {
-                        btn.addEventListener('click', () => deleteItem('appointments', btn.dataset.key));
-                    });
                 }
-                // تحديث عدد التبويب
                 document.getElementById('tabAppointmentsLabel').textContent = 
                     (currentLang === 'ar' ? 'المواعيد' : 'Appointments') + ` (${count})`;
                 if (count === 0) {
@@ -308,7 +312,7 @@
             });
         }
 
-        // تحميل طلباتي من Firebase
+        // =============== تحميل طلباتي ===============
         function loadMyRequests() {
             const container = document.getElementById('myRequestsList');
             db.ref('requests').on('value', (snapshot) => {
@@ -321,24 +325,18 @@
                     keys.reverse().forEach(key => {
                         const item = data[key];
                         container.innerHTML += `
-                            <div class="card">
+                            <div class="card" style="border-right-color: #ffc107;">
                                 <div>
-                                    <strong>${item.title || 'بدون عنوان'}</strong>
-                                    <div style="font-size:13px;color:#525f71;">${item.budget ? '💰 ' + item.budget : ''} ${item.location ? '📍 ' + item.location : ''}</div>
-                                    <div style="font-size:12px;color:#888;">${item.desc || ''}</div>
+                                    <div class="card-title">${item.title || 'طلب'}</div>
+                                    <div class="card-sub">${item.budget ? '💰 ' + item.budget : ''} ${item.location ? '📍 ' + item.location : ''}</div>
+                                    <div class="card-desc">${item.desc || ''}</div>
                                 </div>
                                 <div class="flex-gap">
-                                    <button class="btn-sm btn-edit" data-key="${key}">${translations[currentLang].edit}</button>
-                                    <button class="btn-sm btn-delete" data-key="${key}">${translations[currentLang].delete}</button>
+                                    <button class="btn-sm btn-edit" onclick="editItem('requests','${key}')">${translations[currentLang].edit}</button>
+                                    <button class="btn-sm btn-delete" onclick="deleteItem('requests','${key}')">${translations[currentLang].delete}</button>
                                 </div>
                             </div>
                         `;
-                    });
-                    container.querySelectorAll('.btn-edit').forEach(btn => {
-                        btn.addEventListener('click', () => editItem('requests', btn.dataset.key));
-                    });
-                    container.querySelectorAll('.btn-delete').forEach(btn => {
-                        btn.addEventListener('click', () => deleteItem('requests', btn.dataset.key));
                     });
                 }
                 document.getElementById('tabMyRequestsLabel').textContent = 
@@ -349,8 +347,8 @@
             });
         }
 
-        // إضافة عنصر (موعد أو طلب)
-        function addItem(type) {
+        // =============== إضافة عنصر ===============
+        function saveItem() {
             const title = document.getElementById('itemTitle').value.trim();
             const budget = document.getElementById('itemBudget').value.trim();
             const location = document.getElementById('itemLocation').value.trim();
@@ -359,20 +357,27 @@
                 alert(currentLang === 'ar' ? '⚠️ الرجاء إدخال عنوان' : '⚠️ Please enter a title');
                 return;
             }
+            const type = editingType || 'appointments';
             const data = { title, budget, location, desc };
-            db.ref(type).push(data).then(() => {
-                alert(currentLang === 'ar' ? '✅ تمت الإضافة' : '✅ Added successfully');
-                document.getElementById('itemTitle').value = '';
-                document.getElementById('itemBudget').value = '';
-                document.getElementById('itemLocation').value = '';
-                document.getElementById('itemDesc').value = '';
-                hideAddForm();
-                if (type === 'appointments') loadAppointments();
-                else loadMyRequests();
-            }).catch(err => alert('❌ ' + err.message));
+            
+            if (editingKey) {
+                db.ref(type + '/' + editingKey).update(data).then(() => {
+                    alert(currentLang === 'ar' ? '✅ تم التحديث' : '✅ Updated');
+                    resetForm();
+                    if (type === 'appointments') loadAppointments();
+                    else loadMyRequests();
+                }).catch(err => alert('❌ ' + err.message));
+            } else {
+                db.ref(type).push(data).then(() => {
+                    alert(currentLang === 'ar' ? '✅ تمت الإضافة' : '✅ Added');
+                    resetForm();
+                    if (type === 'appointments') loadAppointments();
+                    else loadMyRequests();
+                }).catch(err => alert('❌ ' + err.message));
+            }
         }
 
-        // تعديل عنصر
+        // =============== تعديل عنصر ===============
         function editItem(type, key) {
             const ref = db.ref(type + '/' + key);
             ref.once('value').then(snap => {
@@ -386,38 +391,10 @@
                 document.getElementById('itemLocation').value = item.location || '';
                 document.getElementById('itemDesc').value = item.desc || '';
                 document.getElementById('saveBtn').textContent = currentLang === 'ar' ? '💾 تحديث' : '💾 Update';
-                document.getElementById('saveBtn').onclick = function() { updateItem(type, key); };
             });
         }
 
-        // تحديث عنصر
-        function updateItem(type, key) {
-            const title = document.getElementById('itemTitle').value.trim();
-            const budget = document.getElementById('itemBudget').value.trim();
-            const location = document.getElementById('itemLocation').value.trim();
-            const desc = document.getElementById('itemDesc').value.trim();
-            if (!title) {
-                alert(currentLang === 'ar' ? '⚠️ الرجاء إدخال عنوان' : '⚠️ Please enter a title');
-                return;
-            }
-            const data = { title, budget, location, desc };
-            db.ref(type + '/' + key).update(data).then(() => {
-                alert(currentLang === 'ar' ? '✅ تم التحديث' : '✅ Updated successfully');
-                document.getElementById('itemTitle').value = '';
-                document.getElementById('itemBudget').value = '';
-                document.getElementById('itemLocation').value = '';
-                document.getElementById('itemDesc').value = '';
-                hideAddForm();
-                editingKey = null;
-                editingType = null;
-                document.getElementById('saveBtn').textContent = translations[currentLang].saveBtn;
-                document.getElementById('saveBtn').onclick = function() { addItem(type); };
-                if (type === 'appointments') loadAppointments();
-                else loadMyRequests();
-            }).catch(err => alert('❌ ' + err.message));
-        }
-
-        // حذف عنصر
+        // =============== حذف عنصر ===============
         function deleteItem(type, key) {
             if (!confirm(translations[currentLang].confirmDelete)) return;
             db.ref(type + '/' + key).remove().then(() => {
@@ -427,23 +404,25 @@
             }).catch(err => alert('❌ ' + err.message));
         }
 
-        // إظهار/إخفاء النموذج
+        // =============== إظهار/إخفاء النموذج ===============
         function showAddForm() {
             document.getElementById('addForm').style.display = 'block';
         }
         function hideAddForm() {
+            resetForm();
             document.getElementById('addForm').style.display = 'none';
+        }
+        function resetForm() {
             document.getElementById('itemTitle').value = '';
             document.getElementById('itemBudget').value = '';
             document.getElementById('itemLocation').value = '';
             document.getElementById('itemDesc').value = '';
             document.getElementById('saveBtn').textContent = translations[currentLang].saveBtn;
-            document.getElementById('saveBtn').onclick = function() { addItem('appointments'); };
             editingKey = null;
             editingType = null;
         }
 
-        // تهيئة الصفحة
+        // =============== تحميل الصفحة ===============
         setLanguage(currentLang);
         switchTab('appointments');
     </script>
