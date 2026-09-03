@@ -143,14 +143,14 @@
     </nav>
 
     <script>
-        // 🔥 Firebase Config
+        // Firebase Config
         const firebaseConfig = {
             databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/"
         };
         firebase.initializeApp(firebaseConfig);
         const db = firebase.database();
 
-        // 🌐 الترجمة الكاملة
+        // الترجمة
         const translations = {
             ar: {
                 pageTitle: 'المواعيد',
@@ -212,13 +212,10 @@
         let editingKey = null;
         let editingType = null;
 
-        // =============== دوال اللغة ===============
         function setLanguage(lang) {
             currentLang = lang;
             localStorage.setItem('disana_lang', lang);
             const t = translations[lang];
-
-            // تحديث جميع النصوص
             document.getElementById('pageTitle').textContent = t.pageTitle;
             document.getElementById('tabAppointmentsLabel').textContent = t.tabAppointments;
             document.getElementById('tabMyRequestsLabel').textContent = t.tabMyRequests;
@@ -231,8 +228,6 @@
             document.getElementById('navProperties').textContent = t.navProperties;
             document.getElementById('navAppointments').textContent = t.navAppointments;
             document.getElementById('langToggleBtn').textContent = t.btnLang;
-
-            // تحديث طلبات السوق
             document.getElementById('market1Title').textContent = t.market1Title;
             document.getElementById('market1Price').textContent = t.market1Price;
             document.getElementById('market1Desc').textContent = t.market1Desc;
@@ -241,12 +236,8 @@
             document.getElementById('market2Price').textContent = t.market2Price;
             document.getElementById('market2Desc').textContent = t.market2Desc;
             document.getElementById('market2Btn').textContent = t.market2Btn;
-
-            // تغيير اتجاه الصفحة
             document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
             document.documentElement.lang = lang;
-
-            // إعادة تحميل القوائم لتحديث الأزرار الداخلية
             loadAppointments();
             loadMyRequests();
         }
@@ -256,13 +247,11 @@
             setLanguage(newLang);
         }
 
-        // =============== التبويبات ===============
         function switchTab(tab) {
             document.getElementById('appointmentsContent').classList.add('hidden');
             document.getElementById('myRequestsContent').classList.add('hidden');
             document.getElementById('marketContent').classList.add('hidden');
             document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
-
             if (tab === 'appointments') {
                 document.getElementById('appointmentsContent').classList.remove('hidden');
                 document.getElementById('tabAppointments').classList.add('active');
@@ -277,7 +266,6 @@
             }
         }
 
-        // =============== تحميل المواعيد ===============
         function loadAppointments() {
             const container = document.getElementById('appointmentsList');
             db.ref('appointments').on('value', (snapshot) => {
@@ -312,7 +300,6 @@
             });
         }
 
-        // =============== تحميل طلباتي ===============
         function loadMyRequests() {
             const container = document.getElementById('myRequestsList');
             db.ref('requests').on('value', (snapshot) => {
@@ -347,7 +334,6 @@
             });
         }
 
-        // =============== إضافة عنصر ===============
         function saveItem() {
             const title = document.getElementById('itemTitle').value.trim();
             const budget = document.getElementById('itemBudget').value.trim();
@@ -377,7 +363,6 @@
             }
         }
 
-        // =============== تعديل عنصر ===============
         function editItem(type, key) {
             const ref = db.ref(type + '/' + key);
             ref.once('value').then(snap => {
@@ -394,7 +379,6 @@
             });
         }
 
-        // =============== حذف عنصر ===============
         function deleteItem(type, key) {
             if (!confirm(translations[currentLang].confirmDelete)) return;
             db.ref(type + '/' + key).remove().then(() => {
@@ -404,7 +388,6 @@
             }).catch(err => alert('❌ ' + err.message));
         }
 
-        // =============== إظهار/إخفاء النموذج ===============
         function showAddForm() {
             document.getElementById('addForm').style.display = 'block';
         }
@@ -422,7 +405,6 @@
             editingType = null;
         }
 
-        // =============== تحميل الصفحة ===============
         setLanguage(currentLang);
         switchTab('appointments');
     </script>
