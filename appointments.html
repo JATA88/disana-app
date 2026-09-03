@@ -11,11 +11,22 @@
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 <script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{"colors":{"on-primary":"#ffffff","tertiary":"#002150","surface-bright":"#f7f9fb","surface-container-high":"#e6e8ea","on-error":"#ffffff","surface":"#f7f9fb","on-secondary-container":"#566475","surface-dim":"#d8dadc","outline-variant":"#c4c6d1","primary":"#00224e","inverse-surface":"#2d3133","on-background":"#191c1e","on-surface-variant":"#434750","primary-fixed":"#d7e2ff","tertiary-fixed":"#d8e2ff","on-surface":"#191c1e","on-secondary-fixed-variant":"#3a4859","on-tertiary-fixed-variant":"#004494","background":"#f7f9fb","inverse-on-surface":"#eff1f3","on-secondary-fixed":"#0f1c2c","secondary-fixed":"#d6e4f9","outline":"#747781","on-primary-container":"#84a3e0","primary-container":"#12386e","error-container":"#ffdad6","on-tertiary-container":"#71a1ff","secondary-fixed-dim":"#bac8dc","surface-container":"#eceef0","on-tertiary":"#ffffff","surface-container-highest":"#e0e3e5","on-tertiary-fixed":"#001a41","on-primary-fixed":"#001b3f","on-primary-fixed-variant":"#24467d","primary-fixed-dim":"#abc7ff","surface-container-low":"#f2f4f6","inverse-primary":"#abc7ff","surface-container-lowest":"#ffffff","error":"#ba1a1a","tertiary-container":"#003679","secondary":"#525f71","on-secondary":"#ffffff","tertiary-fixed-dim":"#adc6ff","surface-tint":"#3e5e96","on-error-container":"#93000a","secondary-container":"#d3e1f6","surface-variant":"#e0e3e5"},"borderRadius":{"DEFAULT":"0.25rem","lg":"0.5rem","xl":"0.75rem","full":"9999px"},"spacing":{"space-lg":"1.5rem","space-2xs":"0.25rem","space-sm":"0.75rem","gutter-mobile":"0.75rem","margin-mobile":"1rem","space-xs":"0.5rem","space-2xl":"3rem","space-md":"1rem","space-xl":"2rem"},"fontFamily":{"label-sm":["Cairo"],"headline-md":["Cairo"],"label-md":["Cairo"],"body-md":["Cairo"],"headline-sm":["Cairo"],"headline-lg":["Cairo"],"body-sm":["Cairo"],"body-lg":["Cairo"],"label-lg":["Cairo"],"display":["Cairo"]},"fontSize":{"label-sm":["11px",{"lineHeight":"16px","fontWeight":"700"}],"headline-md":["22px",{"lineHeight":"32px","fontWeight":"700"}],"label-md":["13px",{"lineHeight":"18px","fontWeight":"600"}],"body-md":["14px",{"lineHeight":"22px","fontWeight":"400"}],"headline-sm":["18px",{"lineHeight":"28px","fontWeight":"600"}],"headline-lg":["28px",{"lineHeight":"38px","letterSpacing":"-0.01em","fontWeight":"700"}],"body-sm":["12px",{"lineHeight":"18px","fontWeight":"400"}],"body-lg":["16px",{"lineHeight":"26px","fontWeight":"400"}],"label-lg":["15px",{"lineHeight":"22px","fontWeight":"600"}],"display":["36px",{"lineHeight":"48px","letterSpacing":"-0.02em","fontWeight":"800"}]}}}}}</script>
-<style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style>
-<style>body{min-height:max(884px,100dvh);}</style>
+<style>@layer base{html,body{width:100vw;margin:0;padding:0;}body{overscroll-behavior:none;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}body{min-height:max(884px,100dvh);}</style>
 </head>
 <body class="bg-surface font-body-md text-body-md text-on-surface flex flex-col min-h-screen">
-<header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between"><div class="flex items-center gap-space-xs"><a class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary transition-colors hover:bg-surface-container-highest" href="home.html" title="الرجوع للرئيسية"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a><a class="flex items-center gap-space-xs" href="home.html"><span class="font-headline-md text-headline-md text-primary tracking-tight">ديسانا</span><span class="material-symbols-outlined text-primary text-[20px]" title="موثق">verified</span></a></div><div class="flex items-center gap-space-xs"><button id="lang-toggle-btn" onclick="toggleLanguage()" title="تغيير اللغة" class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm flex items-center gap-1.5 border border-surface-container-high hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px] text-primary">translate</span><span id="langLabel" class="">العربية / EN</span></button><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div></div></div></header>
+<header class="fixed top-0 w-full z-50 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] pt-safe"><div class="h-16 px-margin-mobile flex items-center justify-between">
+<div class="flex items-center gap-space-xs">
+<a class="w-8 h-8 rounded-full bg-surface-container-high flex items-center justify-center text-primary transition-colors hover:bg-surface-container-highest" href="home.html" title="الرجوع للرئيسية"><span class="material-symbols-outlined text-[18px]">arrow_forward</span></a>
+<a class="flex items-center gap-space-xs" href="home.html"><span class="font-headline-md text-headline-md text-primary tracking-tight">ديسانا</span><span class="material-symbols-outlined text-primary text-[20px]" title="موثق">verified</span></a>
+</div>
+<div class="flex items-center gap-space-xs">
+<button id="lang-toggle-btn" onclick="toggleLanguage()" title="تغيير اللغة" class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm flex items-center gap-1.5 border border-surface-container-high hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px] text-primary">translate</span><span id="langLabel" class="">العربية / EN</span></button>
+<!-- أزرار متابعة واشتراك في الهيدر -->
+<button id="followBtnHeader" onclick="toggleFollow()" class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm flex items-center gap-1.5 border border-surface-container-high hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]" id="followIconHeader">person_add</span><span id="followTextHeader">متابعة</span></button>
+<button id="subscribeBtnHeader" onclick="toggleSubscribe()" class="px-3 py-1.5 rounded-full bg-surface-container-lowest text-primary font-label-sm text-label-sm shadow-sm flex items-center gap-1.5 border border-surface-container-high hover:bg-surface-container-high transition-colors"><span class="material-symbols-outlined text-[16px]" id="subIconHeader">notifications</span><span id="subTextHeader">اشتراك</span></button>
+<div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div>
+</div>
+</div></header>
 <main class="flex-1 flex flex-col relative w-full pt-16 pb-24 bg-surface"><div class="flex flex-col w-full pb-8">
 <div class="px-margin-mobile py-space-sm">
 <div class="p-1 rounded-xl bg-surface-container-high flex items-center gap-1 shadow-sm" id="tabSwitcher">
@@ -31,25 +42,21 @@
 </div>
 <div class="rounded-xl p-3 bg-secondary-container text-on-secondary-container flex items-start gap-2.5 shadow-sm"><span class="material-symbols-outlined text-primary text-[20px] mt-0.5">info</span><div class="flex flex-col gap-0.5 flex-1"><span class="font-label-sm text-label-sm font-bold text-primary">نظام عام مفتوح للجميع:</span><p class="font-body-sm text-body-sm text-primary leading-tight">يمكن لأي مستخدم إضافة أو حذف أي موعد أو طلب عقاري مباشرة • تنتهي الصلاحية وتُحذف تلقائياً بعد 30 يوماً</p></div></div>
 </div>
-
 <!-- Appointments Pane -->
 <div class="flex flex-col px-margin-mobile gap-space-md" id="pane-appointments">
 <div class="flex items-center justify-between py-space-xs"><div class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-primary"></span><h2 class="font-headline-sm text-headline-sm text-primary">المواعيد المجدولة</h2></div><span class="font-label-sm text-label-sm px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container" id="appts-count-badge">0 موعد</span></div>
 <div id="appointmentsList"></div>
 </div>
-
 <!-- My Requests Pane -->
 <div class="hidden flex flex-col px-margin-mobile gap-space-md" id="pane-my-requests">
 <div class="flex items-center justify-between py-space-xs"><h3 class="font-headline-sm text-headline-sm text-primary">طلباتي النشطة</h3><span class="font-label-sm text-label-sm px-2 py-1 rounded-full bg-secondary-container text-on-secondary-container" id="my-req-count">0 طلبات</span></div>
 <div id="myRequestsList"></div>
 </div>
-
 <!-- Market Pane (static) -->
 <div class="hidden flex flex-col px-margin-mobile gap-space-md" id="pane-market">
 <div class="flex items-center justify-between py-space-xs"><div><h3 class="font-headline-sm text-headline-sm text-primary">طلبات السوق المفتوحة</h3><p class="font-body-sm text-body-sm text-secondary mt-0.5">فرص البيع والشراء للوسطاء والملاك</p></div><span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-surface-container text-secondary">0 عروض</span></div>
 <div class="bg-surface-container-lowest rounded-xl p-space-xl shadow-sm flex flex-col items-center justify-center text-center gap-space-md"><div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center text-secondary"><span class="material-symbols-outlined text-[32px]">storefront</span></div><div class="flex flex-col gap-1 max-w-sm"><h4 class="font-headline-sm text-headline-sm text-primary">لا توجد طلبات سوق نشطة</h4><p class="font-body-md text-body-md text-secondary">سيتم إدراج طلبات السوق الحالية فور ورودها من الشركاء والمشتركين</p></div></div>
 </div>
-
 <!-- Add Modal -->
 <div id="addModal" class="fixed inset-0 z-50 bg-inverse-surface/50 backdrop-blur-sm flex items-center justify-center hidden">
 <div class="bg-surface-container-lowest w-full max-w-sm rounded-2xl p-5 shadow-xl border border-outline-variant/30">
@@ -84,21 +91,70 @@ const db = firebase.database();
 let currentTab = 'appointments';
 let editingKey = null;
 let editingType = null;
+let isFollowing = localStorage.getItem('disana_following') === 'true';
+let isSubscribed = localStorage.getItem('disana_subscribed') === 'true';
 
 // ===== Localization =====
 let currentLang = localStorage.getItem('disana_lang') || 'ar';
 const i18n = {
-    ar: { langLabel: 'EN / العربية', confirmDelete: 'هل أنت متأكد من الحذف؟', noData: 'لا توجد بيانات', addSuccess: 'تمت الإضافة بنجاح', deleteSuccess: 'تم الحذف' },
-    en: { langLabel: 'العربية / EN', confirmDelete: 'Are you sure you want to delete?', noData: 'No data', addSuccess: 'Added successfully', deleteSuccess: 'Deleted successfully' }
+    ar: { 
+        langLabel: 'EN / العربية', 
+        confirmDelete: 'هل أنت متأكد من الحذف؟', 
+        noData: 'لا توجد بيانات', 
+        addSuccess: 'تمت الإضافة بنجاح', 
+        deleteSuccess: 'تم الحذف',
+        follow: 'متابعة',
+        following: 'مُتابَع',
+        subscribe: 'اشتراك',
+        subscribed: 'مشترك'
+    },
+    en: { 
+        langLabel: 'العربية / EN', 
+        confirmDelete: 'Are you sure you want to delete?', 
+        noData: 'No data', 
+        addSuccess: 'Added successfully', 
+        deleteSuccess: 'Deleted successfully',
+        follow: 'Follow',
+        following: 'Following',
+        subscribe: 'Subscribe',
+        subscribed: 'Subscribed'
+    }
 };
+
 function toggleLanguage() {
     currentLang = currentLang === 'ar' ? 'en' : 'ar';
     localStorage.setItem('disana_lang', currentLang);
-    document.getElementById('langLabel').textContent = i18n[currentLang].langLabel;
+    applyLanguage();
+}
+
+function applyLanguage() {
+    const t = i18n[currentLang];
+    document.getElementById('langLabel').textContent = t.langLabel;
+    document.getElementById('followTextHeader').textContent = isFollowing ? t.following : t.follow;
+    document.getElementById('subTextHeader').textContent = isSubscribed ? t.subscribed : t.subscribe;
     document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
     document.documentElement.lang = currentLang;
 }
-toggleLanguage();
+
+// ===== Follow Toggle =====
+function toggleFollow() {
+    isFollowing = !isFollowing;
+    localStorage.setItem('disana_following', isFollowing);
+    const t = i18n[currentLang];
+    document.getElementById('followTextHeader').textContent = isFollowing ? t.following : t.follow;
+    document.getElementById('followIconHeader').textContent = isFollowing ? 'check' : 'person_add';
+    document.getElementById('followBtnHeader').classList.toggle('bg-secondary-container');
+}
+
+// ===== Subscribe Toggle =====
+function toggleSubscribe() {
+    isSubscribed = !isSubscribed;
+    localStorage.setItem('disana_subscribed', isSubscribed);
+    const t = i18n[currentLang];
+    document.getElementById('subTextHeader').textContent = isSubscribed ? t.subscribed : t.subscribe;
+    document.getElementById('subIconHeader').textContent = isSubscribed ? 'notifications_active' : 'notifications';
+    document.getElementById('subscribeBtnHeader').classList.toggle('bg-secondary-container');
+}
 
 // ===== Tab Switching =====
 function switchTab(tab) {
@@ -214,6 +270,8 @@ function deleteAllItems() {
         .then(() => { alert('🗑️ تم حذف الكل'); loadAppointments(); loadRequests(); })
         .catch(err => alert('❌ فشل: ' + err.message));
 }
+
+// ===== Init =====
+applyLanguage();
 </script>
-</body>
-</html>
+</body></html>
