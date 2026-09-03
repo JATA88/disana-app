@@ -11,22 +11,30 @@
         body { font-family: 'Cairo', sans-serif; background: #f7f9fb; }
         .card { transition: all 0.2s; }
         .card:hover { transform: scale(1.02); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        .lang-btn { transition: all 0.2s; cursor: pointer; padding: 6px 14px; border-radius: 50px; border: 1px solid #e0e3e5; background: white; font-size: 13px; }
+        .lang-btn:hover { background: #00224e; color: white; border-color: #00224e; }
+        [dir="ltr"] .lang-btn { margin-right: 8px; }
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center justify-center p-4">
     <div class="max-w-md w-full bg-white rounded-2xl shadow-lg p-6 text-center">
+        <!-- زر اللغة -->
+        <div class="flex justify-end mb-2">
+            <button onclick="toggleLanguage()" class="lang-btn" id="langToggleBtn">English</button>
+        </div>
+
         <div class="flex items-center justify-center gap-2 mb-4">
             <span class="text-3xl font-bold text-[#00224e]">ديسانا</span>
             <span class="material-symbols-outlined text-[#00224e] text-2xl">verified</span>
         </div>
-        <p class="text-[#525f71] text-sm mb-6">منصتك العقارية الموثوقة</p>
+        <p class="text-[#525f71] text-sm mb-6" id="tagline">منصتك العقارية الموثوقة</p>
         <div class="space-y-3">
             <a href="home.html" class="card block bg-[#f7f9fb] rounded-xl p-4 border border-[#e0e3e5]">
                 <div class="flex items-center gap-3">
                     <span class="material-symbols-outlined text-[#00224e] text-3xl">home_work</span>
                     <div class="text-right">
-                        <h3 class="text-[#00224e] font-bold text-base">الصفحة الرئيسية</h3>
-                        <p class="text-[#525f71] text-xs">استعراض العقارات والمواعيد</p>
+                        <h3 class="text-[#00224e] font-bold text-base" id="homeTitle">الصفحة الرئيسية</h3>
+                        <p class="text-[#525f71] text-xs" id="homeDesc">استعراض العقارات والمواعيد</p>
                     </div>
                 </div>
             </a>
@@ -34,8 +42,8 @@
                 <div class="flex items-center gap-3">
                     <span class="material-symbols-outlined text-[#00224e] text-3xl">architecture</span>
                     <div class="text-right">
-                        <h3 class="text-[#00224e] font-bold text-base">تفاصيل العقار</h3>
-                        <p class="text-[#525f71] text-xs">مواصفات وحجز المواعيد</p>
+                        <h3 class="text-[#00224e] font-bold text-base" id="propertyTitle">تفاصيل العقار</h3>
+                        <p class="text-[#525f71] text-xs" id="propertyDesc">مواصفات وحجز المواعيد</p>
                     </div>
                 </div>
             </a>
@@ -43,13 +51,67 @@
                 <div class="flex items-center gap-3">
                     <span class="material-symbols-outlined text-[#00224e] text-3xl">calendar_month</span>
                     <div class="text-right">
-                        <h3 class="text-[#00224e] font-bold text-base">المواعيد والطلبات</h3>
-                        <p class="text-[#525f71] text-xs">إدارة المواعيد والطلبات</p>
+                        <h3 class="text-[#00224e] font-bold text-base" id="appointmentsTitle">المواعيد والطلبات</h3>
+                        <p class="text-[#525f71] text-xs" id="appointmentsDesc">إدارة المواعيد والطلبات</p>
                     </div>
                 </div>
             </a>
         </div>
-        <div class="mt-6 pt-4 border-t border-[#e0e3e5] text-[#525f71] text-xs">© 2025 منصة ديسانا العقارية</div>
+        <div class="mt-6 pt-4 border-t border-[#e0e3e5] text-[#525f71] text-xs" id="footerCopy">© 2025 منصة ديسانا العقارية</div>
     </div>
+
+    <script>
+        const translations = {
+            ar: {
+                tagline: 'منصتك العقارية الموثوقة',
+                homeTitle: 'الصفحة الرئيسية',
+                homeDesc: 'استعراض العقارات والمواعيد',
+                propertyTitle: 'تفاصيل العقار',
+                propertyDesc: 'مواصفات وحجز المواعيد',
+                appointmentsTitle: 'المواعيد والطلبات',
+                appointmentsDesc: 'إدارة المواعيد والطلبات',
+                footer: '© 2025 منصة ديسانا العقارية',
+                btnLang: 'English'
+            },
+            en: {
+                tagline: 'Your Trusted Real Estate Platform',
+                homeTitle: 'Home',
+                homeDesc: 'Browse properties and appointments',
+                propertyTitle: 'Property Details',
+                propertyDesc: 'Specifications and booking',
+                appointmentsTitle: 'Appointments & Requests',
+                appointmentsDesc: 'Manage appointments and requests',
+                footer: '© 2025 Disana Real Estate',
+                btnLang: 'عربي'
+            }
+        };
+
+        let currentLang = localStorage.getItem('disana_lang') || 'ar';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            localStorage.setItem('disana_lang', lang);
+            const t = translations[lang];
+            document.getElementById('tagline').textContent = t.tagline;
+            document.getElementById('homeTitle').textContent = t.homeTitle;
+            document.getElementById('homeDesc').textContent = t.homeDesc;
+            document.getElementById('propertyTitle').textContent = t.propertyTitle;
+            document.getElementById('propertyDesc').textContent = t.propertyDesc;
+            document.getElementById('appointmentsTitle').textContent = t.appointmentsTitle;
+            document.getElementById('appointmentsDesc').textContent = t.appointmentsDesc;
+            document.getElementById('footerCopy').textContent = t.footer;
+            document.getElementById('langToggleBtn').textContent = t.btnLang;
+            document.documentElement.dir = lang === 'ar' ? 'rtl' : 'ltr';
+            document.documentElement.lang = lang;
+        }
+
+        function toggleLanguage() {
+            const newLang = currentLang === 'ar' ? 'en' : 'ar';
+            setLanguage(newLang);
+        }
+
+        // تحميل اللغة المحفوظة عند فتح الصفحة
+        setLanguage(currentLang);
+    </script>
 </body>
 </html>
