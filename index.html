@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html dir="rtl" lang="ar"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
@@ -43,9 +44,6 @@
       }
     };
   </script>
-<!-- Firebase SDK -->
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
 <style>
     @layer base {
       html, body { width: 100vw; margin: 0; padding: 0; }
@@ -119,6 +117,7 @@
 <span class="" id="txt-hero-lang-lbl">EN</span>
 </button>
 </div>
+<!-- Hero Action Buttons -->
 <div class="grid grid-cols-2 gap-2 pt-1">
 <button class="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white text-primary text-xs font-bold shadow-xs transition-transform active:scale-95" id="btn-follow">
 <span class="material-symbols-outlined text-[17px]" id="ico-follow">add_circle</span>
@@ -143,6 +142,7 @@
 </nav>
 <!-- VIEW 1: Listings & Search -->
 <section class="view-panel flex flex-col gap-3" id="view-listings">
+<!-- Search & Filter Controls -->
 <div class="bg-surface-container-lowest rounded-2xl p-3 shadow-xs flex flex-col gap-2.5">
 <div class="flex items-center bg-surface-container rounded-xl px-3 py-2 gap-2">
 <span class="material-symbols-outlined text-secondary text-[20px]">search</span>
@@ -151,6 +151,7 @@
 <span class="material-symbols-outlined text-[16px]">cancel</span>
 </button>
 </div>
+<!-- Filter Chips -->
 <div class="flex items-center gap-1.5 overflow-x-auto pb-0.5" id="filter-chips">
 <button class="filter-chip px-3 py-1 rounded-full text-xs font-medium bg-primary text-on-primary transition-all" data-type="all" id="chip-all">الكل</button>
 <button class="filter-chip px-3 py-1 rounded-full text-xs font-medium bg-surface-container text-secondary hover:text-primary transition-all" data-type="sale" id="chip-sale">بيع</button>
@@ -158,8 +159,9 @@
 <button class="filter-chip px-3 py-1 rounded-full text-xs font-medium bg-surface-container text-secondary hover:text-primary transition-all" data-type="land" id="chip-land">أراضي</button>
 </div>
 </div>
+<!-- Feed / List Container -->
 <div class="flex flex-col gap-3" id="listings-feed"></div>
-<!-- No Search Results -->
+<!-- No Search Results Notice -->
 <div class="bg-surface-container-lowest rounded-2xl p-7 shadow-xs text-center hidden flex-col items-center justify-center gap-2 border border-surface-container" id="no-search-results">
 <div class="w-14 h-14 rounded-full bg-secondary-container/60 flex items-center justify-center text-primary mb-1">
 <span class="material-symbols-outlined text-[28px]">search_off</span>
@@ -171,7 +173,7 @@
 <span id="lbl-reset-search">إعادة تعيين البحث</span>
 </button>
 </div>
-<!-- Empty State -->
+<!-- Empty State Card -->
 <div class="bg-surface-container-lowest rounded-2xl p-7 shadow-xs text-center flex flex-col items-center justify-center gap-3" id="empty-state-listings">
 <div class="w-16 h-16 rounded-full bg-secondary-container/70 flex items-center justify-center text-primary">
 <span class="material-symbols-outlined text-[32px]">apartment</span>
@@ -185,7 +187,7 @@
 <span class="text-[11px] text-secondary/80 mt-1" id="txt-empty-rule">نظام ديسانا يحذف الإعلانات غير المحدثة تلقائياً بعد 30 يوماً</span>
 </div>
 </section>
-<!-- VIEW 2: Appointments -->
+<!-- VIEW 3: Appointments & Requests -->
 <section class="view-panel hidden flex flex-col gap-3" id="view-appointments">
 <div class="bg-surface-container-lowest rounded-2xl p-4 shadow-xs flex flex-col gap-3">
 <div class="flex items-center justify-between pb-2 border-b border-surface-container">
@@ -195,7 +197,9 @@
 <span class="" id="btn-add-appt-lbl">+ إضافة طلب / موعد</span>
 </button>
 </div>
+<!-- Appointments List -->
 <div class="flex flex-col gap-2" id="appointments-feed"></div>
+<!-- Empty State -->
 <div class="p-6 text-center flex flex-col items-center justify-center gap-2" id="empty-state-appts">
 <div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-secondary mb-1">
 <span class="material-symbols-outlined text-[28px]">event_busy</span>
@@ -205,7 +209,7 @@
 </div>
 </div>
 </section>
-<!-- VIEW 3: Management -->
+<!-- VIEW 4: Management & Deletion -->
 <section class="view-panel hidden flex flex-col gap-3" id="view-management">
 <div class="bg-surface-container-lowest rounded-2xl p-4 shadow-xs flex flex-col gap-3">
 <div class="flex items-center justify-between pb-2 border-b border-surface-container">
@@ -220,13 +224,15 @@
 </div>
 <p class="text-xs text-secondary leading-relaxed" id="lbl-mgmt-desc">ديسانا توفر نظاماً حراً يتيح لأي مستخدم حذف أو تصحيح بيانات إعلاناته ومواعيده بنقرة زر دون تعقيدات.</p>
 <div class="flex flex-col gap-3 pt-1" id="management-records-feed">
-<div class="p-5 text-center text-xs text-secondary bg-surface-container rounded-xl">لا توجد سجلات مسجلة حالياً للتعديل أو الحذف.</div>
+<div class="p-5 text-center text-xs text-secondary bg-surface-container rounded-xl">
+              لا توجد سجلات مسجلة حالياً للتعديل أو الحذف.
+            </div>
 </div>
 </div>
 </section>
 </div>
 </main>
-<!-- Modal: Add Property -->
+<!-- Modal: Add Property Form -->
 <div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4 transition-all duration-200" id="modal-property">
 <div class="w-full max-w-md bg-surface-container-lowest rounded-t-2xl sm:rounded-2xl p-4 sm:p-5 shadow-2xl flex flex-col gap-3 max-h-[92vh] overflow-y-auto border border-surface-container" id="modal-property-dialog">
 <div class="flex items-center justify-between pb-2.5 border-b border-surface-container">
@@ -244,6 +250,7 @@
 </div>
 </div>
 <form class="flex flex-col gap-3" id="form-prop" onsubmit="return false;">
+<!-- Property Type: Apartment, Villa, Land, Office -->
 <div class="flex flex-col gap-1.5">
 <label class="text-xs font-bold text-on-surface" id="lbl-category-type">نوع العقار</label>
 <div class="grid grid-cols-4 gap-1.5" id="group-prop-category">
@@ -265,6 +272,7 @@
 </label>
 </div>
 </div>
+<!-- Listing Operation: Sale vs Rent -->
 <div class="flex flex-col gap-1.5">
 <label class="text-xs font-bold text-on-surface" id="lbl-op-type">نوع العرض</label>
 <div class="grid grid-cols-2 gap-2">
@@ -278,10 +286,12 @@
 </label>
 </div>
 </div>
+<!-- Title -->
 <div class="flex flex-col gap-1">
 <label class="text-xs font-semibold text-on-surface" id="lbl-title-input">عنوان الإعلان</label>
 <input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="prop-input-title" placeholder="مثال: فيلا عصرية مع مسبح وحديقة" required="" type="text"/>
 </div>
+<!-- City & Price -->
 <div class="grid grid-cols-2 gap-2">
 <div class="flex flex-col gap-1">
 <label class="text-xs font-semibold text-on-surface" id="lbl-city-input">المدينة / الحي</label>
@@ -292,10 +302,12 @@
 <input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="prop-input-price" placeholder="مثال: 1,850,000 ريال" required="" type="text"/>
 </div>
 </div>
+<!-- Contact info -->
 <div class="flex flex-col gap-1">
 <label class="text-xs font-semibold text-on-surface" id="lbl-contact-input">رقم التواصل / الاسم</label>
 <input class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary/40 transition-all" id="prop-input-contact" placeholder="مثال: 0501234567 - أبو فهد" required="" type="text"/>
 </div>
+<!-- Description with 100-word limit -->
 <div class="flex flex-col gap-1">
 <div class="flex items-center justify-between">
 <label class="text-xs font-semibold text-on-surface" id="lbl-desc-input">وصف مختصر (حد أقصى 100 كلمة)</label>
@@ -303,10 +315,12 @@
 </div>
 <textarea class="bg-surface-container px-3 py-2 rounded-xl text-xs text-on-surface placeholder:text-secondary/70 focus:outline-none focus:ring-2 focus:ring-primary/40 resize-none transition-all" id="prop-input-desc" placeholder="صف المساحة، التشطيبات، الواجهة والمواصفات الأساسية..." required="" rows="3"></textarea>
 </div>
+<!-- Auto expiry notice -->
 <div class="p-2.5 rounded-xl bg-surface-container-high/60 flex items-start gap-2">
 <span class="material-symbols-outlined text-primary text-[17px] mt-0.5 shrink-0">info</span>
 <p class="text-[11px] text-secondary leading-snug" id="lbl-expiry-note">ملاحظة نظامية: طبقاً لسياسة ديسانا، ينحذف الإعلان تلقائياً بعد 30 يوماً من تاريخ النشر.</p>
 </div>
+<!-- Modal Buttons -->
 <div class="flex items-center gap-2 pt-1">
 <button class="flex-1 py-3 rounded-xl bg-primary hover:bg-primary-container text-on-primary font-bold text-xs flex items-center justify-center gap-1.5 shadow-md active:scale-[0.98] transition-all" id="btn-submit-prop" onclick="window.handlePropertySubmit &amp;&amp; window.handlePropertySubmit(event)" type="button">
 <span class="material-symbols-outlined text-[18px]">verified</span>
@@ -319,7 +333,7 @@
 </form>
 </div>
 </div>
-<!-- Modal: Add Appointment -->
+<!-- Modal: Book Appointment / Request -->
 <div class="fixed inset-0 z-50 bg-inverse-surface/60 backdrop-blur-sm hidden flex items-end sm:items-center justify-center p-0 sm:p-4 transition-opacity" id="modal-appt">
 <div class="w-full max-w-md bg-surface-container-lowest rounded-t-2xl sm:rounded-2xl p-4 shadow-xl flex flex-col gap-3">
 <div class="flex items-center justify-between pb-2 border-b border-surface-container">
@@ -358,12 +372,12 @@
 </form>
 </div>
 </div>
-<!-- Toast Notification -->
+<!-- Micro Toast Notification -->
 <div class="fixed bottom-20 left-1/2 -translate-x-1/2 z-50 bg-primary text-on-primary px-4 py-2.5 rounded-full text-xs font-semibold shadow-xl transition-all duration-300 opacity-0 pointer-events-none flex items-center gap-2 border border-white/20" id="toast-notify">
 <span class="material-symbols-outlined text-[18px] text-on-primary-container" id="toast-icon">check_circle</span>
 <span class="" id="toast-msg">تم تثبيت الطلب وإضافة العقار بنجاح!</span>
 </div>
-<!-- Bottom Navigation -->
+<!-- Bottom Navigation Bar -->
 <nav class="fixed bottom-0 w-full z-40 pb-safe bg-surface/95 backdrop-blur-md shadow-[0_-2px_10px_rgba(0,34,78,0.04)] border-t border-surface-container/60">
 <div class="h-14 px-4 flex items-center justify-around max-w-xl mx-auto">
 <button class="b-nav-item flex flex-col items-center justify-center gap-0.5 min-w-[56px] text-primary" data-tab="listings" id="bnav-home">
@@ -380,52 +394,87 @@
 </button>
 </div>
 </nav>
-
 <script>
     (function () {
-      // 🔥 Firebase Config
-      const firebaseConfig = {
-        databaseURL: "https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app/"
-      };
-      firebase.initializeApp(firebaseConfig);
-      const db = firebase.database();
+      // Configuration & Firebase Realtime Database
+      const FIREBASE_BASE_URL = 'https://desana-8246c-default-rtdb.europe-west1.firebasedatabase.app';
       const THIRTY_DAYS_MS = 30 * 24 * 60 * 60 * 1000;
 
-      // ===== Localization =====
+      // Localization Dictionary
       const i18n = {
         ar: {
-          hdrBrand: 'ديسانا | Disana', hdrSub: 'الرئيسية', heroTitle: 'منصة ديسانا العقارية',
-          heroDesc: 'إدارة واستكشاف الأصول العقارية الراقية', heroLangLbl: 'EN',
-          followBtn: 'متابعة المنصة', followingBtn: 'تمت المتابعة', subscribeBtn: 'اشتراك معتمد',
-          tabListings: 'العقارات', tabAdd: '+ إضافة عقار', tabAppts: 'المواعيد والطلبات', tabMgmt: 'إدارة وحذف',
+          hdrBrand: 'ديسانا | Disana',
+          hdrSub: 'الرئيسية',
+          heroTitle: 'منصة ديسانا العقارية',
+          heroDesc: 'إدارة واستكشاف الأصول العقارية الراقية',
+          heroLangLbl: 'EN',
+          followBtn: 'متابعة المنصة',
+          followingBtn: 'تمت المتابعة',
+          subscribeBtn: 'اشتراك معتمد',
+          tabListings: 'العقارات',
+          tabAdd: '+ إضافة عقار',
+          tabAppts: 'المواعيد والطلبات',
+          tabMgmt: 'إدارة وحذف',
           searchPlaceholder: 'ابحث بنوع العقار أو المدينة...',
-          filterAll: 'الكل', filterSale: 'بيع', filterRent: 'إيجار', filterLand: 'أراضي',
-          emptyTitle: 'لا توجد عقارات متاحة حالياً', emptyAddBtn: '+ أضف عقار جديد الآن',
+          filterAll: 'الكل',
+          filterSale: 'بيع',
+          filterRent: 'إيجار',
+          filterLand: 'أراضي',
+          emptyTitle: 'لا توجد عقارات متاحة حالياً',
+          emptyDesc: 'قائمتنا العقارية المحدثة تنتظر إعلانك الأول. بادر بنشر تفاصيل العقار لتصل لمئات المستثمرين مباشرة.',
+          emptyAddBtn: '+ أضف عقار جديد الآن',
           emptyRule: 'نظام ديسانا يحذف الإعلانات غير المحدثة تلقائياً بعد 30 يوماً',
           noResultsTitle: 'لا توجد نتائج مطابقة لبحثك',
+          noResultsDesc: 'جرّب البحث باسم حي آخر، أو نوع مختلف (شقة، فيلا، أرض، بيع، إيجار).',
           resetSearchBtn: 'إعادة تعيين البحث',
-          formTitle: 'نموذج نشر عقار', openSys: 'نظام معتمد',
-          categoryType: 'نوع العقار', catApt: 'شقة', catVilla: 'فيلا', catLand: 'أرض', catOffice: 'مكتب',
-          opType: 'نوع العرض', optSale: 'بيع', optRent: 'إيجار',
-          lblTitle: 'عنوان الإعلان', phTitle: 'مثال: فيلا عصرية مع مسبح وحديقة',
-          lblCity: 'المدينة / الحي', phCity: 'مثال: الرياض - النرجس',
-          lblPrice: 'السعر', phPrice: 'مثال: 1,850,000 ريال',
-          lblContact: 'رقم التواصل / الاسم', phContact: 'مثال: 0501234567 - أبو فهد',
+          formTitle: 'نموذج نشر عقار',
+          openSys: 'نظام معتمد',
+          categoryType: 'نوع العقار',
+          catApt: 'شقة',
+          catVilla: 'فيلا',
+          catLand: 'أرض',
+          catOffice: 'مكتب',
+          opType: 'نوع العرض',
+          optSale: 'بيع',
+          optRent: 'إيجار',
+          optLand: 'أراضي',
+          lblTitle: 'عنوان الإعلان',
+          phTitle: 'مثال: فيلا عصرية مع مسبح وحديقة',
+          lblCity: 'المدينة / الحي',
+          phCity: 'مثال: الرياض - النرجس',
+          lblPrice: 'السعر',
+          phPrice: 'مثال: 1,850,000 ريال',
+          lblContact: 'رقم التواصل / الاسم',
+          phContact: 'مثال: 0501234567 - أبو فهد',
           lblDesc: 'وصف مختصر (حد أقصى 100 كلمة)',
-          wordsLimitNote: 'كلمة', wordsLimitExceeded: 'كلمة (تجاوزت الحد)',
+          phDesc: 'صف المساحة، التشطيبات، الواجهة والمواصفات الأساسية...',
+          wordsLimitNote: 'كلمة',
+          wordsLimitExceeded: 'كلمة (تجاوزت الحد)',
           expiryNotice: 'ملاحظة نظامية: طبقاً لسياسة ديسانا، ينحذف الإعلان تلقائياً بعد 30 يوماً من تاريخ النشر.',
-          btnSubmitProp: 'تثبيت الطلب وحفظ العقار', cancelProp: 'إلغاء',
-          apptsTitle: 'المواعيد ومعاينات الأصول', btnAddAppt: '+ إضافة طلب / موعد',
+          btnSubmitProp: 'تثبيت الطلب وحفظ العقار',
+          cancelProp: 'إلغاء',
+          apptsTitle: 'المواعيد ومعاينات الأصول',
+          btnAddAppt: '+ إضافة طلب / موعد',
           emptyApptsTitle: 'لا توجد مواعيد قادمة',
-          mgmtTitle: 'لوحة الإدارة والحذف المفتوحة', refreshBtn: 'تحديث',
-          deleteBtn: 'حذف العقار', cancelBtn: 'إلغاء', expiresInDays: 'ينحذف تلقائياً بعد 30 يوم',
+          emptyApptsDesc: 'جدول مواعيدك فارغ حالياً. يمكنك جدولة موعد معاينة ميدانية أو استشارة عقارية بسهولة.',
+          mgmtTitle: 'لوحة الإدارة والحذف المفتوحة',
+          refreshBtn: 'تحديث',
+          mgmtDesc: 'ديسانا توفر نظاماً حراً يتيح لأي مستخدم حذف أو تصحيح بيانات إعلاناته ومواعيده بنقرة زر دون تعقيدات.',
+          deleteBtn: 'حذف العقار',
+          cancelBtn: 'إلغاء',
+          expiresInDays: 'ينحذف تلقائياً بعد 30 يوم',
           modalApptTitle: 'جدولة معاينة أو طلب استشارة',
-          lblApptName: 'اسم العميل أو الجهة', phApptName: 'الاسم الكامل',
-          lblApptTarget: 'العقار المعني أو المدينة', phApptTarget: 'معرف الإعلان أو عنوان العقار',
-          lblApptDate: 'تاريخ المعاينة', lblApptTime: 'التوقيت المفضل',
+          lblApptName: 'اسم العميل أو الجهة',
+          phApptName: 'الاسم الكامل',
+          lblApptTarget: 'العقار المعني أو المدينة',
+          phApptTarget: 'معرف الإعلان أو عنوان العقار',
+          lblApptDate: 'تاريخ المعاينة',
+          lblApptTime: 'التوقيت المفضل',
           lblApptAutoDel: 'يُحفظ الموعد بقاعدة بيانات ديسانا ويحذف تلقائياً بعد 30 يوماً',
           btnSubmitAppt: 'تثبيت الطلب وتأكيد الموعد',
-          bnavHome: 'الرئيسية', bnavProps: 'العقارات', bnavAppts: 'المواعيد',
+          bnavHome: 'الرئيسية',
+          bnavProps: 'العقارات',
+          bnavAppts: 'المواعيد',
           toastPropAdded: 'تم تثبيت الطلب وإضافة العقار بنجاح!',
           toastApptAdded: 'تم تثبيت الطلب والموعد بنجاح',
           toastDeleted: 'تم حذف العقار بنجاح',
@@ -436,38 +485,78 @@
           typeLabels: { sale: 'بيع', rent: 'إيجار', land: 'أراضي' }
         },
         en: {
-          hdrBrand: 'Disana | Real Estate', hdrSub: 'Home', heroTitle: 'Disana Real Estate Platform',
-          heroDesc: 'High-end asset discovery and management', heroLangLbl: 'AR',
-          followBtn: 'Follow Platform', followingBtn: 'Following', subscribeBtn: 'Verified Sub',
-          tabListings: 'Listings', tabAdd: '+ Add Property', tabAppts: 'Appointments & Requests', tabMgmt: 'Management',
+          hdrBrand: 'Disana | Real Estate',
+          hdrSub: 'Home',
+          heroTitle: 'Disana Real Estate Platform',
+          heroDesc: 'High-end asset discovery and management',
+          heroLangLbl: 'AR',
+          followBtn: 'Follow Platform',
+          followingBtn: 'Following',
+          subscribeBtn: 'Verified Sub',
+          tabListings: 'Listings',
+          tabAdd: '+ Add Property',
+          tabAppts: 'Appointments & Requests',
+          tabMgmt: 'Management',
           searchPlaceholder: 'Search by property type or city...',
-          filterAll: 'All', filterSale: 'Sale', filterRent: 'Rent', filterLand: 'Land',
-          emptyTitle: 'No properties available currently', emptyAddBtn: '+ Add New Property Now',
+          filterAll: 'All',
+          filterSale: 'Sale',
+          filterRent: 'Rent',
+          filterLand: 'Land',
+          emptyTitle: 'No properties available currently',
+          emptyDesc: 'Our updated real estate directory awaits your first listing. Post your property to reach verified investors.',
+          emptyAddBtn: '+ Add New Property Now',
           emptyRule: 'Disana system automatically archives inactive listings after 30 days',
           noResultsTitle: 'No properties match your search',
+          noResultsDesc: 'Try searching by a different city, neighborhood, or type (villa, apartment, land, sale, rent).',
           resetSearchBtn: 'Reset Search',
-          formTitle: 'Post Real Estate Property', openSys: 'Verified System',
-          categoryType: 'Property Type', catApt: 'Apartment', catVilla: 'Villa', catLand: 'Land', catOffice: 'Office',
-          opType: 'Listing Type', optSale: 'Sale', optRent: 'Rent',
-          lblTitle: 'Listing Title', phTitle: 'e.g. Modern Villa with Pool & Garden',
-          lblCity: 'City / District', phCity: 'e.g. Riyadh - Al Narjis',
-          lblPrice: 'Price', phPrice: 'e.g. SAR 1,850,000',
-          lblContact: 'Contact / Name', phContact: 'e.g. 0501234567 - Abu Fahad',
+          formTitle: 'Post Real Estate Property',
+          openSys: 'Verified System',
+          categoryType: 'Property Type',
+          catApt: 'Apartment',
+          catVilla: 'Villa',
+          catLand: 'Land',
+          catOffice: 'Office',
+          opType: 'Listing Type',
+          optSale: 'Sale',
+          optRent: 'Rent',
+          optLand: 'Land',
+          lblTitle: 'Listing Title',
+          phTitle: 'e.g. Modern Villa with Pool & Garden',
+          lblCity: 'City / District',
+          phCity: 'e.g. Riyadh - Al Narjis',
+          lblPrice: 'Price',
+          phPrice: 'e.g. SAR 1,850,000',
+          lblContact: 'Contact / Name',
+          phContact: 'e.g. 0501234567 - Abu Fahad',
           lblDesc: 'Short Description (Max 100 words)',
-          wordsLimitNote: 'words', wordsLimitExceeded: 'words (limit exceeded)',
+          phDesc: 'Describe spaces, finishes, specifications...',
+          wordsLimitNote: 'words',
+          wordsLimitExceeded: 'words (limit exceeded)',
           expiryNotice: 'Regulatory note: Under Disana policy, listings are automatically deleted after 30 days.',
-          btnSubmitProp: 'Confirm & Save Property', cancelProp: 'Cancel',
-          apptsTitle: 'Property Viewing & Consultations', btnAddAppt: '+ New Booking / Request',
+          btnSubmitProp: 'Confirm & Save Property',
+          cancelProp: 'Cancel',
+          apptsTitle: 'Property Viewing & Consultations',
+          btnAddAppt: '+ New Booking / Request',
           emptyApptsTitle: 'No upcoming appointments',
-          mgmtTitle: 'Open Deletion & Management Console', refreshBtn: 'Sync Cloud',
-          deleteBtn: 'Delete Property', cancelBtn: 'Cancel', expiresInDays: 'Auto-deletes in 30 days',
+          emptyApptsDesc: 'Your schedule is clear. You can request a property site visit or real estate consultation anytime.',
+          mgmtTitle: 'Open Deletion & Management Console',
+          refreshBtn: 'Sync Cloud',
+          mgmtDesc: 'Disana provides an open system enabling instant edits and deletions with a single click.',
+          deleteBtn: 'Delete Property',
+          cancelBtn: 'Cancel',
+          expiresInDays: 'Auto-deletes in 30 days',
           modalApptTitle: 'Schedule Inspection / Request',
-          lblApptName: 'Client or Company Name', phApptName: 'Full Name',
-          lblApptTarget: 'Target Property or City', phApptTarget: 'Reference ID or Property Title',
-          lblApptDate: 'Inspection Date', lblApptTime: 'Preferred Time',
+          lblApptName: 'Client or Company Name',
+          phApptName: 'Full Name',
+          lblApptTarget: 'Target Property or City',
+          phApptTarget: 'Reference ID or Property Title',
+          lblApptDate: 'Inspection Date',
+          lblApptTime: 'Preferred Time',
           lblApptAutoDel: 'Stored securely in Disana Cloud and auto-cleansed after 30 days',
           btnSubmitAppt: 'Confirm Request & Book Date',
-          bnavHome: 'Home', bnavProps: 'Properties', bnavAppts: 'Appointments',
+          bnavHome: 'Home',
+          bnavProps: 'Properties',
+          bnavAppts: 'Appointments',
           toastPropAdded: 'Order confirmed & Property added successfully!',
           toastApptAdded: 'Request submitted successfully',
           toastDeleted: 'Property deleted successfully',
@@ -479,7 +568,7 @@
         }
       };
 
-      // ===== App State =====
+      // App State
       const state = {
         lang: 'ar',
         followers: 0,
@@ -491,15 +580,18 @@
         appointments: []
       };
 
-      // ===== LocalStorage Helpers =====
+      // LocalStorage Helper
       function persistLocal() {
         try {
           localStorage.setItem('disana_props', JSON.stringify(state.properties));
           localStorage.setItem('disana_appts', JSON.stringify(state.appointments));
           localStorage.setItem('disana_followers', state.followers);
           localStorage.setItem('disana_isFollowing', state.isFollowing);
-        } catch (e) {}
+        } catch (e) {
+          console.warn('LocalStorage error:', e);
+        }
       }
+
       function loadLocal() {
         try {
           const p = localStorage.getItem('disana_props');
@@ -509,13 +601,18 @@
           const f = localStorage.getItem('disana_followers');
           if (f) state.followers = parseInt(f, 10) || 0;
           state.isFollowing = localStorage.getItem('disana_isFollowing') === 'true';
-        } catch (e) {}
+        } catch (e) {
+          console.warn('Local read error:', e);
+        }
       }
 
-      // ===== Toast =====
+      // UI References
+      const htmlEl = document.documentElement;
+      const bodyEl = document.body;
       const toastEl = document.getElementById('toast-notify');
       const toastMsgEl = document.getElementById('toast-msg');
       const toastIcoEl = document.getElementById('toast-icon');
+
       function showToast(msg, icon = 'check_circle') {
         if (!toastEl || !toastMsgEl || !toastIcoEl) return;
         toastMsgEl.textContent = msg;
@@ -529,8 +626,10 @@
         }, 3200);
       }
 
-      // ===== Modal Handlers =====
+      // Modal Property Handlers
       const modalProperty = document.getElementById('modal-property');
+      const modalDialog = document.getElementById('modal-property-dialog');
+
       window.openPropertyModal = function () {
         if (!modalProperty) return;
         modalProperty.classList.remove('hidden');
@@ -539,24 +638,26 @@
           if (titleInput) titleInput.focus();
         }, 80);
       };
+
       window.closePropertyModal = function () {
         if (!modalProperty) return;
         modalProperty.classList.add('hidden');
       };
+
       if (modalProperty) {
         modalProperty.addEventListener('click', (e) => {
           if (e.target === modalProperty) window.closePropertyModal();
         });
       }
 
-      // ===== Language =====
+      // Render Everything according to current Language
       function applyLocalization() {
         const d = i18n[state.lang];
         const isAr = state.lang === 'ar';
-        const htmlEl = document.documentElement;
-        const bodyEl = document.body;
+
         htmlEl.setAttribute('dir', isAr ? 'rtl' : 'ltr');
         htmlEl.setAttribute('lang', isAr ? 'ar' : 'en');
+
         if (isAr) {
           bodyEl.classList.remove('font-en-mode');
           bodyEl.classList.add('font-ar-mode');
@@ -564,6 +665,7 @@
           bodyEl.classList.remove('font-ar-mode');
           bodyEl.classList.add('font-en-mode');
         }
+
         // Header & Hero
         document.getElementById('hdr-brand').textContent = d.hdrBrand;
         document.getElementById('hdr-sub').textContent = d.hdrSub;
@@ -573,25 +675,34 @@
         document.getElementById('txt-hero-lang-lbl').textContent = d.heroLangLbl;
         document.getElementById('lbl-follow').textContent = state.isFollowing ? d.followingBtn : d.followBtn;
         document.getElementById('lbl-subscribe').textContent = d.subscribeBtn;
+
         // Tabs
         document.getElementById('tab-btn-listings').textContent = d.tabListings;
         document.getElementById('tab-btn-add').textContent = d.tabAdd;
         document.getElementById('tab-btn-appts').textContent = d.tabAppts;
         document.getElementById('tab-btn-mgmt').textContent = d.tabMgmt;
+
         // Search & Filters
         document.getElementById('input-search').placeholder = d.searchPlaceholder;
         document.getElementById('chip-all').textContent = d.filterAll;
         document.getElementById('chip-sale').textContent = d.filterSale;
         document.getElementById('chip-rent').textContent = d.filterRent;
         document.getElementById('chip-land').textContent = d.filterLand;
+
+        // Empty state & No results state
         document.getElementById('txt-empty-title').textContent = d.emptyTitle;
+        document.getElementById('txt-empty-desc').textContent = d.emptyDesc;
         document.getElementById('btn-empty-add-lbl').textContent = d.emptyAddBtn;
         document.getElementById('txt-empty-rule').textContent = d.emptyRule;
+
         const txtNoResTitle = document.getElementById('txt-no-results-title');
         if (txtNoResTitle) txtNoResTitle.textContent = d.noResultsTitle;
+        const txtNoResDesc = document.getElementById('txt-no-results-desc');
+        if (txtNoResDesc) txtNoResDesc.textContent = d.noResultsDesc;
         const lblResetSearch = document.getElementById('lbl-reset-search');
         if (lblResetSearch) lblResetSearch.textContent = d.resetSearchBtn;
-        // Form
+
+        // Modal Form Property
         document.getElementById('lbl-form-title').textContent = d.formTitle;
         document.getElementById('lbl-open-sys').textContent = d.openSys;
         document.getElementById('lbl-category-type').textContent = d.categoryType;
@@ -599,9 +710,11 @@
         document.getElementById('opt-cat-villa').textContent = d.catVilla;
         document.getElementById('opt-cat-land').textContent = d.catLand;
         document.getElementById('opt-cat-office').textContent = d.catOffice;
+
         document.getElementById('lbl-op-type').textContent = d.opType;
         document.getElementById('opt-sale').textContent = d.optSale;
         document.getElementById('opt-rent').textContent = d.optRent;
+
         document.getElementById('lbl-title-input').textContent = d.lblTitle;
         document.getElementById('prop-input-title').placeholder = d.phTitle;
         document.getElementById('lbl-city-input').textContent = d.lblCity;
@@ -615,15 +728,19 @@
         document.getElementById('lbl-expiry-note').textContent = d.expiryNotice;
         document.getElementById('btn-submit-prop-lbl').textContent = d.btnSubmitProp;
         document.getElementById('lbl-cancel-prop').textContent = d.cancelProp;
-        // Appointments
+
+        // Appointments View
         document.getElementById('lbl-appts-title').textContent = d.apptsTitle;
         document.getElementById('btn-add-appt-lbl').textContent = d.btnAddAppt;
         document.getElementById('txt-empty-appts-title').textContent = d.emptyApptsTitle;
-        // Management
+        document.getElementById('txt-empty-appts-desc').textContent = d.emptyApptsDesc;
+
+        // Management View
         document.getElementById('lbl-mgmt-title').textContent = d.mgmtTitle;
         document.getElementById('lbl-refresh').textContent = d.refreshBtn;
         document.getElementById('lbl-mgmt-desc').textContent = d.mgmtDesc;
-        // Appt Modal
+
+        // Modal Appt
         document.getElementById('lbl-modal-appt-title').textContent = d.modalApptTitle;
         document.getElementById('lbl-appt-name').textContent = d.lblApptName;
         document.getElementById('appt-input-name').placeholder = d.phApptName;
@@ -633,25 +750,29 @@
         document.getElementById('lbl-appt-time').textContent = d.lblApptTime;
         document.getElementById('lbl-appt-auto-del').textContent = d.lblApptAutoDel;
         document.getElementById('btn-submit-appt-lbl').textContent = d.btnSubmitAppt;
+
         // Bottom Nav
         document.getElementById('bnav-home-lbl').textContent = d.bnavHome;
         document.getElementById('bnav-props-lbl').textContent = d.bnavProps;
         document.getElementById('bnav-appts-lbl').textContent = d.bnavAppts;
-        // Re-render
+
+        // Re-render data lists with active language
         renderListings();
         renderAppointments();
         renderManagement();
       }
+
       window.toggleLanguage = function () {
         state.lang = state.lang === 'ar' ? 'en' : 'ar';
         applyLocalization();
         showToast(state.lang === 'ar' ? 'تم تحويل اللغة إلى العربية' : 'Switched to English', 'translate');
       };
 
-      // ===== Follow Button =====
+      // Follow Button Logic
       const btnFollow = document.getElementById('btn-follow');
       const countFollowers = document.getElementById('count-followers');
       const icoFollow = document.getElementById('ico-follow');
+
       function updateFollowState() {
         countFollowers.textContent = state.followers;
         const d = i18n[state.lang];
@@ -665,6 +786,7 @@
           btnFollow.classList.remove('ring-2', 'ring-primary-container');
         }
       }
+
       btnFollow.addEventListener('click', () => {
         state.isFollowing = !state.isFollowing;
         state.followers = state.isFollowing ? state.followers + 1 : Math.max(0, state.followers - 1);
@@ -673,19 +795,28 @@
         const d = i18n[state.lang];
         showToast(state.isFollowing ? d.toastFollowed : d.toastUnfollowed, state.isFollowing ? 'favorite' : 'person_remove');
       });
+
+      // Subscribe button feedback
       document.getElementById('btn-subscribe').addEventListener('click', () => {
         showToast(i18n[state.lang].toastSubscribed, 'verified');
       });
 
-      // ===== Navigation / Tab =====
+      // Navigation / Tab Controller
       const navTabs = document.querySelectorAll('.nav-tab-btn');
       const viewPanels = document.querySelectorAll('.view-panel');
+
       window.switchTab = function (tabKey) {
-        if (tabKey === 'modal-trigger') { window.openPropertyModal(); return; }
+        if (tabKey === 'modal-trigger') {
+          window.openPropertyModal();
+          return;
+        }
+
         state.activeTab = tabKey;
         viewPanels.forEach(p => p.classList.add('hidden'));
+
         const target = document.getElementById('view-' + tabKey);
         if (target) target.classList.remove('hidden');
+
         navTabs.forEach(btn => {
           if (btn.dataset.tab === tabKey) {
             btn.classList.add('bg-surface-container-lowest', 'text-primary', 'shadow-xs');
@@ -695,63 +826,107 @@
             btn.classList.add('text-secondary');
           }
         });
+
+        // Sync bottom bar indicators
         const bHome = document.getElementById('bnav-home');
         const bProps = document.getElementById('bnav-props');
         const bAppts = document.getElementById('bnav-appts');
-        [bHome, bProps, bAppts].forEach(b => { b.classList.remove('text-primary'); b.classList.add('text-secondary'); });
-        if (tabKey === 'listings') { bHome.classList.add('text-primary'); bHome.classList.remove('text-secondary'); }
-        else if (tabKey === 'appointments') { bAppts.classList.add('text-primary'); bAppts.classList.remove('text-secondary'); }
-        else { bProps.classList.add('text-primary'); bProps.classList.remove('text-secondary'); }
+        [bHome, bProps, bAppts].forEach(b => {
+          b.classList.remove('text-primary');
+          b.classList.add('text-secondary');
+        });
+
+        if (tabKey === 'listings') {
+          bHome.classList.add('text-primary');
+          bHome.classList.remove('text-secondary');
+        } else if (tabKey === 'appointments') {
+          bAppts.classList.add('text-primary');
+          bAppts.classList.remove('text-secondary');
+        } else {
+          bProps.classList.add('text-primary');
+          bProps.classList.remove('text-secondary');
+        }
+
         if (tabKey === 'management') renderManagement();
       };
+
       navTabs.forEach(b => {
         b.addEventListener('click', () => {
-          if (b.dataset.tab === 'modal-trigger') window.openPropertyModal();
-          else switchTab(b.dataset.tab);
+          if (b.dataset.tab === 'modal-trigger') {
+            window.openPropertyModal();
+          } else {
+            switchTab(b.dataset.tab);
+          }
         });
       });
+
       document.querySelectorAll('.b-nav-item').forEach(btn => {
-        btn.addEventListener('click', (e) => { e.preventDefault(); switchTab(btn.dataset.tab); });
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          switchTab(btn.dataset.tab);
+        });
       });
 
-      // ===== Word Counter =====
+      // Word count handler for property description (Limit: 100 words)
       const propDescInput = document.getElementById('prop-input-desc');
       const wordCountDisplay = document.getElementById('desc-word-counter');
+
       propDescInput.addEventListener('input', () => {
         const text = propDescInput.value.trim();
         const count = text ? text.split(/\s+/).length : 0;
         const d = i18n[state.lang];
         if (count > 100) {
-          wordCountDisplay.textContent = ${count} / 100 ${d.wordsLimitExceeded};
+          wordCountDisplay.textContent = `${count} / 100 ${d.wordsLimitExceeded}`;
           wordCountDisplay.classList.add('text-error', 'font-bold');
         } else {
-          wordCountDisplay.textContent = ${count} / 100 ${d.wordsLimitNote};
+          wordCountDisplay.textContent = `${count} / 100 ${d.wordsLimitNote}`;
           wordCountDisplay.classList.remove('text-error', 'font-bold');
         }
       });
 
-      // ===== Firebase CRUD =====
+      // Firebase Sync Engine - Safe with fallback
       async function syncToFirebase(endpoint, record) {
         try {
-          const res = await fetch(${firebaseConfig.databaseURL}/${endpoint}.json, {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 4000);
+          const res = await fetch(`${FIREBASE_BASE_URL}/${endpoint}.json`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(record)
+            body: JSON.stringify(record),
+            signal: controller.signal
           });
+          clearTimeout(timeoutId);
           return await res.json();
-        } catch (err) { console.warn('Firebase sync error:', err); return { name: 'local_' + Date.now() }; }
+        } catch (err) {
+          console.warn('Firebase network fallback:', err);
+          return { name: 'local_' + Date.now() };
+        }
       }
+
       async function deleteFromFirebase(endpoint, recordId) {
         try {
-          await fetch(${firebaseConfig.databaseURL}/${endpoint}/${recordId}.json, { method: 'DELETE' });
-        } catch (err) { console.warn('Firebase delete error:', err); }
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 3500);
+          await fetch(`${FIREBASE_BASE_URL}/${endpoint}/${recordId}.json`, {
+            method: 'DELETE',
+            signal: controller.signal
+          });
+          clearTimeout(timeoutId);
+        } catch (err) {
+          console.warn('Firebase delete fallback:', err);
+        }
       }
+
       async function loadRemoteData() {
         try {
+          const controller = new AbortController();
+          const timeoutId = setTimeout(() => controller.abort(), 4000);
           const [pRes, aRes] = await Promise.all([
-            fetch(${firebaseConfig.databaseURL}/properties.json).then(r => r.json()).catch(() => null),
-            fetch(${firebaseConfig.databaseURL}/appointments.json).then(r => r.json()).catch(() => null)
+            fetch(`${FIREBASE_BASE_URL}/properties.json`, { signal: controller.signal }).then(r => r.json()).catch(() => null),
+            fetch(`${FIREBASE_BASE_URL}/appointments.json`, { signal: controller.signal }).then(r => r.json()).catch(() => null)
           ]);
+          clearTimeout(timeoutId);
+
           const now = Date.now();
           if (pRes && typeof pRes === 'object') {
             const list = [];
@@ -759,145 +934,250 @@
               const item = pRes[k];
               if (item && typeof item === 'object') {
                 item.id = k;
-                if (!item.createdAt || (now - item.createdAt < THIRTY_DAYS_MS)) list.push(item);
-                else deleteFromFirebase('properties', k);
+                if (!item.createdAt || (now - item.createdAt < THIRTY_DAYS_MS)) {
+                  list.push(item);
+                } else {
+                  deleteFromFirebase('properties', k);
+                }
               }
             });
             if (list.length > 0) {
+              // Merge remote with local without duplicates
               const existingIds = new Set(state.properties.map(p => p.id));
-              list.forEach(item => { if (!existingIds.has(item.id)) state.properties.unshift(item); });
+              list.forEach(item => {
+                if (!existingIds.has(item.id)) state.properties.unshift(item);
+              });
             }
           }
+
           if (aRes && typeof aRes === 'object') {
             const list = [];
             Object.keys(aRes).forEach(k => {
               const item = aRes[k];
               if (item && typeof item === 'object') {
                 item.id = k;
-                if (!item.createdAt || (now - item.createdAt < THIRTY_DAYS_MS)) list.push(item);
-                else deleteFromFirebase('appointments', k);
+                if (!item.createdAt || (now - item.createdAt < THIRTY_DAYS_MS)) {
+                  list.push(item);
+                } else {
+                  deleteFromFirebase('appointments', k);
+                }
               }
             });
             if (list.length > 0) {
               const existingIds = new Set(state.appointments.map(a => a.id));
-              list.forEach(item => { if (!existingIds.has(item.id)) state.appointments.unshift(item); });
+              list.forEach(item => {
+                if (!existingIds.has(item.id)) state.appointments.unshift(item);
+              });
             }
           }
-        } catch (e) { console.log('Firebase fetch notice: running local fallback'); }
+        } catch (e) {
+          console.log('Firebase fetch notice: running local fallback');
+        }
         persistLocal();
         renderListings();
         renderAppointments();
         renderManagement();
       }
 
-      // ===== Property Submit =====
+      // CRITICAL SUBMISSION HANDLER: Complete property saving & order confirmation
       window.handlePropertySubmit = async function (e) {
-        if (e) { if (typeof e.preventDefault === 'function') e.preventDefault(); if (typeof e.stopPropagation === 'function') e.stopPropagation(); }
-        const title = document.getElementById('prop-input-title').value.trim();
-        const city = document.getElementById('prop-input-city').value.trim();
-        const price = document.getElementById('prop-input-price').value.trim();
-        const contact = document.getElementById('prop-input-contact').value.trim();
-        const desc = document.getElementById('prop-input-desc').value.trim();
+        if (e) {
+          if (typeof e.preventDefault === 'function') e.preventDefault();
+          if (typeof e.stopPropagation === 'function') e.stopPropagation();
+        }
+
+        const titleEl = document.getElementById('prop-input-title');
+        const cityEl = document.getElementById('prop-input-city');
+        const priceEl = document.getElementById('prop-input-price');
+        const contactEl = document.getElementById('prop-input-contact');
+        const descEl = document.getElementById('prop-input-desc');
+
+        const title = titleEl ? titleEl.value.trim() : '';
+        const city = cityEl ? cityEl.value.trim() : '';
+        const price = priceEl ? priceEl.value.trim() : '';
+        const contact = contactEl ? contactEl.value.trim() : '';
+        const desc = descEl ? descEl.value.trim() : '';
+
+        // Validation: Required fields
         if (!title || !city || !price || !contact) {
-          const dialog = document.getElementById('modal-property-dialog');
-          if (dialog) { dialog.classList.remove('shake-anim'); void dialog.offsetWidth; dialog.classList.add('shake-anim'); }
+          if (modalDialog) {
+            modalDialog.classList.remove('shake-anim');
+            void modalDialog.offsetWidth; // trigger reflow
+            modalDialog.classList.add('shake-anim');
+          }
           showToast(i18n[state.lang].fillRequired, 'error');
           return;
         }
+
+        // Word count limit check
         const words = desc ? desc.split(/\s+/).length : 0;
-        if (words > 100) { showToast(state.lang === 'ar' ? 'الوصف يتجاوز 100 كلمة' : 'Description exceeds 100 words', 'error'); return; }
+        if (words > 100) {
+          showToast(state.lang === 'ar' ? 'الوصف يتجاوز 100 كلمة، يرجى اختصاره' : 'Description exceeds 100 words', 'error');
+          return;
+        }
+
+        // Selected categories & listing types
         const checkedCat = document.querySelector('input[name="prop-category"]:checked');
         const categoryVal = checkedCat ? checkedCat.value : (state.lang === 'ar' ? 'شقة' : 'Apartment');
+
         const checkedType = document.querySelector('input[name="prop-type"]:checked');
         const typeVal = checkedType ? checkedType.value : 'sale';
+
+        const uniqueId = 'prop_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+
         const newProp = {
-          id: 'prop_' + Date.now() + '_' + Math.random().toString(36).substr(2, 5),
-          title, category: categoryVal, type: typeVal, city, price, contact, desc, createdAt: Date.now()
+          id: uniqueId,
+          title: title,
+          category: categoryVal,
+          type: typeVal,
+          city: city,
+          price: price,
+          contact: contact,
+          desc: desc,
+          createdAt: Date.now()
         };
+
+        // 1. Instant local array update & localStorage persistence
         state.properties.unshift(newProp);
         persistLocal();
+
+        // 2. Clear form inputs
         document.getElementById('form-prop').reset();
-        wordCountDisplay.textContent = 0 / 100 ${i18n[state.lang].wordsLimitNote};
+        wordCountDisplay.textContent = `0 / 100 ${i18n[state.lang].wordsLimitNote}`;
         wordCountDisplay.classList.remove('text-error', 'font-bold');
+
+        // 3. Smoothly close modal
         window.closePropertyModal();
+
+        // 4. Ensure Listings tab is active & render UI immediately
         window.switchTab('listings');
         renderListings();
         renderManagement();
+
+        // 5. Success Toast Feedback
         showToast(i18n[state.lang].toastPropAdded, 'verified');
-        try { const remoteRes = await syncToFirebase('properties', newProp); if (remoteRes && remoteRes.name) { newProp.id = remoteRes.name; persistLocal(); } }
-        catch (err) { console.warn('Sync background err:', err); }
+
+        // 6. Safe Background Cloud sync
+        try {
+          const remoteRes = await syncToFirebase('properties', newProp);
+          if (remoteRes && remoteRes.name) {
+            newProp.id = remoteRes.name;
+            persistLocal();
+          }
+        } catch (err) {
+          console.warn('Sync background err (handled):', err);
+        }
       };
 
-      // ===== Delete Property =====
+      // Expose delete handler globally
       window.deletePropertyItem = async function (propId) {
         state.properties = state.properties.filter(x => x.id !== propId);
         persistLocal();
         renderListings();
         renderManagement();
         showToast(i18n[state.lang].toastDeleted, 'delete');
-        try { await deleteFromFirebase('properties', propId); } catch (err) { console.warn('Delete cloud err:', err); }
+        try {
+          await deleteFromFirebase('properties', propId);
+        } catch (err) {
+          console.warn('Delete cloud err:', err);
+        }
       };
 
-      // ===== Render Functions =====
+      // Render Property Listings with full dynamic search & category filtering
       function renderListings() {
         const feed = document.getElementById('listings-feed');
         const emptyState = document.getElementById('empty-state-listings');
         const noResultsState = document.getElementById('no-search-results');
         const d = i18n[state.lang];
+
         if (!feed) return;
+
         const q = state.searchQuery.toLowerCase();
+
+        // Check if database has any properties at all
         if (state.properties.length === 0) {
           if (emptyState) emptyState.classList.remove('hidden');
-          if (noResultsState) { noResultsState.classList.add('hidden'); noResultsState.classList.remove('flex'); }
-          feed.innerHTML = ''; return;
+          if (noResultsState) {
+            noResultsState.classList.add('hidden');
+            noResultsState.classList.remove('flex');
+          }
+          feed.innerHTML = '';
+          return;
         }
+
+        // Filter based on active chip filter and search query
         const filtered = state.properties.filter(item => {
           let matchType = true;
           if (state.activeFilter === 'sale') matchType = item.type === 'sale';
           else if (state.activeFilter === 'rent') matchType = item.type === 'rent';
-          else if (state.activeFilter === 'land') matchType = item.type === 'land' || (item.category && item.category.includes('أرض'));
+          else if (state.activeFilter === 'land') {
+            matchType = item.type === 'land' || (item.category && item.category.includes('أرض'));
+          }
+
           if (!q) return matchType;
+
           const arType = i18n.ar.typeLabels[item.type] || '';
           const enType = i18n.en.typeLabels[item.type] || '';
           const category = item.category || '';
           const rawType = item.type || '';
+
           const matchQuery = (item.title && item.title.toLowerCase().includes(q)) ||
-            (item.city && item.city.toLowerCase().includes(q)) ||
-            (item.desc && item.desc.toLowerCase().includes(q)) ||
-            (item.price && item.price.toLowerCase().includes(q)) ||
-            (category && category.toLowerCase().includes(q)) ||
-            arType.toLowerCase().includes(q) || enType.toLowerCase().includes(q) || rawType.toLowerCase().includes(q);
+                             (item.city && item.city.toLowerCase().includes(q)) ||
+                             (item.desc && item.desc.toLowerCase().includes(q)) ||
+                             (item.price && item.price.toLowerCase().includes(q)) ||
+                             (category && category.toLowerCase().includes(q)) ||
+                             arType.toLowerCase().includes(q) ||
+                             enType.toLowerCase().includes(q) ||
+                             rawType.toLowerCase().includes(q);
+
           return matchType && matchQuery;
         });
+
         if (emptyState) emptyState.classList.add('hidden');
+
+        // If user searched or filtered and found 0 matches
         if (filtered.length === 0) {
           feed.innerHTML = '';
-          if (noResultsState) { noResultsState.classList.remove('hidden'); noResultsState.classList.add('flex'); }
+          if (noResultsState) {
+            noResultsState.classList.remove('hidden');
+            noResultsState.classList.add('flex');
+          }
           return;
         }
-        if (noResultsState) { noResultsState.classList.add('hidden'); noResultsState.classList.remove('flex'); }
+
+        // If results exist
+        if (noResultsState) {
+          noResultsState.classList.add('hidden');
+          noResultsState.classList.remove('flex');
+        }
         feed.innerHTML = '';
+
         filtered.forEach(p => {
           const card = document.createElement('div');
           card.className = 'bg-surface-container-lowest rounded-2xl p-4 shadow-xs flex flex-col gap-2.5 transition-all border border-surface-container hover:border-secondary-container/80';
+          
           const typeBadgeText = d.typeLabels[p.type] || p.type;
           const catBadgeText = p.category || (state.lang === 'ar' ? 'عقار' : 'Property');
+
+          // Days remaining calculation
           const daysPassed = Math.floor((Date.now() - (p.createdAt || Date.now())) / (1000 * 60 * 60 * 24));
           const daysLeft = Math.max(1, 30 - daysPassed);
-          const expiryText = state.lang === 'ar' ? ينحذف تلقائياً بعد ${daysLeft} يوم : Auto-deletes in ${daysLeft} days;
+          const expiryText = state.lang === 'ar' ? `ينحذف تلقائياً بعد ${daysLeft} يوم` : `Auto-deletes in ${daysLeft} days`;
+
           card.innerHTML = `
             <div class="flex items-center justify-between gap-2">
               <div class="flex items-center gap-1.5 flex-wrap">
                 <span class="px-2.5 py-0.5 rounded-full bg-primary text-on-primary text-[11px] font-bold shadow-2xs">${catBadgeText}</span>
                 <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container text-[11px] font-semibold">${typeBadgeText}</span>
                 <span class="text-xs text-secondary font-medium flex items-center gap-0.5">
-                  <span class="material-symbols-outlined text-[14px]">location_on</span> ${p.city}
+                  <span class="material-symbols-outlined text-[14px]">location_on</span>
+                  ${p.city}
                 </span>
               </div>
               <span class="font-bold text-sm sm:text-base text-primary whitespace-nowrap">${p.price}</span>
             </div>
             <h3 class="font-bold text-sm text-on-surface leading-snug">${p.title}</h3>
-            ${p.desc ? <p class="text-xs text-secondary leading-relaxed bg-surface-container-low/60 p-2.5 rounded-xl border border-surface-container/50">${p.desc}</p> : ''}
+            ${p.desc ? `<p class="text-xs text-secondary leading-relaxed bg-surface-container-low/60 p-2.5 rounded-xl border border-surface-container/50">${p.desc}</p>` : ''}
             <div class="flex items-center justify-between pt-2 border-t border-surface-container text-xs text-secondary">
               <div class="flex items-center gap-1.5 font-medium text-primary">
                 <span class="material-symbols-outlined text-[16px]">call</span>
@@ -905,7 +1185,8 @@
               </div>
               <div class="flex items-center gap-2">
                 <span class="text-[10px] sm:text-[11px] text-secondary bg-surface-container px-2 py-0.5 rounded-full font-medium flex items-center gap-1">
-                  <span class="material-symbols-outlined text-[12px]">schedule</span> ${expiryText}
+                  <span class="material-symbols-outlined text-[12px]">schedule</span>
+                  ${expiryText}
                 </span>
                 <button onclick="window.deletePropertyItem('${p.id}')" class="text-error hover:bg-error-container/40 p-1 rounded-lg transition-colors flex items-center gap-0.5" title="${d.deleteBtn}">
                   <span class="material-symbols-outlined text-[18px]">delete</span>
@@ -914,63 +1195,122 @@
               </div>
             </div>
           `;
+
           feed.appendChild(card);
         });
       }
 
-      // ===== Search & Filters =====
+      // Dynamic Search & Filters Handling
       const inputSearch = document.getElementById('input-search');
       const btnClearSearch = document.getElementById('btn-clear-search');
+      const btnResetSearch = document.getElementById('btn-reset-search');
+
       inputSearch.addEventListener('input', (e) => {
         state.searchQuery = e.target.value.trim();
-        if (state.searchQuery) btnClearSearch.classList.remove('hidden');
-        else btnClearSearch.classList.add('hidden');
+        if (state.searchQuery) {
+          btnClearSearch.classList.remove('hidden');
+        } else {
+          btnClearSearch.classList.add('hidden');
+        }
         renderListings();
       });
+
       btnClearSearch.addEventListener('click', () => {
-        inputSearch.value = ''; state.searchQuery = ''; btnClearSearch.classList.add('hidden'); renderListings();
-      });
-      document.getElementById('btn-reset-search').addEventListener('click', () => {
-        inputSearch.value = ''; state.searchQuery = ''; state.activeFilter = 'all'; btnClearSearch.classList.add('hidden');
-        document.querySelectorAll('.filter-chip').forEach(b => {
-          if (b.dataset.type === 'all') { b.classList.add('bg-primary', 'text-on-primary'); b.classList.remove('bg-surface-container', 'text-secondary'); }
-          else { b.classList.remove('bg-primary', 'text-on-primary'); b.classList.add('bg-surface-container', 'text-secondary'); }
-        });
+        inputSearch.value = '';
+        state.searchQuery = '';
+        btnClearSearch.classList.add('hidden');
         renderListings();
       });
+
+      if (btnResetSearch) {
+        btnResetSearch.addEventListener('click', () => {
+          inputSearch.value = '';
+          state.searchQuery = '';
+          state.activeFilter = 'all';
+          btnClearSearch.classList.add('hidden');
+          document.querySelectorAll('.filter-chip').forEach(b => {
+            if (b.dataset.type === 'all') {
+              b.classList.add('bg-primary', 'text-on-primary');
+              b.classList.remove('bg-surface-container', 'text-secondary');
+            } else {
+              b.classList.remove('bg-primary', 'text-on-primary');
+              b.classList.add('bg-surface-container', 'text-secondary');
+            }
+          });
+          renderListings();
+        });
+      }
+
       document.querySelectorAll('.filter-chip').forEach(btn => {
         btn.addEventListener('click', () => {
-          document.querySelectorAll('.filter-chip').forEach(b => { b.classList.remove('bg-primary', 'text-on-primary'); b.classList.add('bg-surface-container', 'text-secondary'); });
-          btn.classList.add('bg-primary', 'text-on-primary'); btn.classList.remove('bg-surface-container', 'text-secondary');
-          state.activeFilter = btn.dataset.type; renderListings();
+          document.querySelectorAll('.filter-chip').forEach(b => {
+            b.classList.remove('bg-primary', 'text-on-primary');
+            b.classList.add('bg-surface-container', 'text-secondary');
+          });
+          btn.classList.add('bg-primary', 'text-on-primary');
+          btn.classList.remove('bg-surface-container', 'text-secondary');
+          state.activeFilter = btn.dataset.type;
+          renderListings();
         });
       });
 
-      // ===== Appointments =====
+      // Modal: Book Appointment / Consultation
       const modalAppt = document.getElementById('modal-appt');
       const btnOpenAppt = document.getElementById('btn-open-modal-appt');
       const btnCloseAppt = document.getElementById('btn-close-modal-appt');
       const formAppt = document.getElementById('form-appt-modal');
+
       btnOpenAppt.addEventListener('click', () => modalAppt.classList.remove('hidden'));
       btnCloseAppt.addEventListener('click', () => modalAppt.classList.add('hidden'));
-      modalAppt.addEventListener('click', (e) => { if (e.target === modalAppt) modalAppt.classList.add('hidden'); });
-      formAppt.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const newAppt = { id: 'apt_' + Date.now(), client: document.getElementById('appt-input-name').value.trim(), target: document.getElementById('appt-input-target').value.trim(), date: document.getElementById('appt-input-date').value, time: document.getElementById('appt-input-time').value, createdAt: Date.now() };
-        state.appointments.unshift(newAppt); persistLocal(); formAppt.reset(); modalAppt.classList.add('hidden');
-        showToast(i18n[state.lang].toastApptAdded, 'calendar_today'); renderAppointments(); renderManagement();
-        const res = await syncToFirebase('appointments', newAppt);
-        if (res && res.name) { newAppt.id = res.name; persistLocal(); }
+
+      modalAppt.addEventListener('click', (e) => {
+        if (e.target === modalAppt) modalAppt.classList.add('hidden');
       });
 
+      formAppt.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const newAppt = {
+          id: 'apt_' + Date.now(),
+          client: document.getElementById('appt-input-name').value.trim(),
+          target: document.getElementById('appt-input-target').value.trim(),
+          date: document.getElementById('appt-input-date').value,
+          time: document.getElementById('appt-input-time').value,
+          createdAt: Date.now()
+        };
+
+        state.appointments.unshift(newAppt);
+        persistLocal();
+        formAppt.reset();
+        modalAppt.classList.add('hidden');
+
+        showToast(i18n[state.lang].toastApptAdded, 'calendar_today');
+        renderAppointments();
+        renderManagement();
+
+        const res = await syncToFirebase('appointments', newAppt);
+        if (res && res.name) {
+          newAppt.id = res.name;
+          persistLocal();
+        }
+      });
+
+      // Render Appointments
       function renderAppointments() {
         const feed = document.getElementById('appointments-feed');
         const empty = document.getElementById('empty-state-appts');
         const d = i18n[state.lang];
+
         if (!feed) return;
-        if (state.appointments.length === 0) { if (empty) empty.classList.remove('hidden'); feed.innerHTML = ''; return; }
+
+        if (state.appointments.length === 0) {
+          if (empty) empty.classList.remove('hidden');
+          feed.innerHTML = '';
+          return;
+        }
+
         if (empty) empty.classList.add('hidden');
         feed.innerHTML = '';
+
         state.appointments.forEach(apt => {
           const div = document.createElement('div');
           div.className = 'bg-surface-container rounded-xl p-3 flex items-center justify-between gap-2';
@@ -991,30 +1331,45 @@
               </button>
             </div>
           `;
+
           div.querySelector('.btn-del-appt').addEventListener('click', async () => {
             state.appointments = state.appointments.filter(x => x.id !== apt.id);
-            persistLocal(); renderAppointments(); renderManagement(); showToast(d.toastDeleted, 'event_busy');
+            persistLocal();
+            renderAppointments();
+            renderManagement();
+            showToast(d.toastDeleted, 'event_busy');
             await deleteFromFirebase('appointments', apt.id);
           });
+
           feed.appendChild(div);
         });
       }
 
+      // Render Management Screen (Instant Open Deletion)
       function renderManagement() {
         const container = document.getElementById('management-records-feed');
         const d = i18n[state.lang];
         if (!container) return;
+
         container.innerHTML = '';
+
         const total = state.properties.length + state.appointments.length;
         if (total === 0) {
-          container.innerHTML = <div class="p-5 text-center text-xs text-secondary bg-surface-container rounded-xl">${state.lang === 'ar' ? 'لا توجد سجلات مسجلة حالياً للتعديل أو الحذف.' : 'No active records available to manage.'}</div>;
+          container.innerHTML = `
+            <div class="p-5 text-center text-xs text-secondary bg-surface-container rounded-xl">
+              ${state.lang === 'ar' ? 'لا توجد سجلات مسجلة حالياً للتعديل أو الحذف.' : 'No active records available to manage.'}
+            </div>
+          `;
           return;
         }
+
+        // Section: Properties
         if (state.properties.length > 0) {
           const title = document.createElement('h3');
           title.className = 'text-xs font-bold text-primary';
           title.textContent = state.lang === 'ar' ? 'العقارات المنشورة (حذف فوري):' : 'Active Properties (Instant Delete):';
           container.appendChild(title);
+
           state.properties.forEach(p => {
             const item = document.createElement('div');
             item.className = 'bg-surface-container rounded-xl p-2.5 flex items-center justify-between gap-2';
@@ -1028,15 +1383,20 @@
                 <span>${d.deleteBtn}</span>
               </button>
             `;
-            item.querySelector('.del-prop-action').addEventListener('click', async () => { window.deletePropertyItem(p.id); });
+            item.querySelector('.del-prop-action').addEventListener('click', async () => {
+              window.deletePropertyItem(p.id);
+            });
             container.appendChild(item);
           });
         }
+
+        // Section: Appointments
         if (state.appointments.length > 0) {
           const title = document.createElement('h3');
           title.className = 'text-xs font-bold text-primary mt-2';
           title.textContent = state.lang === 'ar' ? 'مواعيد المعاينات والطلبات:' : 'Inspections & Bookings:';
           container.appendChild(title);
+
           state.appointments.forEach(a => {
             const item = document.createElement('div');
             item.className = 'bg-surface-container rounded-xl p-2.5 flex items-center justify-between gap-2';
@@ -1052,7 +1412,10 @@
             `;
             item.querySelector('.del-appt-action').addEventListener('click', async () => {
               state.appointments = state.appointments.filter(x => x.id !== a.id);
-              persistLocal(); renderManagement(); renderAppointments(); showToast(d.toastDeleted, 'event_busy');
+              persistLocal();
+              renderManagement();
+              renderAppointments();
+              showToast(d.toastDeleted, 'event_busy');
               await deleteFromFirebase('appointments', a.id);
             });
             container.appendChild(item);
@@ -1065,7 +1428,7 @@
         showToast(state.lang === 'ar' ? 'تمت مزامنة البيانات مع السحابة' : 'Data synchronized with Cloud');
       });
 
-      // ===== Init =====
+      // Initialization
       loadLocal();
       updateFollowState();
       applyLocalization();
